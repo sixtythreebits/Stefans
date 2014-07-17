@@ -1,0 +1,154 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Stefans</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    @BundleConfig.PutLayoutStyle()
+
+    <link href="~/Plugins/bxslider/jquery.bxslider.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Plugins/mousewheel/jquery.mousewheel.js"></script>
+
+    <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+
+    <script src="~/Plugins/scroll-to/jquery.scrollTo-1.4.3.1-min.js"></script>
+
+    <script src="~/Plugins/bxslider/jquery.bxslider.min.js"></script>
+
+    <script src="js/js.js"></script>
+
+    <script src="js/js-main.js"></script>
+</head>
+<body>
+    <div class="all">
+        <header class="fix">
+            <nav>
+                <span class="logo"></span>
+                <ul>
+                    <li class="active">
+                        <a href="#home">HOME</a>
+                    </li>
+                    <li>
+                        <a href="#about-us">ABOUT US</a>
+                    </li>
+                    <li>
+                        <a href="#products">PRODUCTS</a>
+                    </li>
+                    <li>
+                        <a href="#faq">FAQ</a>
+                    </li>
+                    <li>
+                        <a href="#contact">CONTACT US</a>
+                    </li>
+                    <li class="sign">
+                        <ul>
+                            <li><a href="registration.html">Register</a></li>
+                            <li><a href="#" class="login">Log In</a></li>
+                            <li class="hidden"><a href="account.html">My Account</a></li>
+                            <li class="hidden"><a href="#">Sign out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="sign form fix before">
+            <div class="login">
+                <p>
+                    <input type="text" placeholder="User" />
+                    <input type="password" placeholder="password" />
+                    <input type="submit" value="ENTER" />
+                    <a href="#">Forgot Password</a>
+                </p>
+            </div>
+            <div class="forgot hide">
+                <p>
+                    <input type="text" placeholder="Email" />
+                    <input type="submit" value="send" />
+                    <a href="#">Log in</a>
+                </p>
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <footer>
+            <div class="cl">
+                <span>Copyright 2013</span>
+                <ul>
+                    <li class="active">
+                        <a href="#home">home</a>
+                    </li>
+                    <li>
+                        <a href="#about-us">Projects</a>
+                    </li>
+                    <li>
+                        <a href="#about-us">Features</a>
+                    </li>
+                    <li>
+                        <a href="#products">Specifications</a>
+                    </li>
+                    <li>
+                        <a href="#faq">Pricing</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        $(function () {
+            //scroll on load
+            $(window).scrollTo(window.location.hash, { offset: { top: -100 }, duration: 300 });
+
+            //scroll on cklick
+            $('nav > ul > li > a').click(function () {
+                $(window).scrollTo($(this).attr("href"), { offset: { top: -100 }, duration: 300 });
+                return false;
+            });
+
+            //add active class
+            $(document).on("scroll", onScroll);
+        });
+
+
+        function onScroll() {
+            var scrollPos = $(document).scrollTop();
+            $('nav > ul > li > a').each(function () {
+                var currLink = $(this);
+                var refElement = $(currLink.attr("href"));
+                if (refElement.position().top - 250 <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                    $('nav > ul > li').removeClass("active");
+                    currLink.parent().addClass("active");
+                }
+                else {
+                    currLink.parent().removeClass("active");
+                }
+            });
+        }
+
+
+        $(function () {
+            $('html,body').on('mousewheel', function (event, delta) {
+                if (delta < 0) d = 270;
+                else d = -270;
+
+                var posY = $(document).scrollTop() + d;
+                $('html,body').stop().animate({ scrollTop: posY });
+
+                return false;
+            });
+        });
+    </script>
+    
+    @RenderSection("JS", false)
+</body>
+</html>
