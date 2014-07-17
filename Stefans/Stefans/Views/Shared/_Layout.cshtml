@@ -20,9 +20,9 @@
 
     <script src="~/Plugins/bxslider/jquery.bxslider.min.js"></script>
 
-    <script src="js/js.js"></script>
+    @*<script src="js/js.js"></script>
 
-    <script src="js/js-main.js"></script>
+    <script src="js/js-main.js"></script>*@
 </head>
 <body>
     <div class="all">
@@ -47,7 +47,7 @@
                     </li>
                     <li class="sign">
                         <ul>
-                            <li><a href="registration.html">Register</a></li>
+                            <li><a href="@Url.Action("Register", "Account")">Register</a></li>
                             <li><a href="#" class="login">Log In</a></li>
                             <li class="hidden"><a href="account.html">My Account</a></li>
                             <li class="hidden"><a href="#">Sign out</a></li>
@@ -150,5 +150,66 @@
     </script>
     
     @RenderSection("JS", false)
+    
+    <script>
+    $(function () {
+        //sign in
+        $('a.login').click(function () {
+            $('.sign.form').removeClass('before');
+            $(document).click(function (e) {
+                if ($(e.target).parents('.sign').length == 0) {
+                    $('.sign.form').addClass('before');
+                    $(document).unbind("click");
+                }
+            });
+            return false;
+        });
+        $('.login p > a').click(function () {
+            $('.sign.form .login').addClass('hide');
+            $('.sign.form .forgot').removeClass('hide');
+            return false;
+        });
+        $('.forgot p > a').click(function () {
+            $('.sign.form .forgot').addClass('hide');
+            $('.sign.form .login').removeClass('hide');
+            return false;
+        });
+        $('.sign.form input[type=submit]').click(function () {
+            $(this).parent('p').effect('shake', { distance: 10 });
+        });
+
+
+        //home slider
+        $('.slider.home ul').bxSlider({
+            controls: false,
+            auto: true,
+        });
+
+        //faq
+        $('.faq > ul > li').on('click', 'h5', function () {
+            if ($(this).parent('li.opened').length == 0) {
+                $('.faq > ul > li').removeClass('opened');
+                $('.faq div:not(:hidden)').slideUp(500);
+                $(this).parent().addClass('opened');
+                $(this).next('div').slideDown(500);
+            }
+            else {
+                $('.faq > ul > li').removeClass('opened');
+                $(this).next('div').slideUp(500);
+            }
+            return false;
+        });
+
+        //form select
+        $("div.select").each(function () {
+            $(this).children("p").text($(this).children("select").children("option:selected").text());
+        });
+
+        $("div.select select").change(function () {
+            $(this).parent().children("p").text($(this).children("option:selected").text());
+        });
+    });
+    </script>
+
 </body>
 </html>

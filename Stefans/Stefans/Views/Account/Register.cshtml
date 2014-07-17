@@ -1,0 +1,57 @@
+﻿@model RegistrationModel
+
+<section class="signup">
+    <h1 class="title">SIGN UP</h1>
+
+    <form action="@Url.Action("Register", "Account")" method="POST">
+        <div class="form">
+            <h5>ACCOUNT INFORMATION</h5>
+            <div class="cl">
+                <div>
+                    @Html.TextBoxFor(m => m.User.FirstName, new { placeholder = "First Name" })
+                </div>
+
+                <div>
+                    @Html.TextBoxFor(m => m.User.LastName, new { placeholder = "Last Name" })
+                </div>
+            </div>
+            <div>
+                @Html.TextBoxFor(m => m.User.Email, new { placeholder = "Email" })
+            </div>
+            <div>
+                @Html.PasswordFor(m => m.User.Password, new { placeholder = "Password" })
+            </div>
+
+            <div>
+                @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Once Again" })
+            </div>
+
+
+            @*<div class="cl">
+                <div>
+                    <input type="text" placeholder="City" />
+                </div>
+
+                <div class="error">
+                    <input type="text" placeholder="Zip Code" />
+                </div>
+            </div>
+            <div class="cl">
+                <div class="error">
+                    <div class="select">
+                        <p></p>
+                        <span></span>
+                        <select>
+                            <option>State</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Phone Number" />
+                </div>
+            </div>*@
+            <input type="submit" value="save" />
+        </div>
+    </form>
+</section>
