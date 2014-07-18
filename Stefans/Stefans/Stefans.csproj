@@ -98,6 +98,7 @@
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.1.2\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -138,6 +139,7 @@
     <Content Include="fonts\HelveticaNeueLight.eot" />
     <Content Include="fonts\HelveticaNeueLight.ttf" />
     <Content Include="fonts\HelveticaNeueLight.woff" />
+    <None Include="Properties\PublishProfiles\StefansPublishProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

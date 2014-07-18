@@ -21,12 +21,11 @@
     <script src="~/Plugins/bxslider/jquery.bxslider.min.js"></script>
 
     @*<script src="js/js.js"></script>
-
-        <script src="js/js-main.js"></script>*@
+      <script src="js/js-main.js"></script>*@
 </head>
 <body>
     <div class="all">
-        <header>
+        <header class="@( ViewBag.HeaderFixed == true ? "fix" : "" )">
             <nav>
                 <span class="logo"></span>
                 <ul>

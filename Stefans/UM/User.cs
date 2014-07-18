@@ -52,7 +52,12 @@ namespace UM
         {
             TryExecute(db =>
             {
-                db.UM_tsp_Users(iud, ref ID, Password.MD5(), FirstName, LastName, Email, Phone, Address1, Address2, StateID, Zip, City, IsActive);
+                if (Password != null)
+                {
+                    Password = Password.MD5();
+                }
+
+                db.UM_tsp_Users(iud, ref ID, Password, FirstName, LastName, Email, Phone, Address1, Address2, StateID, Zip, City, IsActive);
 
                 if (ID.HasValue)
                 {
