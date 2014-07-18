@@ -120,6 +120,9 @@
   <data name="ErrorEmailDuplication" xml:space="preserve">
     <value>User with this email is already registered!</value>
   </data>
+  <data name="ErrorOriginalPassword" xml:space="preserve">
+    <value>Original password is incorrect!</value>
+  </data>
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>Passwords must match!</value>
   </data>

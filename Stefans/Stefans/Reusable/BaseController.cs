@@ -1,10 +1,16 @@
 ﻿using System.IO;
 using System.Web.Mvc;
+using UM;
 
 namespace Stefans.Reusable
 {
     public class BaseController : Controller
     {
+        public new User User
+        {
+            get { return Session.GetUser(); }
+        }
+
         public string RenderRazorViewToString(string ViewName, object Model)
         {
             ViewData.Model = Model;

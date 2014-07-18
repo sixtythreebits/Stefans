@@ -5,6 +5,7 @@ using General;
 using Newtonsoft.Json;
 using Stefans.Models;
 using Stefans.Reusable;
+using Stefans.Reusable.Attributes;
 using UM;
 using Lib;
 using Res = General.Properties.Resources;
@@ -159,6 +160,40 @@ namespace Stefans.Controllers
                 }
             }
             return Json(new {Success = false}, JsonRequestBehavior.AllowGet);
+        }
+
+        [SecureAccess]
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+        [SecureAccess]
+        public ActionResult ChangePassword(ChangePasswordModel Model)
+        {
+            if (User.Password != Model.OriginalPassword.MD5())
+            {
+                ModelState.AddModelError(() => Model.OriginalPassword, Res.ErrorOriginalPassword);
+            }
+
+            if (Model.NewPassword != Model.ConfirmPassword)
+            {
+                ModelState.AddModelError(() => Model.ConfirmPassword, Res.ErrorPasswordMismatch);
+            }
+
+            if (ModelState.IsValid)
+            {
+                var repo = new User();
+                repo.TSP(1, User.ID, Model.NewPassword);
+
+                if (!repo.IsError)
+                {
+                    Session.SetUser(repo.GetSingle(User.ID));
+                    return RedirectToAction("Profile");
+                }
+            }
+
+            return View("Profile", Model);
         }
     }
 }

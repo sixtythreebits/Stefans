@@ -70,6 +70,15 @@ namespace General.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Original password is incorrect!.
+        /// </summary>
+        public static string ErrorOriginalPassword {
+            get {
+                return ResourceManager.GetString("ErrorOriginalPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passwords must match!.
         /// </summary>
         public static string ErrorPasswordMismatch {

@@ -66,7 +66,7 @@ namespace UM
             return TryToReturn(db => db.IsEmailUnique(Email, null) == true, Logger: string.Format("IsEmailUnique(Email = {0})", Email));
         }
 
-        public User GetSingle(int? UserID, string Email)
+        public User GetSingle(int? UserID, string Email = null)
         {
             return TryToReturn(db =>
             {

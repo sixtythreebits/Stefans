@@ -27,5 +27,10 @@ namespace Stefans.Reusable
         {
             SessionState["UserInfo"] = User;
         }
+
+        public static User GetUser(this HttpSessionStateBase SessionState)
+        {
+            return SessionState["UserInfo"] as User;
+        }
     }
 }
