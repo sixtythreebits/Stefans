@@ -1,0 +1,22 @@
+﻿@using Lib
+@model int
+
+@{
+    Layout = null;
+
+    var link = Request.SchemeAndAuthority() + Url.Action("Activate", "Account", new {ID = Model.ToString().EncryptWeb()});
+}
+
+<div>
+    <h1>
+        Congrats
+    </h1>
+    
+    <p>
+        You have successfully been registered to Stefan's shampoo online shop
+    </p>
+    
+    <p>
+        Please <a href="@link"> activate </a> your account
+    </p>
+</div>
