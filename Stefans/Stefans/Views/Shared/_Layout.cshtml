@@ -67,11 +67,13 @@
                 </p>
             </div>
             <div class="forgot hide">
-                <p>
-                    <input type="text" placeholder="Email" />
-                    <input type="submit" value="send" />
-                    <a href="#">Log in</a>
-                </p>
+                <form method="POST" action="@Url.Action("SendPasswordResetMail", "Account")">
+                    <p>
+                        <input type="text" name="Email" placeholder="Email" />
+                        <input type="submit" value="send" />
+                        <a href="#">Log in</a>
+                    </p>
+                </form>
             </div>
         </div>
 
@@ -174,9 +176,9 @@
             $('.sign.form .login').removeClass('hide');
             return false;
         });
-        $('.sign.form input[type=submit]').click(function () {
-            $(this).parent('p').effect('shake', { distance: 10 });
-        });
+        //$('.sign.form input[type=submit]').click(function () {
+        //    $(this).parent('p').effect('shake', { distance: 10 });
+        //});
 
 
         //home slider

@@ -13,9 +13,9 @@ namespace UM
             get { return _dbInitializer.Value; }
         }
 
-        public GenericObjectBase(Func<T> DbCreator)
+        public GenericObjectBase(Func<T> ContextCreator)
         {
-            _dbInitializer = new Lazy<T>(DbCreator);
+            _dbInitializer = new Lazy<T>(ContextCreator);
         }
     }
 }

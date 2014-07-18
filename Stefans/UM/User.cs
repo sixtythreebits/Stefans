@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DB;
+using Lib;
 
 namespace UM
 {
@@ -48,11 +49,11 @@ namespace UM
 
         #region Methods
 
-        public void TSP_Users(byte? iud = null, int? ID = null, string Password = null, string FirstName = null, string LastName = null, string Email = null, string Phone = null, string Address1 = null, string Address2 = null, int? StateID = null, string Zip = null, string City = null, bool? IsActive = null)
+        public void TSP(byte? iud = null, int? ID = null, string Password = null, string FirstName = null, string LastName = null, string Email = null, string Phone = null, string Address1 = null, string Address2 = null, int? StateID = null, string Zip = null, string City = null, bool? IsActive = null)
         {
             TryExecute(() =>
             {
-                DB.UM_tsp_Users(iud, ref ID, Password, FirstName, LastName, Email, Phone, Address1, Address2, StateID, Zip, City, IsActive);
+                DB.UM_tsp_Users(iud, ref ID, Password.MD5(), FirstName, LastName, Email, Phone, Address1, Address2, StateID, Zip, City, IsActive);
 
                 if (ID.HasValue)
                 {
@@ -64,6 +65,22 @@ namespace UM
         public bool IsEmailUnique(string Email)
         {
             return TryToReturn(() => DB.IsEmailUnique(Email, null) == true);
+        }
+
+        public User GetSingle(int? UserID, string Email)
+        {
+            return TryToReturn(() =>
+            {
+                var xml = DB.UM_GetSingle_User(UserID, Email);
+                if (xml != null)
+                {
+                    return new User
+                    {
+                        ID = xml.IntValueOf("user_id").Value
+                    };
+                }
+                return null;
+            });
         }
 
         #endregion

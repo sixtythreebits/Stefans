@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using General;
+using Newtonsoft.Json;
 using Stefans.Models;
 using Stefans.Reusable;
 using UM;
@@ -32,7 +34,7 @@ namespace Stefans.Controllers
 
             if (ModelState.IsValid)
             {
-                repo.TSP_Users(0, null, Model.User.Password, Model.User.FirstName, Model.User.LastName, Model.User.Email);
+                repo.TSP(0, null, Model.User.Password, Model.User.FirstName, Model.User.LastName, Model.User.Email);
 
                 if (!repo.IsError && repo.ID > 0)
                 {
@@ -50,19 +52,86 @@ namespace Stefans.Controllers
             return View(Model);
         }
 
-
         public ActionResult Activate(string ID)
         {
             int userID;
             if (int.TryParse(ID.DecryptWeb(), out userID))
             {
                 var repo = new User();
-                repo.TSP_Users(1, userID, IsActive: true);
+                repo.TSP(1, userID, IsActive: true);
 
                 if (!repo.IsError)
                 {
                     return RedirectToAction("Index", "Home");
                 }
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult SendPasswordResetMail(string Email)
+        {
+            if (!string.IsNullOrWhiteSpace(Email))
+            {
+                var user = new User().GetSingle(null, Email);
+                if (user != null)
+                {
+                    var encryptedJson = new
+                    {
+                        UserID = user.ID,
+                        ExparationTime = DateTime.Now
+                    }.ToJson().EncryptWeb();
+                    var emailBody = RenderRazorViewToString("ResetPasswordEmail", encryptedJson);
+
+                    Task.Run(() =>
+                    {
+                        var mail = new Mail();
+                        mail.Send(Email, "Reset Password", emailBody);
+                    });
+
+                    ViewBag.Message = "Please follow the link we sent on your email to reset your password";
+                    return View("_Message");
+                }
+            }
+            return HttpNotFound();
+        }
+
+        public ActionResult ResetPassword(string ID)
+        {
+            var data = JsonConvert.DeserializeXNode(ID.DecryptWeb(), "data").Element("data");
+            var userID = data.IntValueOf("UserID");
+            var expTime = data.DateTimeValueOf("ExparationTime");
+
+            if (userID.HasValue && userID > 0 && expTime.HasValue && DateTime.Now.Subtract(expTime.Value) > 1.Hours())
+            {
+                return View("ResetPassword", new ResetPasswordModel
+                {
+                    AdditionalData = ID
+                });
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordModel Model)
+        {
+            var data = JsonConvert.DeserializeXNode(Model.AdditionalData.DecryptWeb(), "data");
+            var userID = data.Element("data").IntValueOf("UserID");
+            if (userID.HasValue && userID > 0)
+            {
+                if (Model.ConfirmPassword != Model.Password)
+                {
+                    ModelState.AddModelError(() => Model.ConfirmPassword, Res.ErrorPasswordMismatch);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    var repo = new User();
+                    repo.TSP(1, userID, Model.Password);
+                    return RedirectToAction("Index", "Home");
+                }
+
+                return View("ResetPassword", Model); 
             }
             return HttpNotFound();
         }

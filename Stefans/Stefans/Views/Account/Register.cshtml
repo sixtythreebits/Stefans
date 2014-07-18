@@ -3,6 +3,7 @@
 @model RegistrationModel
            
 @section JS {
+
     @*@BundleConfig.PutValidationScript()
 
     <script>
@@ -46,31 +47,6 @@
                 @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Once Again" })
             </div>
 
-
-            @*<div class="cl">
-                <div>
-                    <input type="text" placeholder="City" />
-                </div>
-
-                <div class="error">
-                    <input type="text" placeholder="Zip Code" />
-                </div>
-            </div>
-            <div class="cl">
-                <div class="error">
-                    <div class="select">
-                        <p></p>
-                        <span></span>
-                        <select>
-                            <option>State</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div>
-                    <input type="text" placeholder="Phone Number" />
-                </div>
-            </div>*@
             <input type="submit" value="save" />
         </div>
     </form>
