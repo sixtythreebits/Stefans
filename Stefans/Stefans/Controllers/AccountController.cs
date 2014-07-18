@@ -5,7 +5,6 @@ using General;
 using Newtonsoft.Json;
 using Stefans.Models;
 using Stefans.Reusable;
-using Stefans.Reusable.Attributes;
 using UM;
 using Lib;
 using Res = General.Properties.Resources;
@@ -145,6 +144,21 @@ namespace Stefans.Controllers
             }
             UserID = 0;
             return false;
+        }
+
+        [HttpPost]
+        public ActionResult Authorize(string Email, string Password)
+        {
+            if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password))
+            {
+                var user = new User().GetSingle(null, Email);
+                if (user != null && user.Password == Password.MD5())
+                {
+                    Session.SetUser(user);
+                    return Json(new { Success = true, RedirectUrl = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            return Json(new {Success = false}, JsonRequestBehavior.AllowGet);
         }
     }
 }

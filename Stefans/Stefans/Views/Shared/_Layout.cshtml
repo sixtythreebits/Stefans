@@ -6,7 +6,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     @BundleConfig.PutLayoutStyle()
 
     <link href="~/Plugins/bxslider/jquery.bxslider.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
     @*<script src="js/js.js"></script>
 
-    <script src="js/js-main.js"></script>*@
+        <script src="js/js-main.js"></script>*@
 </head>
 <body>
     <div class="all">
@@ -45,37 +45,45 @@
                     <li>
                         <a href="#contact">CONTACT US</a>
                     </li>
-                    <li class="sign">
-                        <ul>
-                            <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-                            <li><a href="#" class="login">Log In</a></li>
-                            <li class="hidden"><a href="account.html">My Account</a></li>
-                            <li class="hidden"><a href="#">Sign out</a></li>
-                        </ul>
-                    </li>
+                    @if (!Session.IsAuthorized())
+                    {
+                        <li class="sign">
+                            <ul>
+                                <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+                                <li><a href="#" class="login">Log In</a></li>
+                                <li class="hidden"><a href="account.html">My Account</a></li>
+                                <li class="hidden"><a href="#">Sign out</a></li>
+                            </ul>
+                        </li>
+                    }
                 </ul>
             </nav>
         </header>
 
-        <div class="sign form fix before">
-            <div class="login">
-                <p>
-                    <input type="text" placeholder="User" />
-                    <input type="password" placeholder="password" />
-                    <input type="submit" value="ENTER" />
-                    <a href="#">Forgot Password</a>
-                </p>
+        @if (!Session.IsAuthorized())
+        {
+            <div class="sign form fix before">
+                <div class="login">
+                    <form id="loginForm" method="POST" action="@Url.Action("Authorize", "Account")">
+                        <p>
+                            <input type="text" name="Email" placeholder="Email" />
+                            <input type="password" name="Password" placeholder="password" />
+                            <input type="submit" value="ENTER" />
+                            <a href="#">Forgot Password</a>
+                        </p>
+                    </form>
+                </div>
+                <div class="forgot hide">
+                    <form method="POST" action="@Url.Action("SendPasswordResetMail", "Account")">
+                        <p>
+                            <input type="text" name="Email" placeholder="Email" />
+                            <input type="submit" value="send" />
+                            <a href="#">Log in</a>
+                        </p>
+                    </form>
+                </div>
             </div>
-            <div class="forgot hide">
-                <form method="POST" action="@Url.Action("SendPasswordResetMail", "Account")">
-                    <p>
-                        <input type="text" name="Email" placeholder="Email" />
-                        <input type="submit" value="send" />
-                        <a href="#">Log in</a>
-                    </p>
-                </form>
-            </div>
-        </div>
+        }
 
         @RenderBody()
 
@@ -105,7 +113,7 @@
             </div>
         </footer>
     </div>
-    
+
     <script>
         $(function () {
             //scroll on load
@@ -150,67 +158,88 @@
             });
         });
     </script>
-    
+
     @RenderSection("JS", false)
-    
+
     <script>
-    $(function () {
-        //sign in
-        $('a.login').click(function () {
-            $('.sign.form').removeClass('before');
-            $(document).click(function (e) {
-                if ($(e.target).parents('.sign').length == 0) {
-                    $('.sign.form').addClass('before');
-                    $(document).unbind("click");
-                }
+        $(function () {
+            //sign in
+            $('a.login').click(function () {
+                $('.sign.form').removeClass('before');
+                $(document).click(function (e) {
+                    if ($(e.target).parents('.sign').length == 0) {
+                        $('.sign.form').addClass('before');
+                        $(document).unbind("click");
+                    }
+                });
+                return false;
             });
-            return false;
-        });
-        $('.login p > a').click(function () {
-            $('.sign.form .login').addClass('hide');
-            $('.sign.form .forgot').removeClass('hide');
-            return false;
-        });
-        $('.forgot p > a').click(function () {
-            $('.sign.form .forgot').addClass('hide');
-            $('.sign.form .login').removeClass('hide');
-            return false;
-        });
-        //$('.sign.form input[type=submit]').click(function () {
-        //    $(this).parent('p').effect('shake', { distance: 10 });
-        //});
+            $('.login p > a').click(function () {
+                $('.sign.form .login').addClass('hide');
+                $('.sign.form .forgot').removeClass('hide');
+                return false;
+            });
+            $('.forgot p > a').click(function () {
+                $('.sign.form .forgot').addClass('hide');
+                $('.sign.form .login').removeClass('hide');
+                return false;
+            });
+            $('#loginForm').submit(function () {
+                var form = $(this);
+                var email = form.find("input[name='Email']").val();
+                var password = form.find("input[name='Password']").val();
+
+                if (email && password) {
+                    $.ajax({
+                        type: form.attr('method'),
+                        url: form.attr('action'),
+                        data: form.serialize(),
+                        dataType: "json",
+                        success: function (res) {
+                            if (!res.Success) {
+                                form.effect('shake', { distance: 10 });
+                            } else if (res.RedirectUrl) {
+                                window.location.href = res.RedirectUrl;
+                            }
+                        }
+                    });
+                } else {
+                    form.effect('shake', { distance: 10 });
+                }
+                return false;
+            });
 
 
-        //home slider
-        $('.slider.home ul').bxSlider({
-            controls: false,
-            auto: true,
-        });
+            //home slider
+            $('.slider.home ul').bxSlider({
+                controls: false,
+                auto: true,
+            });
 
-        //faq
-        $('.faq > ul > li').on('click', 'h5', function () {
-            if ($(this).parent('li.opened').length == 0) {
-                $('.faq > ul > li').removeClass('opened');
-                $('.faq div:not(:hidden)').slideUp(500);
-                $(this).parent().addClass('opened');
-                $(this).next('div').slideDown(500);
-            }
-            else {
-                $('.faq > ul > li').removeClass('opened');
-                $(this).next('div').slideUp(500);
-            }
-            return false;
-        });
+            //faq
+            $('.faq > ul > li').on('click', 'h5', function () {
+                if ($(this).parent('li.opened').length == 0) {
+                    $('.faq > ul > li').removeClass('opened');
+                    $('.faq div:not(:hidden)').slideUp(500);
+                    $(this).parent().addClass('opened');
+                    $(this).next('div').slideDown(500);
+                }
+                else {
+                    $('.faq > ul > li').removeClass('opened');
+                    $(this).next('div').slideUp(500);
+                }
+                return false;
+            });
 
-        //form select
-        $("div.select").each(function () {
-            $(this).children("p").text($(this).children("select").children("option:selected").text());
-        });
+            //form select
+            $("div.select").each(function () {
+                $(this).children("p").text($(this).children("select").children("option:selected").text());
+            });
 
-        $("div.select select").change(function () {
-            $(this).parent().children("p").text($(this).children("option:selected").text());
+            $("div.select select").change(function () {
+                $(this).parent().children("p").text($(this).children("option:selected").text());
+            });
         });
-    });
     </script>
 
 </body>

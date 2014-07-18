@@ -75,7 +75,8 @@ namespace UM
                 {
                     return new User
                     {
-                        ID = xml.IntValueOf("user_id").Value
+                        ID = xml.IntValueOf("user_id").Value,
+                        Password = xml.ValueOf("password")
                     };
                 }
                 return null;

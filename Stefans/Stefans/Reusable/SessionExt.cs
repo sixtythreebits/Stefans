@@ -1,4 +1,5 @@
 ﻿using System.Web;
+using UM;
 
 namespace Stefans.Reusable
 {
@@ -20,6 +21,11 @@ namespace Stefans.Reusable
         public static bool IsAuthorized()
         {
             return Session.IsAuthorized();
+        }
+
+        public static void SetUser(this HttpSessionStateBase SessionState, User User)
+        {
+            SessionState["UserInfo"] = User;
         }
     }
 }
