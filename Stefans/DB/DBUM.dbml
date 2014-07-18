@@ -16,4 +16,9 @@
     <Parameter Name="IsActive" Parameter="isActive" Type="System.Boolean" DbType="Bit" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.IsEmailUnique" Method="IsEmailUnique" IsComposable="true">
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
 </Database>

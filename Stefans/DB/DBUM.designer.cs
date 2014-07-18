@@ -69,6 +69,12 @@ namespace DB
 			userID = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.IsEmailUnique", IsComposable=true)]
+		public System.Nullable<bool> IsEmailUnique([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="NVarChar(100)")] string email, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email, userID).ReturnValue));
+		}
 	}
 }
 #pragma warning restore 1591

@@ -1,28 +1,48 @@
-﻿@model RegistrationModel
+﻿@using Stefans.Reusable
+
+@model RegistrationModel
+           
+@section JS {
+    @*@BundleConfig.PutValidationScript()
+
+    <script>
+        $(function() {
+            $("#registrationForm").submit(function () {
+                $(".input-validation-error").parent("div").addClass("error");
+            });
+        })
+    </script>*@
+}
 
 <section class="signup">
     <h1 class="title">SIGN UP</h1>
-
-    <form action="@Url.Action("Register", "Account")" method="POST">
+    <form id="registrationForm" action="@Url.Action("Register", "Account")" method="POST">
+        
         <div class="form">
             <h5>ACCOUNT INFORMATION</h5>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <p class="error">
+                    @string.Join(" ", ViewData.ModelState.SelectMany(p => p.Value.Errors.Select(e => e.ErrorMessage)))
+                </p>
+            }
+
             <div class="cl">
-                <div>
+                <div class="@( Html.HasPropertyError(m => m.User.FirstName) ? "error" : "" )">
                     @Html.TextBoxFor(m => m.User.FirstName, new { placeholder = "First Name" })
                 </div>
 
-                <div>
+                <div class="@( Html.HasPropertyError(m => m.User.LastName) ? "error" : "")">
                     @Html.TextBoxFor(m => m.User.LastName, new { placeholder = "Last Name" })
                 </div>
             </div>
-            <div>
+            <div class="@( Html.HasPropertyError(m => m.User.Email) ? "error" : "")">
                 @Html.TextBoxFor(m => m.User.Email, new { placeholder = "Email" })
             </div>
-            <div>
+            <div class="@( Html.HasPropertyError(m => m.User.Password) ? "error" : "")">
                 @Html.PasswordFor(m => m.User.Password, new { placeholder = "Password" })
             </div>
-
-            <div>
+            <div class="@( Html.HasPropertyError(m => m.ConfirmPassword) ? "error" : "")">
                 @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Once Again" })
             </div>
 

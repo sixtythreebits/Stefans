@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Optimization;
 
 namespace Stefans
@@ -19,9 +20,9 @@ namespace Stefans
             //            "~/Scripts/CM/cart.js",
             //            "~/Scripts/CM/player.js"));
 
-            //Bundles.Add(new ScriptBundle("~/bundles/validation").Include(
-            //    "~/Scripts/jquery.validate.js",
-            //    "~/Scripts/jquery.validate.unobtrusive.js"));
+            Bundles.Add(new ScriptBundle("~/bundles/validation").Include(
+                "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.validate.unobtrusive.js"));
 
             Bundles.Add(new StyleBundle("~/bundles/content").Include(
                 "~/Content/style.css",
@@ -31,6 +32,11 @@ namespace Stefans
         public static IHtmlString PutLayoutStyle()
         {
             return Styles.Render("~/bundles/content");
+        }
+
+        public static IHtmlString PutValidationScript()
+        {
+            return Scripts.Render("~/bundles/validation");
         }
     }
 }

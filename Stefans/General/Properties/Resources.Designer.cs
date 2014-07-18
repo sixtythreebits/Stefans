@@ -61,11 +61,20 @@ namespace General.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to User with this email is already registered!.
         /// </summary>
-        public static string FieldRequired {
+        public static string ErrorEmailDuplication {
             get {
-                return ResourceManager.GetString("FieldRequired", resourceCulture);
+                return ResourceManager.GetString("ErrorEmailDuplication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Passwords must match!.
+        /// </summary>
+        public static string ErrorPasswordMismatch {
+            get {
+                return ResourceManager.GetString("ErrorPasswordMismatch", resourceCulture);
             }
         }
     }
