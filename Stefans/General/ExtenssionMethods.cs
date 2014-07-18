@@ -10,9 +10,9 @@ namespace General
             return JsonConvert.SerializeObject(Obj, Formatting);
         }
 
-        public static TimeSpan Hours(this int Quantity)
+        public static TimeSpan Minutes(this int Quantity)
         {
-            return TimeSpan.FromHours(Quantity);
+            return TimeSpan.FromMinutes(Quantity);
         }
     }
 }

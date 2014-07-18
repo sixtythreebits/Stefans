@@ -98,11 +98,8 @@ namespace Stefans.Controllers
 
         public ActionResult ResetPassword(string ID)
         {
-            var data = JsonConvert.DeserializeXNode(ID.DecryptWeb(), "data").Element("data");
-            var userID = data.IntValueOf("UserID");
-            var expTime = data.DateTimeValueOf("ExparationTime");
-
-            if (userID.HasValue && userID > 0 && expTime.HasValue && DateTime.Now.Subtract(expTime.Value) > 1.Hours())
+            int userID;
+            if (IsResetPasswordRequestValid(ID, out userID))
             {
                 return View("ResetPassword", new ResetPasswordModel
                 {
@@ -115,9 +112,8 @@ namespace Stefans.Controllers
         [HttpPost]
         public ActionResult ResetPassword(ResetPasswordModel Model)
         {
-            var data = JsonConvert.DeserializeXNode(Model.AdditionalData.DecryptWeb(), "data");
-            var userID = data.Element("data").IntValueOf("UserID");
-            if (userID.HasValue && userID > 0)
+            int userID;
+            if (IsResetPasswordRequestValid(Model.AdditionalData, out userID))
             {
                 if (Model.ConfirmPassword != Model.Password)
                 {
@@ -134,6 +130,20 @@ namespace Stefans.Controllers
                 return View("ResetPassword", Model); 
             }
             return HttpNotFound();
+        }
+
+        private static bool IsResetPasswordRequestValid(string EncryptedData, out int UserID)
+        {
+            var data = JsonConvert.DeserializeXNode(EncryptedData.DecryptWeb(), "data").Element("data");
+            var userID = data.IntValueOf("UserID");
+            var expTime = data.DateTimeValueOf("ExparationTime");
+            if (userID.HasValue && userID > 0 && expTime.HasValue && DateTime.Now.Subtract(expTime.Value) < 60.Minutes())
+            {
+                UserID = userID.Value;
+                return true;
+            }
+            UserID = 0;
+            return false;
         }
     }
 }
