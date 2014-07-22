@@ -139,9 +139,9 @@
     <Content Include="fonts\HelveticaNeueLight.ttf" />
     <Content Include="fonts\HelveticaNeueLight.woff" />
     <None Include="Properties\PublishProfiles\StefansPublishProfile.pubxml" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
@@ -155,7 +155,6 @@
     <Content Include="Plugins\mousewheel\jquery.mousewheel.js" />
     <Content Include="Plugins\scroll-to\jquery.scrollTo-1.4.3.1-min.js" />
     <Content Include="Web.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Plugins\bxslider\bower.json" />
     <Content Include="Plugins\bxslider\readme.md" />
   </ItemGroup>
@@ -191,6 +190,7 @@
     <Content Include="Views\Account\ResetPasswordEmail.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\Profile.cshtml" />
+    <Content Include="Scripts\jquery-2.1.1.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

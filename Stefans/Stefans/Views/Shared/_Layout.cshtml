@@ -25,11 +25,11 @@
 </head>
 <body>
     <div class="all">
-        <header class="@( ViewBag.HeaderFixed == true ? "fix" : "" )">
+        <header class="@( ViewBag.HomePage == true ? "fix" : "")">
             <nav>
-                <span class="logo"></span>
+                <a class="logo" href="@Url.Action("Index", "Home")"></a>
                 <ul>
-                    <li class="active">
+                    <li class="@(ViewBag.HomePage == true ? "active" : "" )">
                         <a href="@Url.Action("Index", "Home")#home">HOME</a>
                     </li>
                     <li>

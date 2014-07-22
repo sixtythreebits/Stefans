@@ -6,7 +6,7 @@ namespace Stefans.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.HeaderFixed = true;
+            ViewBag.HomePage = true;
             return View();
         }
 
