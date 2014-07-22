@@ -946,3 +946,7 @@ aside.orders{
 	line-height:60px;
 }
 /* ---------- /cart ---------- */
+
+p.success-message {
+    color: #279f03
+}

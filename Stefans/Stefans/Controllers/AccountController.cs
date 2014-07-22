@@ -46,7 +46,8 @@ namespace Stefans.Controllers
                         mail.Send(Model.User.Email, "Account activation", mailBody);
                     });
 
-                    return Content("You have successfully registered. Please follow the link we sent on your email to activate your account");
+                    ViewBag.Message = "You have successfully registered. Please follow the link we sent on your email to activate your account";
+                    return View("Message");
                 }
             }
 
@@ -63,7 +64,8 @@ namespace Stefans.Controllers
 
                 if (!repo.IsError)
                 {
-                    return RedirectToAction("Index", "Home");
+                    Session.SetUser(repo.GetSingle(userID));
+                    return RedirectToAction("Profile", "Account");
                 }
             }
             return HttpNotFound();
@@ -91,7 +93,7 @@ namespace Stefans.Controllers
                     });
 
                     ViewBag.Message = "Please follow the link we sent on your email to reset your password";
-                    return View("_Message");
+                    return View("Message");
                 }
             }
             return HttpNotFound();
@@ -160,6 +162,13 @@ namespace Stefans.Controllers
                 }
             }
             return Json(new {Success = false}, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            return RedirectToAction("Index", "Home");
         }
 
         [SecureAccess]

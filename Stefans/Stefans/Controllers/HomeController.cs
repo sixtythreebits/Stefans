@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using Lib;
 
 namespace Stefans.Controllers
 {
@@ -13,7 +12,8 @@ namespace Stefans.Controllers
 
         public ActionResult Test()
         {
-            return Content("3a22kgle3zbkk000".DecryptWeb());
+            ViewBag.Message = "satesto";
+            return View("Message");
         }
     }
 }
