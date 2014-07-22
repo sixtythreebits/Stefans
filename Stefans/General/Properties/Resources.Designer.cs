@@ -86,5 +86,14 @@ namespace General.Properties {
                 return ResourceManager.GetString("ErrorPasswordMismatch", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field Zip must be numeric!.
+        /// </summary>
+        public static string ErrorZipNumeric {
+            get {
+                return ResourceManager.GetString("ErrorZipNumeric", resourceCulture);
+            }
+        }
     }
 }

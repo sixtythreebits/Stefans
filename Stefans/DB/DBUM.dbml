@@ -26,4 +26,27 @@
     <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(500)" />
     <Return Type="System.Xml.Linq.XElement" />
   </Function>
+  <Function Name="dbo.List_Dictionaries" Method="List_Dictionaries" IsComposable="true">
+    <Parameter Name="Level" Parameter="level" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DictionaryCode" Parameter="dictionaryCode" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ShowInvisibleItems" Parameter="showInvisibleItems" Type="System.Boolean" DbType="Bit" />
+    <ElementType Name="List_DictionariesResult">
+      <Column Name="RowNum" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="DictionaryID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="uid" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Caption" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Caption1" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CodeVal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="[Level]" Member="Level" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="Hierarchy" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="StringCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DictionaryCode" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="DefVal" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Visible" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="SortVal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DecimalVal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="CRTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

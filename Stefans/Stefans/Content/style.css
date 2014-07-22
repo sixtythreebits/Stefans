@@ -242,8 +242,8 @@ h6.title{
 	font-size:14px;
 }
 
-.form > div,
-.form > p{
+.form form > div,
+.form form > p{
 	margin:0 0 13px;
 }
 .form div.cl > div{

@@ -81,7 +81,16 @@ namespace UM
                     return new User
                     {
                         ID = xml.IntValueOf("user_id").Value,
-                        Password = xml.ValueOf("password")
+                        Password = xml.ValueOf("password"),
+                        FirstName = xml.ValueOf("first_name"),
+                        LastName = xml.ValueOf("last_name"),
+                        Address1 = xml.ValueOf("address1"),
+                        Address2 = xml.ValueOf("address2"),
+                        StateID = xml.IntValueOf("state_id"),
+                        City = xml.ValueOf("city"),
+                        Zip = xml.ValueOf("zip"),
+                        Phone = xml.ValueOf("phone"),
+                        IsActive = xml.BooleanValueOf("is_active") == true
                     };
                 }
                 return null;

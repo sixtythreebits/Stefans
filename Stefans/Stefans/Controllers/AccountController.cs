@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using General;
@@ -130,7 +132,7 @@ namespace Stefans.Controllers
                     return RedirectToAction("Index", "Home");
                 }
 
-                return View("ResetPassword", Model); 
+                return View("ResetPassword", Model);
             }
             return HttpNotFound();
         }
@@ -161,7 +163,7 @@ namespace Stefans.Controllers
                     return Json(new { Success = true, RedirectUrl = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
                 }
             }
-            return Json(new {Success = false}, JsonRequestBehavior.AllowGet);
+            return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
 
 
@@ -174,26 +176,54 @@ namespace Stefans.Controllers
         [SecureAccess]
         public ActionResult Profile()
         {
-            return View();
+            ViewBag.States = new Dictionary().ListDictionaries(1, 1);
+            return View(new ProfileModel { AccountModel = new AccountModel(new User().GetSingle(User.ID)) });
         }
 
         [SecureAccess]
-        public ActionResult ChangePassword(ChangePasswordModel Model)
+        public ActionResult UpdateProfile(AccountModel AccountModel)
         {
-            if (User.Password != Model.OriginalPassword.MD5())
-            {
-                ModelState.AddModelError(() => Model.OriginalPassword, Res.ErrorOriginalPassword);
-            }
-
-            if (Model.NewPassword != Model.ConfirmPassword)
-            {
-                ModelState.AddModelError(() => Model.ConfirmPassword, Res.ErrorPasswordMismatch);
-            }
-
             if (ModelState.IsValid)
             {
                 var repo = new User();
-                repo.TSP(1, User.ID, Model.NewPassword);
+                repo.TSP(1, 
+                        User.ID, 
+                        FirstName: AccountModel.FirstName, 
+                        LastName: AccountModel.LastName, 
+                        Phone: AccountModel.Phone, 
+                        Address1: AccountModel.Address1, 
+                        Address2: AccountModel.Address2, 
+                        StateID: AccountModel.StateID, 
+                        City: AccountModel.City,
+                        Zip: AccountModel.Zip);
+
+                if (!repo.IsError)
+                {
+                    return RedirectToAction("Profile", "Account");
+                }
+            }
+            ViewBag.States = new Dictionary().ListDictionaries(1, 1);
+            ViewBag.AccountFormValid = false;
+            return View("Profile", new ProfileModel { AccountModel = AccountModel });
+        }
+
+        [SecureAccess]
+        public ActionResult ChangePassword(ChangePasswordModel PasswordModel)
+        {
+            if (PasswordModel.OriginalPassword != null && User.Password != PasswordModel.OriginalPassword.MD5())
+            {
+                ModelState.AddModelError(() => PasswordModel.OriginalPassword, Res.ErrorOriginalPassword);
+            }
+
+            if (PasswordModel.NewPassword != PasswordModel.ConfirmPassword)
+            {
+                ModelState.AddModelError(() => PasswordModel.ConfirmPassword, Res.ErrorPasswordMismatch);
+            }
+
+            var repo = new User();
+            if (ModelState.IsValid)
+            {
+                repo.TSP(1, User.ID, PasswordModel.NewPassword);
 
                 if (!repo.IsError)
                 {
@@ -202,7 +232,9 @@ namespace Stefans.Controllers
                 }
             }
 
-            return View("Profile", Model);
+            ViewBag.States = new Dictionary().ListDictionaries(1, 1);
+            ViewBag.PasswordFormValid = false;
+            return View("Profile", new ProfileModel { PasswordModel = PasswordModel, AccountModel = new AccountModel(repo.GetSingle(User.ID)) });
         }
     }
 }

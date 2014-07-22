@@ -126,4 +126,7 @@
   <data name="ErrorPasswordMismatch" xml:space="preserve">
     <value>Passwords must match!</value>
   </data>
+  <data name="ErrorZipNumeric" xml:space="preserve">
+    <value>The field Zip must be numeric!</value>
+  </data>
 </root>

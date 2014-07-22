@@ -1,25 +1,25 @@
 ﻿@using Stefans.Reusable
 
 @model RegistrationModel
-           
+
 @section JS {
 
     @*@BundleConfig.PutValidationScript()
 
-    <script>
-        $(function() {
-            $("#registrationForm").submit(function () {
-                $(".input-validation-error").parent("div").addClass("error");
-            });
-        })
-    </script>*@
+        <script>
+            $(function() {
+                $("#registrationForm").submit(function () {
+                    $(".input-validation-error").parent("div").addClass("error");
+                });
+            })
+        </script>*@
 }
 
 <section class="signup">
     <h1 class="title">SIGN UP</h1>
-    <form id="registrationForm" action="@Url.Action("Register", "Account")" method="POST">
-        
-        <div class="form">
+
+    <div class="form">
+        <form id="registrationForm" action="@Url.Action("Register", "Account")" method="POST">
             <h5>ACCOUNT INFORMATION</h5>
             @if (!ViewData.ModelState.IsValid)
             {
@@ -48,6 +48,6 @@
             </div>
 
             <input type="submit" value="save" />
-        </div>
-    </form>
+        </form>
+    </div>
 </section>

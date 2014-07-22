@@ -1,65 +1,88 @@
-﻿@model ChangePasswordModel
+﻿@using General
+@model ProfileModel
+@{
+    var states = ViewBag.States as List<Dictionary>;
+    var accountFormValid = ViewBag.AccountFormValid != false;
+    var passwordFormValid = ViewBag.PasswordFormValid != false;
+    
+}
 
 <section class="account">
     <h1 class="title">account</h1>
 
     <div class="col2 cl">
         <div class="form border">
-            <h5>ACCOUNT INFORMATION</h5>
-            <div class="cl">
-                <div>
-                    <input type="text" placeholder="First Name" />
-                </div>
+            <form method="POST" action="@Url.Action("UpdateProfile", "Account")">
+                <h5>ACCOUNT INFORMATION</h5>
+                
+                @if (!accountFormValid)
+                {
+                    <p class="error">
+                        @string.Join(" ", ViewData.ModelState.SelectMany(p => p.Value.Errors.Select(e => e.ErrorMessage)))
+                    </p>
+                }
 
-                <div>
-                    <input type="text" placeholder="Last Name" />
-                </div>
-            </div>
-            <div>
-                <input type="text" placeholder="Address Line 1" />
-            </div>
-            <div>
-                <input type="text" placeholder="Address Line 2" />
-            </div>
-            <div class="cl">
-                <div>
-                    <input type="text" placeholder="City" />
-                </div>
+                <div class="cl">
+                    <div class="@( Html.HasPropertyError(m => m.AccountModel.FirstName) ? "error" : "")">
+                        @Html.TextBoxFor(m => m.AccountModel.FirstName, new { placeholder = "First Name" })
+                    </div>
 
-                <div>
-                    <input type="text" placeholder="Zip Code" />
-                </div>
-            </div>
-            <div class="cl">
-                <div>
-                    <div class="select">
-                        <p></p>
-                        <span></span>
-                        <select>
-                            <option>State</option>
-                        </select>
+                    <div class="@( Html.HasPropertyError(m => m.AccountModel.LastName) ? "error" : "")">
+                        @Html.TextBoxFor(m => m.AccountModel.LastName, new { placeholder = "Last Name" })
                     </div>
                 </div>
-
-                <div>
-                    <input type="text" placeholder="Phone Number" />
+                <div class="@( Html.HasPropertyError(m => m.AccountModel.Address1) ? "error" : "")">
+                    @Html.TextBoxFor(m => m.AccountModel.Address1, new { placeholder = "Address Line 1" })
                 </div>
-            </div>
-            <input type="submit" value="save" />
+                <div class="@( Html.HasPropertyError(m => m.AccountModel.Address2) ? "error" : "")">
+                    @Html.TextBoxFor(m => m.AccountModel.Address2, new { placeholder = "Address Line 2" })
+                </div>
+                <div class="cl">
+                    <div class="@( Html.HasPropertyError(m => m.AccountModel.City) ? "error" : "")">
+                        @Html.TextBoxFor(m => m.AccountModel.City, new { placeholder = "City" })
+                    </div>
+
+                    <div class="@( Html.HasPropertyError(m => m.AccountModel.Zip) ? "error" : "")">
+                        @Html.TextBoxFor(m => m.AccountModel.Zip, new { placeholder = "Zip Code" })
+                    </div>
+                </div>
+                <div class="cl">
+                    <div>
+                        <div class="select">
+                            <p data-placeholder="State"></p>
+                            <span></span>
+                            @Html.DropDownListFor(m => m.AccountModel.StateID, new SelectList(states, "ID", "Caption"), string.Empty)
+                        </div>
+                    </div>
+
+                    <div class="@( Html.HasPropertyError(m => m.AccountModel.Phone) ? "error" : "")">
+                        @Html.TextBoxFor(m => m.AccountModel.Phone, new { placeholder = "Phone Number" })
+                    </div>
+                </div>
+                <input type="submit" value="save" />
+            </form>
         </div>
         <div class="form">
             <form method="POST" action="@Url.Action("ChangePassword", "Account")">
                 <h5>CHANGE PASSWORD</h5>
-                <div class="@( Html.HasPropertyError(m => m.OriginalPassword) ? "error" : "")">
-                    @Html.PasswordFor(m => m.OriginalPassword, new { placeholder = "Old Password" })
+                
+                @if (!passwordFormValid)
+                {
+                    <p class="error">
+                        @string.Join(" ", ViewData.ModelState.SelectMany(p => p.Value.Errors.Select(e => e.ErrorMessage)))
+                    </p>
+                }
+
+                <div class="@( Html.HasPropertyError(m => m.PasswordModel.OriginalPassword) ? "error" : "")">
+                    @Html.PasswordFor(m => m.PasswordModel.OriginalPassword, new { placeholder = "Old Password" })
                 </div>
                 <div class="cl">
-                    <div class="@( Html.HasPropertyError(m => m.NewPassword) ? "error" : "")">
-                        @Html.PasswordFor(m => m.NewPassword, new { placeholder = "New Password" })
+                    <div class="@( Html.HasPropertyError(m => m.PasswordModel.NewPassword) ? "error" : "")">
+                        @Html.PasswordFor(m => m.PasswordModel.NewPassword, new { placeholder = "New Password" })
                     </div>
 
-                    <div class="@( Html.HasPropertyError(m => m.ConfirmPassword) ? "error" : "")">
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { placeholder = "Once Again" })
+                    <div class="@( Html.HasPropertyError(m => m.PasswordModel.ConfirmPassword) ? "error" : "")">
+                        @Html.PasswordFor(m => m.PasswordModel.ConfirmPassword, new { placeholder = "Once Again" })
                     </div>
                 </div>
                 <input type="submit" value="save" />

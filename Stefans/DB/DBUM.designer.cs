@@ -81,6 +81,308 @@ namespace DB
 		{
 			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, email).ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Dictionaries", IsComposable=true)]
+		public IQueryable<List_DictionariesResult> List_Dictionaries([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level", DbType="Int")] System.Nullable<int> level, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DictionaryCode", DbType="Int")] System.Nullable<int> dictionaryCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ShowInvisibleItems", DbType="Bit")] System.Nullable<bool> showInvisibleItems)
+		{
+			return this.CreateMethodCallQuery<List_DictionariesResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), level, dictionaryCode, showInvisibleItems);
+		}
+	}
+	
+	public partial class List_DictionariesResult
+	{
+		
+		private System.Nullable<long> _RowNum;
+		
+		private int _DictionaryID;
+		
+		private System.Guid _uid;
+		
+		private string _Caption;
+		
+		private string _Caption1;
+		
+		private System.Nullable<int> _CodeVal;
+		
+		private System.Nullable<int> _ParentID;
+		
+		private System.Nullable<short> _Level;
+		
+		private string _Hierarchy;
+		
+		private string _StringCode;
+		
+		private short _DictionaryCode;
+		
+		private System.Nullable<bool> _DefVal;
+		
+		private System.Nullable<bool> _Visible;
+		
+		private System.Nullable<int> _SortVal;
+		
+		private System.Nullable<decimal> _DecimalVal;
+		
+		private System.DateTime _CRTime;
+		
+		public List_DictionariesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RowNum", DbType="BigInt")]
+		public System.Nullable<long> RowNum
+		{
+			get
+			{
+				return this._RowNum;
+			}
+			set
+			{
+				if ((this._RowNum != value))
+				{
+					this._RowNum = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DictionaryID", DbType="Int NOT NULL")]
+		public int DictionaryID
+		{
+			get
+			{
+				return this._DictionaryID;
+			}
+			set
+			{
+				if ((this._DictionaryID != value))
+				{
+					this._DictionaryID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_uid", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid uid
+		{
+			get
+			{
+				return this._uid;
+			}
+			set
+			{
+				if ((this._uid != value))
+				{
+					this._uid = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Caption", DbType="NVarChar(200)")]
+		public string Caption
+		{
+			get
+			{
+				return this._Caption;
+			}
+			set
+			{
+				if ((this._Caption != value))
+				{
+					this._Caption = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Caption1", DbType="NVarChar(200)")]
+		public string Caption1
+		{
+			get
+			{
+				return this._Caption1;
+			}
+			set
+			{
+				if ((this._Caption1 != value))
+				{
+					this._Caption1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CodeVal", DbType="Int")]
+		public System.Nullable<int> CodeVal
+		{
+			get
+			{
+				return this._CodeVal;
+			}
+			set
+			{
+				if ((this._CodeVal != value))
+				{
+					this._CodeVal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentID", DbType="Int")]
+		public System.Nullable<int> ParentID
+		{
+			get
+			{
+				return this._ParentID;
+			}
+			set
+			{
+				if ((this._ParentID != value))
+				{
+					this._ParentID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Level]", Storage="_Level", DbType="SmallInt")]
+		public System.Nullable<short> Level
+		{
+			get
+			{
+				return this._Level;
+			}
+			set
+			{
+				if ((this._Level != value))
+				{
+					this._Level = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Hierarchy", DbType="VarChar(200)")]
+		public string Hierarchy
+		{
+			get
+			{
+				return this._Hierarchy;
+			}
+			set
+			{
+				if ((this._Hierarchy != value))
+				{
+					this._Hierarchy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StringCode", DbType="NVarChar(100)")]
+		public string StringCode
+		{
+			get
+			{
+				return this._StringCode;
+			}
+			set
+			{
+				if ((this._StringCode != value))
+				{
+					this._StringCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DictionaryCode", DbType="SmallInt NOT NULL")]
+		public short DictionaryCode
+		{
+			get
+			{
+				return this._DictionaryCode;
+			}
+			set
+			{
+				if ((this._DictionaryCode != value))
+				{
+					this._DictionaryCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DefVal", DbType="Bit")]
+		public System.Nullable<bool> DefVal
+		{
+			get
+			{
+				return this._DefVal;
+			}
+			set
+			{
+				if ((this._DefVal != value))
+				{
+					this._DefVal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Visible", DbType="Bit")]
+		public System.Nullable<bool> Visible
+		{
+			get
+			{
+				return this._Visible;
+			}
+			set
+			{
+				if ((this._Visible != value))
+				{
+					this._Visible = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortVal", DbType="Int")]
+		public System.Nullable<int> SortVal
+		{
+			get
+			{
+				return this._SortVal;
+			}
+			set
+			{
+				if ((this._SortVal != value))
+				{
+					this._SortVal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DecimalVal", DbType="Money")]
+		public System.Nullable<decimal> DecimalVal
+		{
+			get
+			{
+				return this._DecimalVal;
+			}
+			set
+			{
+				if ((this._DecimalVal != value))
+				{
+					this._DecimalVal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
+				}
+			}
+		}
 	}
 }
 #pragma warning restore 1591

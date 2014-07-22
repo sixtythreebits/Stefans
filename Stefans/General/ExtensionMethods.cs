@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace General
 {
-    public static class ExtenssionMethods
+    public static class ExtensionMethods
     {
         public static string ToJson(this object Obj, Formatting Formatting = Formatting.None)
         {
