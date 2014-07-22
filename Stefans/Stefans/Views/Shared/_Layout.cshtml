@@ -11,7 +11,7 @@
 
     <link href="~/Plugins/bxslider/jquery.bxslider.css" rel="stylesheet" />
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
     <script src="~/Plugins/mousewheel/jquery.mousewheel.js"></script>
 
     <script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
@@ -219,7 +219,9 @@
             var scrollPos = $(document).scrollTop();
             $('nav > ul > li > a').each(function () {
                 var currLink = $(this);
-                var refElement = $(currLink.attr("href"));
+                var href = currLink.attr("href");
+                var hash = href.slice(href.indexOf('#'), href.length);
+                var refElement = $(hash);
                 if (refElement.position().top - 250 <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
                     $('nav > ul > li').removeClass("active");
                     currLink.parent().addClass("active");
