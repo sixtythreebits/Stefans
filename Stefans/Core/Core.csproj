@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CM\Product.cs" />
     <Compile Include="Dictionary.cs" />
     <Compile Include="GenericObjectBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
