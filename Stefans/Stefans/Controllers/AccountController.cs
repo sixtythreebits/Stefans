@@ -76,6 +76,8 @@ namespace Stefans.Controllers
         [HttpPost]
         public ActionResult SendPasswordResetMail(string Email)
         {
+            var success = false;
+            var message = string.Empty;
             if (!string.IsNullOrWhiteSpace(Email))
             {
                 var user = new User().GetSingle(null, Email);
@@ -93,12 +95,15 @@ namespace Stefans.Controllers
                         var mail = new Mail();
                         mail.Send(Email, "Reset Password", emailBody);
                     });
-
-                    ViewBag.Message = "Please follow the link we sent on your email to reset your password";
-                    return View("Message");
+                    success = true;
+                    message = "Please follow the link we sent on your email to reset your password";
+                }
+                else
+                {
+                    message = "User with this mail is not registered";
                 }
             }
-            return HttpNotFound();
+            return Json(new { Success = success, Message = message }, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ResetPassword(string ID)

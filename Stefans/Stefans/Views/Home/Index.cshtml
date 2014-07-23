@@ -1,4 +1,55 @@
-﻿<section id="home" class="slider home">
+﻿@section JS {
+
+    <script>
+        $(function () {
+            //scroll on load
+            $(window).scrollTo(window.location.hash, { offset: { top: -100 }, duration: 300 });
+
+            //scroll on cklick
+            $('nav > ul > li > a').click(function () {
+                $(window).scrollTo($(this).attr("href"), { offset: { top: -100 }, duration: 300 });
+                return false;
+            });
+
+            //add active class
+            $(document).on("scroll", onScroll);
+        });
+
+
+        function onScroll() {
+            var scrollPos = $(document).scrollTop();
+            $('nav > ul > li > a').each(function () {
+                var currLink = $(this);
+                var href = currLink.attr("href");
+                var hash = href.slice(href.indexOf('#'), href.length);
+                var refElement = $(hash);
+                if (refElement.position().top - 250 <= scrollPos && refElement.position().top + refElement.height() > scrollPos) {
+                    $('nav > ul > li').removeClass("active");
+                    currLink.parent().addClass("active");
+                }
+                else {
+                    currLink.parent().removeClass("active");
+                }
+            });
+        }
+
+
+        $(function () {
+            $('html,body').on('mousewheel', function (event, delta) {
+                if (delta < 0) d = 270;
+                else d = -270;
+
+                var posY = $(document).scrollTop() + d;
+                $('html,body').stop().animate({ scrollTop: posY });
+
+                return false;
+            });
+        });
+    </script>
+}
+
+
+<section id="home" class="slider home">
     <ul>
         <li style="background-image:url(images/0/01.jpg)">
             <h6 class="title">PROMO NAME</h6>
