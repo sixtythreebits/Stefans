@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="@( Html.HasPropertyError(m => m.AccountModel.Zip) ? "error" : "")">
-                        @Html.TextBoxFor(m => m.AccountModel.Zip, new { placeholder = "Zip Code" })
+                        @Html.TextBoxFor(m => m.AccountModel.Zip, new { placeholder = "Zip Code", maxlength = 5 })
                     </div>
                 </div>
                 <div class="cl">
