@@ -28,10 +28,12 @@ namespace UM
         [StringLength(200)]
         public string Password { set; get; }
 
+        [Display(Name = "First Name")]
         [Required]
         [StringLength(100)]
         public string FirstName { set; get; }
 
+        [Display(Name = "Last Name")]
         [Required]
         [StringLength(100)]
         public string LastName { set; get; }

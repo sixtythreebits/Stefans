@@ -29,44 +29,55 @@ namespace Stefans.Models
             Zip = User.Zip;
         }
 
+        [Display(Name = "First Name")]
         [Required]
         [StringLength(100)]
         public string FirstName { set; get; }
 
+        [Display(Name = "Last Name")]
         [Required]
         [StringLength(100)]
         public string LastName { set; get; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [StringLength(50)]
         public string Phone { set; get; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [StringLength(200)]
         public string Address1 { set; get; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [StringLength(200)]
         public string Address2 { set; get; }
 
+        [Display(Name = "State")]
+        [Required]
         public int? StateID { set; get; }
 
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [StringLength(5)]
         [RegularExpression("[0-9]+$", ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorZipNumeric")]
         public string Zip { set; get; }
-        
+
+        [DisplayFormat(ConvertEmptyStringToNull = false)]
         [StringLength(100)]
         public string City { set; get; }
-
-        public bool IsValid { get; set; }
     }
 
     public class ChangePasswordModel
     {
+        [Display(Name = "Original Password")]
         [Required]
         public string OriginalPassword { get; set; }
+
+        [Display(Name = "New Password")]
         [Required]
         [StringLength(200)]
         public string NewPassword { get; set; }
+
+        [Display(Name = "Confirm Password")]
         [Required]
         public string ConfirmPassword { get; set; }
-        public bool IsValid { get; set; }
     }
 }

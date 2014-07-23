@@ -129,7 +129,9 @@ namespace Stefans.Controllers
                 {
                     var repo = new User();
                     repo.TSP(1, userID, Model.Password);
-                    return RedirectToAction("Index", "Home");
+                    Session.SetUser(repo.GetSingle(userID));
+
+                    return RedirectToAction("Profile", "Account");
                 }
 
                 return View("ResetPassword", Model);
@@ -165,7 +167,6 @@ namespace Stefans.Controllers
             }
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
         }
-
 
         public ActionResult LogOut()
         {

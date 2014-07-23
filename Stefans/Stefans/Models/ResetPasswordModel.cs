@@ -7,6 +7,8 @@ namespace Stefans.Models
         [Required]
         [StringLength(200)]
         public string Password { get; set; }
+
+        [Display(Name = "Confirm Password")]
         [Required]
         public string ConfirmPassword { get; set; }
 
