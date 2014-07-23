@@ -1,4 +1,5 @@
-﻿using DB;
+﻿using System.ComponentModel.DataAnnotations;
+using DB;
 
 namespace Core.CM
 {
@@ -15,7 +16,11 @@ namespace Core.CM
         #region Properties
 
         public int ID { get; set; }
+
+        [Required]
         public string Caption { get; set; }
+
+        [Required]
         public string Description { get; set; }
         public string Image { get; set; }
         public decimal Price { get; set; }

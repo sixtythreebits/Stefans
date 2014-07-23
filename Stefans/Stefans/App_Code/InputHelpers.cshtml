@@ -1,0 +1,43 @@
+﻿@using System.Linq.Expressions
+@using System.Web.Mvc
+@using System.Web.Mvc.Html
+@using SelectListItem = System.Web.Mvc.SelectListItem
+@functions
+{
+    static HelperResult RenderInput<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression, MvcHtmlString Input)
+    {
+        return RenderInput(Caption, Html.NameFor(PropExpression), Input);
+    }
+
+    public static HelperResult RenderTextBox<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression)
+    {
+        return RenderInput(Html, Caption, PropExpression, Html.TextBoxFor(PropExpression, new { @class = "form-control" }));
+    }
+
+    public static HelperResult RenderTextArea<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression)
+    {
+        return RenderInput(Html, Caption, PropExpression, Html.TextAreaFor(PropExpression, new { @class = "form-control" }));
+    }
+
+    public static HelperResult RenderCheckBox<TModel>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, bool>> PropExpression)
+    {
+        return RenderInput(Html, Caption, PropExpression, Html.CheckBoxFor(PropExpression));
+    }
+
+    public static HelperResult RenderDropDown<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression, IEnumerable<SelectListItem> SelectList)
+    {
+        return RenderInput(Html, Caption, PropExpression, Html.DropDownListFor(PropExpression, SelectList));
+    }
+}
+
+@helper RenderInput(string Label, MvcHtmlString PropName, MvcHtmlString Input)
+{
+    <div class="form-group">
+        <label for="@PropName">
+            @Label
+        </label>
+        <div>
+            @Input
+        </div>
+    </div>
+}

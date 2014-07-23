@@ -150,6 +150,8 @@
     <Content Include="Plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
     <Content Include="Plugins\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="Plugins\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Areas\Admin\Views\Product\CreateEdit.cshtml" />
+    <Content Include="App_Code\InputHelpers.cshtml" />
     <None Include="Properties\PublishProfiles\StefansPublishProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
@@ -175,6 +177,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\MainController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
