@@ -120,6 +120,9 @@
   <data name="ErrorEmailDuplication" xml:space="preserve">
     <value>User with this email is already registered!</value>
   </data>
+  <data name="ErrorMaxLength" xml:space="preserve">
+    <value>Maximum length of the field {0} is {1}!</value>
+  </data>
   <data name="ErrorOriginalPassword" xml:space="preserve">
     <value>Original password is incorrect!</value>
   </data>

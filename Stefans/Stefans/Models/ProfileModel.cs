@@ -31,24 +31,24 @@ namespace Stefans.Models
 
         [Display(Name = "First Name")]
         [Required]
-        [StringLength(100)]
+        [StringLength(100, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string FirstName { set; get; }
 
         [Display(Name = "Last Name")]
         [Required]
-        [StringLength(100)]
+        [StringLength(100, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string LastName { set; get; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string Phone { set; get; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [StringLength(200)]
+        [StringLength(200, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string Address1 { set; get; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [StringLength(200)]
+        [StringLength(200, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string Address2 { set; get; }
 
         [Display(Name = "State")]
@@ -56,12 +56,12 @@ namespace Stefans.Models
         public int? StateID { set; get; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [StringLength(5)]
         [RegularExpression("[0-9]+$", ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorZipNumeric")]
+        [StringLength(5, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string Zip { set; get; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [StringLength(100)]
+        [StringLength(100, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string City { set; get; }
     }
 
@@ -73,7 +73,7 @@ namespace Stefans.Models
 
         [Display(Name = "New Password")]
         [Required]
-        [StringLength(200)]
+        [StringLength(200, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string NewPassword { get; set; }
 
         [Display(Name = "Confirm Password")]
