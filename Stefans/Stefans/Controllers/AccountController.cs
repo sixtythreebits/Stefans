@@ -159,7 +159,7 @@ namespace Stefans.Controllers
             if (!string.IsNullOrWhiteSpace(Email) && !string.IsNullOrWhiteSpace(Password))
             {
                 var user = new User().GetSingle(null, Email);
-                if (user != null && user.Password == Password.MD5())
+                if (user != null && user.IsActive && user.Password == Password.MD5())
                 {
                     Session.SetUser(user);
                     return Json(new { Success = true, RedirectUrl = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
