@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SystemBase;
 using DB;
 
-namespace General
+namespace Core
 {
     [Serializable]
-    public class Dictionary : ObjectBase
+    public class Dictionary : GenericObjectBase<DBCoreDataContext>
     {
+        #region Constructor
+
+        public Dictionary() : base(ConnectionFactory.GetCoreContext)
+        {
+        }
+
+        #endregion
+
         #region Properties
 
         public int ID { get; set; }
@@ -37,28 +44,21 @@ namespace General
         /// <returns>List of dictionary objects</returns>
         public List<Dictionary> ListDictionaries(int? Level, int? DictionaryCode, bool? ShowInvisibleItems = null)
         {
-            return TryToGetList(() =>
+            return TryToReturn(db => db.List_Dictionaries(Level, DictionaryCode, ShowInvisibleItems).Select(d => new Dictionary
             {
-                using (var db = ConnectionFactory.GetUMContext())
-                {
-                    var dictionaries = db.List_Dictionaries(Level, DictionaryCode, ShowInvisibleItems);
-                    return dictionaries.Select(d => new Dictionary()
-                    {
-                        ID = d.DictionaryID,
-                        SortVal = d.SortVal,
-                        Caption = d.Caption,
-                        Caption1 = d.Caption1,
-                        CodeVal = d.CodeVal,
-                        DictionaryCode = d.DictionaryCode,
-                        Hierarchy = d.Hierarchy,
-                        IsDefVal = d.DefVal,
-                        IsVisible = d.Visible,
-                        Level = d.Level,
-                        ParentID = d.ParentID,
-                        StringCode = d.StringCode
-                    }).ToList();
-                }
-            }, Logger: "ListDictionaries(Level = " + Level + ", DictionaryCode = " + DictionaryCode + ", ShowInvisibleItems= " + ShowInvisibleItems + ")");
+                ID = d.DictionaryID,
+                SortVal = d.SortVal,
+                Caption = d.Caption,
+                Caption1 = d.Caption1,
+                CodeVal = d.CodeVal,
+                DictionaryCode = d.DictionaryCode,
+                Hierarchy = d.Hierarchy,
+                IsDefVal = d.DefVal,
+                IsVisible = d.Visible,
+                Level = d.Level,
+                ParentID = d.ParentID,
+                StringCode = d.StringCode
+            }).ToList(), Logger: "ListDictionaries(Level = " + Level + ", DictionaryCode = " + DictionaryCode + ", ShowInvisibleItems= " + ShowInvisibleItems + ")");
         }
         #endregion
     }

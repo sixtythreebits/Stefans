@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using General;
+using Core;
+using Core.UM;
+using Core.Utilities;
 using Newtonsoft.Json;
 using Stefans.Models;
 using Stefans.Reusable;
 using Stefans.Reusable.Attributes;
-using UM;
 using Lib;
-using Res = General.Properties.Resources;
+using Res = Core.Properties.Resources;
 
 namespace Stefans.Controllers
 {

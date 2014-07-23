@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Stefans" Class="DBUMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Stefans" Class="DBCoreDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=srv63bits;Initial Catalog=Stefans;Persist Security Info=True;User ID=sa" SettingsObjectName="DB.Properties.Settings" SettingsPropertyName="StefansConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.UM_tsp_Users" Method="UM_tsp_Users">
     <Parameter Name="iud" Type="System.Byte" DbType="TinyInt" />
@@ -20,11 +20,6 @@
     <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(100)" />
     <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Boolean" />
-  </Function>
-  <Function Name="dbo.UM_GetSingle_User" Method="UM_GetSingle_User" IsComposable="true">
-    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
-    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(500)" />
-    <Return Type="System.Xml.Linq.XElement" />
   </Function>
   <Function Name="dbo.List_Dictionaries" Method="List_Dictionaries" IsComposable="true">
     <Parameter Name="Level" Parameter="level" Type="System.Int32" DbType="Int" />
@@ -48,5 +43,10 @@
       <Column Name="DecimalVal" Type="System.Decimal" DbType="Money" CanBeNull="true" />
       <Column Name="CRTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.UM_GetSingle_User" Method="UM_GetSingle_User" IsComposable="true">
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(500)" />
+    <Return Type="System.Xml.Linq.XElement" />
   </Function>
 </Database>

@@ -9,9 +9,9 @@ namespace DB
             get { return ConfigurationManager.ConnectionStrings["DBConnectionString"].ConnectionString; }
         }
 
-        public static DBUMDataContext GetUMContext()
+        public static DBCoreDataContext GetCoreContext()
         {
-            return new DBUMDataContext(ConnectionString);
+            return new DBCoreDataContext(ConnectionString);
         }
     }
 }

@@ -3,12 +3,12 @@ using System.Data.Linq;
 using System.Runtime.CompilerServices;
 using SystemBase;
 
-namespace UM
+namespace Core
 {
     public class GenericObjectBase<TContext> : ObjectBase where TContext : DataContext, new()
     {
         private readonly Func<TContext> _contextCreator;
-        
+
         public GenericObjectBase(Func<TContext> ContextCreator)
         {
             _contextCreator = ContextCreator;

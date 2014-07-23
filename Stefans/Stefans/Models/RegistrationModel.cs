@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using UM;
+using Core.UM;
 
 namespace Stefans.Models
 {

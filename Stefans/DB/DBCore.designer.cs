@@ -23,7 +23,7 @@ namespace DB
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Stefans")]
-	public partial class DBUMDataContext : System.Data.Linq.DataContext
+	public partial class DBCoreDataContext : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -32,31 +32,31 @@ namespace DB
     partial void OnCreated();
     #endregion
 		
-		public DBUMDataContext() : 
+		public DBCoreDataContext() : 
 				base(global::DB.Properties.Settings.Default.StefansConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBUMDataContext(string connection) : 
+		public DBCoreDataContext(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBUMDataContext(System.Data.IDbConnection connection) : 
+		public DBCoreDataContext(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBUMDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DBCoreDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DBUMDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DBCoreDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -76,16 +76,16 @@ namespace DB
 			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), email, userID).ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UM_GetSingle_User", IsComposable=true)]
-		public System.Xml.Linq.XElement UM_GetSingle_User([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(500)")] string email)
-		{
-			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, email).ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Dictionaries", IsComposable=true)]
 		public IQueryable<List_DictionariesResult> List_Dictionaries([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level", DbType="Int")] System.Nullable<int> level, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DictionaryCode", DbType="Int")] System.Nullable<int> dictionaryCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ShowInvisibleItems", DbType="Bit")] System.Nullable<bool> showInvisibleItems)
 		{
 			return this.CreateMethodCallQuery<List_DictionariesResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), level, dictionaryCode, showInvisibleItems);
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UM_GetSingle_User", IsComposable=true)]
+		public System.Xml.Linq.XElement UM_GetSingle_User([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Email", DbType="VarChar(500)")] string email)
+		{
+			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, email).ReturnValue));
 		}
 	}
 	

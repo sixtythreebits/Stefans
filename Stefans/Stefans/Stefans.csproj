@@ -202,13 +202,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\General\General.csproj">
-      <Project>{d9e37921-889e-43b2-b7ae-e6b72edb80e2}</Project>
-      <Name>General</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UM\UM.csproj">
-      <Project>{ad2192c5-74f1-4892-8418-7bb5e26d9387}</Project>
-      <Name>UM</Name>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{5038c483-29ce-4fd1-aae4-a2ee6c8f7bfe}</Project>
+      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

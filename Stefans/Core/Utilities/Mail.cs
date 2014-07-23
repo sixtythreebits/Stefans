@@ -3,7 +3,7 @@ using System.Net.Mail;
 using System.Text;
 using SystemBase;
 
-namespace General
+namespace Core.Utilities
 {
     public class Mail : ObjectBase
     {

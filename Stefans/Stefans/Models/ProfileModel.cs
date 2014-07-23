@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using UM;
-using Res = General.Properties.Resources;
+using Core.UM;
+using Res = Core.Properties.Resources;
 
 namespace Stefans.Models
 {

@@ -2,13 +2,13 @@
 using DB;
 using Lib;
 
-namespace UM
+namespace Core.UM
 {
-    public class User : GenericObjectBase<DBUMDataContext>
+    public class User : GenericObjectBase<DBCoreDataContext>
     {
         #region Constructor
 
-        public User() : base(ConnectionFactory.GetUMContext)
+        public User() : base(ConnectionFactory.GetCoreContext)
         {
 
         }

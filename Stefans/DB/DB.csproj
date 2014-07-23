@@ -42,10 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConnectionFactory.cs" />
-    <Compile Include="DBUM.designer.cs">
+    <Compile Include="DBCore.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DBUM.dbml</DependentUpon>
+      <DependentUpon>DBCore.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -56,9 +56,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="DBUM.dbml">
+    <None Include="DBCore.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DBUM.designer.cs</LastGenOutput>
+      <LastGenOutput>DBCore.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
@@ -70,8 +70,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="DBUM.dbml.layout">
-      <DependentUpon>DBUM.dbml</DependentUpon>
+    <None Include="DBCore.dbml.layout">
+      <DependentUpon>DBCore.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

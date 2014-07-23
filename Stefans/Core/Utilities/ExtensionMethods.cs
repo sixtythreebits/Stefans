@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json;
 
-namespace General
+namespace Core.Utilities
 {
     public static class ExtensionMethods
     {
