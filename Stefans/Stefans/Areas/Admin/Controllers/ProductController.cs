@@ -8,6 +8,7 @@ using Core.Utilities;
 using Lib;
 using Stefans.Reusable;
 using Res = Core.Properties.Resources;
+using FileIO = System.IO.File;
 
 namespace Stefans.Areas.Admin.Controllers
 {
@@ -25,7 +26,7 @@ namespace Stefans.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Product Model, HttpPostedFileBase Upload)
+        public ActionResult Save(Product Model, HttpPostedFileBase Upload)
         {
             if (Upload != null && !Utility.AllowedImageExtensions.Contains(Path.GetExtension(Upload.FileName)))
             {
@@ -34,12 +35,25 @@ namespace Stefans.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                var repo = new Product();
                 if (Upload != null)
                 {
                     Model.Image = Upload.FileName.ToAZ09Dash(true);
+                    if (Model.ID > 0)
+                    {
+                        var product = repo.GetSingle(Model.ID);
+
+                        if (product != null && !string.IsNullOrWhiteSpace(product.Image))
+                        {
+                            var path = Server.MapPath(Path.Combine(ConfigAssistant.ProductsFolderRelativePath, product.Image));
+                            if (FileIO.Exists(path))
+                            {
+                                FileIO.Delete(path);
+                            }
+                        }
+                    }
                 }
 
-                var repo = new Product();
                 repo.TX((byte)(Model.ID > 0 ? 1 : 0), BuildXml(Model));
 
                 if (!repo.IsError && repo.ID > 0)
@@ -48,6 +62,7 @@ namespace Stefans.Areas.Admin.Controllers
                     {
                         Upload.SaveAs(Server.MapPath(Path.Combine(ConfigAssistant.ProductsFolderRelativePath, Model.Image)));
                     }
+                    return RedirectToAction("Edit", "Product", new { repo.ID });
                 }
             }
 
@@ -55,9 +70,24 @@ namespace Stefans.Areas.Admin.Controllers
             return View("CreateEdit", Model);
         }
 
+        public ActionResult Edit(int ID)
+        {
+            if (ID > 0)
+            {
+                var model = new Product().GetSingle(ID);
+                if (model != null)
+                {
+                    ViewBag.Ingredients = new Dictionary().ListDictionaries(1, 2);
+                    return View("CreateEdit", model);
+                }
+            }
+            return HttpNotFound();
+        }
+
         private static string BuildXml(Product Model)
         {
-            var ingredientsXml = Model.Ingredients.Select(i => string.Format(@"
+            var ingredients = Model.Ingredients ?? Enumerable.Empty<Dictionary>();
+            var ingredientsXml = ingredients.Select(i => string.Format(@"
             <ingredient>
                 <id>{0}</id>
             </ingredient>
@@ -70,15 +100,15 @@ namespace Stefans.Areas.Admin.Controllers
                 <price>{2}</price>
                 <description>{3}</description>
                 <instructions>{4}</instructions>
-                <image>{5}</image>
+                {5}
                 <ingredients>{6}</ingredients>
             </data>
             ", Model.ID > 0 ? string.Format("<id>{0}</id>", Model.ID) : ""
-             , Model.Caption
+             , Model.Caption.WrapWithCData()
              , Model.Price
-             , Model.Description
-             , Model.Instruction
-             , Model.Image
+             , Model.Description.WrapWithCData()
+             , Model.Instruction.WrapWithCData()
+             , string.IsNullOrWhiteSpace(Model.Image) ? "" : string.Format("<image>{0}</image>", Model.Image.WrapWithCData()) 
              , ingredientsXml);
         }
     }

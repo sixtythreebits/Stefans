@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Xml.Linq;
+using Core.Utilities;
 using DB;
 using Lib;
 
@@ -40,6 +42,32 @@ namespace Core.CM
         #endregion
 
         #region Methods
+        public Product GetSingle(int ID)
+        {
+            return TryToReturn(db =>
+            {
+                var xml = db.GetSingle_Product(ID);
+
+                if (xml != null)
+                {
+                    return new Product
+                    {
+                        ID = xml.IntValueOf("product_id").Value,
+                        Caption = xml.ValueOf("caption"),
+                        Description = xml.ValueOf("description"),
+                        Image = xml.ValueOf("image"),
+                        Price = xml.DecimalValueOf("price").Value,
+                        Instruction = xml.ValueOf("instructions"),
+                        Ingredients = xml.Elements("ingredients", "ingredient").Select(i => new Dictionary
+                        {
+                            ID = i.IntValueOf("ingredient_id").Value,
+                            Caption = i.ValueOf("caption")
+                        }).ToList()
+                    };
+                }
+                return null;
+            });
+        }
 
         public void TX(byte iud, string Xml)
         {

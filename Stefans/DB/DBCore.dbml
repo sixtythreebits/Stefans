@@ -55,4 +55,8 @@
     <Parameter Name="out" Type="System.Xml.Linq.XElement" DbType="Xml" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.GetSingle_Product" Method="GetSingle_Product" IsComposable="true">
+    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Xml.Linq.XElement" />
+  </Function>
 </Database>

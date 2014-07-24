@@ -95,6 +95,12 @@ namespace DB
 			@out = ((System.Xml.Linq.XElement)(result.GetParameterValue(2)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSingle_Product", IsComposable=true)]
+		public System.Xml.Linq.XElement GetSingle_Product([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] System.Nullable<int> productID)
+		{
+			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), productID).ReturnValue));
+		}
 	}
 	
 	public partial class List_DictionariesResult
