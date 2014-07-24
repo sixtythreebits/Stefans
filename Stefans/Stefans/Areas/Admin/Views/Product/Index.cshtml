@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Product>
+
+@section CSS{
+    @Html.DevExpress().GetStyleSheets( new StyleSheet { ExtensionSuite = ExtensionSuite.GridView } )
+}
+
+@section JS {
+
+    @Html.DevExpress().GetScripts( new Script { ExtensionSuite = ExtensionSuite.GridView } )
+}
+
+<div>
+    <a href="@Url.Action("Create", "Product")"> New Product </a>
+</div>
+
+@Html.Action("GridViewPartial")

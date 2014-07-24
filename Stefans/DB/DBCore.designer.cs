@@ -101,6 +101,12 @@ namespace DB
 		{
 			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), productID).ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Products", IsComposable=true)]
+		public IQueryable<List_ProductsResult> List_Products()
+		{
+			return this.CreateMethodCallQuery<List_ProductsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
 	}
 	
 	public partial class List_DictionariesResult
@@ -378,6 +384,140 @@ namespace DB
 				if ((this._DecimalVal != value))
 				{
 					this._DecimalVal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_ProductsResult
+	{
+		
+		private int _ProductID;
+		
+		private string _Caption;
+		
+		private string _Description;
+		
+		private string _Image;
+		
+		private decimal _Price;
+		
+		private string _Instructions;
+		
+		private System.DateTime _CRTime;
+		
+		public List_ProductsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this._ProductID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Caption", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Caption
+		{
+			get
+			{
+				return this._Caption;
+			}
+			set
+			{
+				if ((this._Caption != value))
+				{
+					this._Caption = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(100)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this._Image = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructions", DbType="NVarChar(1000)")]
+		public string Instructions
+		{
+			get
+			{
+				return this._Instructions;
+			}
+			set
+			{
+				if ((this._Instructions != value))
+				{
+					this._Instructions = value;
 				}
 			}
 		}

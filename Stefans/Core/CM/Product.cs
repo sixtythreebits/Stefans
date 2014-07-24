@@ -42,6 +42,18 @@ namespace Core.CM
         #endregion
 
         #region Methods
+
+        public List<Product> GetList()
+        {
+            return TryToReturn(db => db.List_Products().Select(p => new Product
+            {
+                ID = p.ProductID,
+                Caption = p.Caption,
+                Price = p.Price,
+                CRTime = p.CRTime
+            }).ToList(), Logger: "GetList()");
+        }
+
         public Product GetSingle(int ID)
         {
             return TryToReturn(db =>
@@ -66,7 +78,7 @@ namespace Core.CM
                     };
                 }
                 return null;
-            });
+            }, Logger: string.Format("GetSingle(ID = {0})", ID));
         }
 
         public void TX(byte iud, string Xml)
@@ -80,7 +92,7 @@ namespace Core.CM
                 {
                     this.ID = id.Value;
                 }
-            });
+            }, Logger: string.Format("TX(iud = {0}, Xml = {1})", iud, Xml));
         }
 
         #endregion

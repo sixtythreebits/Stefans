@@ -16,7 +16,15 @@ namespace Stefans.Areas.Admin.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var model = new Product().GetList();
+            return View(model);
+        }
+
+        [ValidateInput(false)]
+        public ActionResult GridViewPartial()
+        {
+            var model = new Product().GetList();
+            return PartialView("_GridViewPartial", model);
         }
 
         public ActionResult Create()

@@ -3,7 +3,6 @@
 @{
     var ingredients = ViewBag.Ingredients as List<Dictionary>;
     var selectedIngredients = Model != null && Model.Ingredients != null ? Model.Ingredients : new List<Dictionary>();
-    var isEditMode = Model != null && Model.ID > 0;
 }
 
 <div class="row">
@@ -20,7 +19,7 @@
     <div class="col-lg-7">
         <form action="@Url.Action("Save", "Product")" method="POST" role="form" enctype="multipart/form-data">
 
-            @if (isEditMode)
+            @if (Model != null && Model.ID > 0)
             {
                 @Html.HiddenFor(m => m.ID)
             }
