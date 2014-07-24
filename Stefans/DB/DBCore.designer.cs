@@ -87,6 +87,14 @@ namespace DB
 		{
 			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, email).ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tx_Products")]
+		public int tx_Products([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Xml")] System.Xml.Linq.XElement x, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="out", DbType="Xml")] ref System.Xml.Linq.XElement @out)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iud, x, @out);
+			@out = ((System.Xml.Linq.XElement)(result.GetParameterValue(2)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class List_DictionariesResult

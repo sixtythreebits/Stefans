@@ -83,6 +83,15 @@ table.tablesorter thead tr th:hover {
   height: 100%;
 }
 
+textarea.form-control {
+    height: 200px;
+    resize: none;
+}
+
+.form-group .field-validation-error {
+    color: #a94442
+}
+
 /* Edit Below to Customize Widths > 768px */
 @media (min-width:768px) {
 

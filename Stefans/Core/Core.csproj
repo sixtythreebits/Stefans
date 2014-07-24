@@ -62,6 +62,7 @@
     <Compile Include="UM\User.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\Mail.cs" />
+    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DB\DB.csproj">

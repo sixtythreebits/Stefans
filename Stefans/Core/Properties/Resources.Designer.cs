@@ -70,6 +70,15 @@ namespace Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Valid extensions area: {0}!.
+        /// </summary>
+        public static string ErrorFileExtension {
+            get {
+                return ResourceManager.GetString("ErrorFileExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum length of the field {0} is {1}!.
         /// </summary>
         public static string ErrorMaxLength {

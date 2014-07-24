@@ -1,17 +1,24 @@
 ﻿@using System.Linq.Expressions
 @using System.Web.Mvc
 @using System.Web.Mvc.Html
+@using Stefans.Reusable
 @using SelectListItem = System.Web.Mvc.SelectListItem
+
 @functions
 {
     static HelperResult RenderInput<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression, MvcHtmlString Input)
     {
-        return RenderInput(Caption, Html.NameFor(PropExpression), Input);
+        return RenderInput(Caption, Html.NameFor(PropExpression), Input, Html.HasPropertyError(PropExpression), Html.ValidationMessageFor(PropExpression));
     }
 
     public static HelperResult RenderTextBox<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression)
     {
         return RenderInput(Html, Caption, PropExpression, Html.TextBoxFor(PropExpression, new { @class = "form-control" }));
+    }
+    
+    public static HelperResult RenderNumericTextBox<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression)
+    {
+        return RenderInput(Html, Caption, PropExpression, Html.TextBoxFor(PropExpression, new { @class = "form-control", type = "number", step = "any" }));
     }
 
     public static HelperResult RenderTextArea<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression)
@@ -30,14 +37,17 @@
     }
 }
 
-@helper RenderInput(string Label, MvcHtmlString PropName, MvcHtmlString Input)
+@helper RenderInput(string Label, MvcHtmlString PropName, MvcHtmlString Input, bool HasError, MvcHtmlString ValidationMessage)
 {
-    <div class="form-group">
-        <label for="@PropName">
+    <div class="form-group @( HasError ? "has-error" : "" )">
+        <label class="control-label" for="@PropName">
             @Label
         </label>
         <div>
             @Input
+        </div>
+        <div>
+            @ValidationMessage
         </div>
     </div>
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Core.Utilities
@@ -13,6 +14,16 @@ namespace Core.Utilities
         public static TimeSpan Minutes(this int Quantity)
         {
             return TimeSpan.FromMinutes(Quantity);
+        }
+
+        public static string JoinStrings(this IEnumerable<string> Strings, string Separator = "")
+        {
+            return string.Join(Separator, Strings);
+        }
+
+        public static string WrapWithCData(this object Obj)
+        {
+            return Obj != null ? string.Format("<![CDATA[{0}]]>", Obj) : string.Empty;
         }
     }
 }
