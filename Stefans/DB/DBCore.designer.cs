@@ -107,6 +107,14 @@ namespace DB
 		{
 			return this.CreateMethodCallQuery<List_ProductsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tsp_Products")]
+		public int tsp_Products([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] ref System.Nullable<int> productID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Caption", DbType="NVarChar(200)")] string caption, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Description", DbType="NVarChar(1000)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Image", DbType="NVarChar(100)")] string image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Money")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Instructions", DbType="NVarChar(1000)")] string instructions)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iud, productID, caption, description, image, price, instructions);
+			productID = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class List_DictionariesResult

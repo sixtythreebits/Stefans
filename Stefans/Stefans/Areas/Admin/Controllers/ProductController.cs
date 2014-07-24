@@ -27,6 +27,14 @@ namespace Stefans.Areas.Admin.Controllers
             return PartialView("_GridViewPartial", model);
         }
 
+        [HttpPost, ValidateInput(false)]
+        public ActionResult Delete(int ID)
+        {
+            new Product().Delete(ID);
+            var model = new Product().GetList();
+            return PartialView("_GridViewPartial", model);
+        }
+
         public ActionResult Create()
         {
             ViewBag.Ingredients = new Dictionary().ListDictionaries(1, 2);
@@ -118,6 +126,20 @@ namespace Stefans.Areas.Admin.Controllers
              , Model.Instruction.WrapWithCData()
              , string.IsNullOrWhiteSpace(Model.Image) ? "" : string.Format("<image>{0}</image>", Model.Image.WrapWithCData()) 
              , ingredientsXml);
+        }
+
+        public ActionResult Testimonials()
+        {
+            ViewBag.Products = new Product().GetList();
+            var model = Enumerable.Empty<ProductTestimonial>();
+            return View(model);
+        }
+
+        public ActionResult TestimonialGrid()
+        {
+            ViewBag.Products = new Product().GetList();
+            var model = Enumerable.Empty<ProductTestimonial>();
+            return PartialView("_TestimonialGrid", model);
         }
     }
 }

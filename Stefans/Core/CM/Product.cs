@@ -95,6 +95,11 @@ namespace Core.CM
             }, Logger: string.Format("TX(iud = {0}, Xml = {1})", iud, Xml));
         }
 
+        public void Delete(int? ID)
+        {
+            TryExecute((db => db.tsp_Products(2, ref ID, null, null, null, null, null)), Logger: string.Format("Delete(ID = {0})", ID));
+        }
+
         #endregion
     }
 }

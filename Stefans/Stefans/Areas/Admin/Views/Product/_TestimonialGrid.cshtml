@@ -1,0 +1,68 @@
+﻿@using System.Web.UI.WebControls
+@using DevExpress.Data
+@{
+    var products = ViewBag.Products as List<Product>;
+}
+
+@helper WriteLink(string Src, string LinkText)
+{
+    <a href="@Src"> @LinkText </a>
+}
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Product", Action = "TestimonialGrid" };
+
+        
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Editing", Action = "EditModesAddNewPartial" };
+
+
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+
+        settings.Width = Unit.Percentage(100);
+
+        settings.KeyFieldName = "ID";
+
+        //settings.Columns.Add("Caption");
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Name";
+        });
+        
+        //settings.Columns.Add("Description", MVCxGridViewColumnType.Memo);
+
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Description";
+            c.ColumnType = MVCxGridViewColumnType.Memo;
+        });
+
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "ProductID";
+            c.Caption = "Product";
+            c.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = c.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = products;
+            comboBoxProperties.TextField = "Caption";
+            comboBoxProperties.ValueField = "ID";
+            comboBoxProperties.ValueType = typeof (int);
+        });
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.VisibleIndex = int.MaxValue;
+        
+        settings.CommandColumn.ShowClearFilterButton = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+    });
+}
+@grid.Bind(Model).GetHtml()
