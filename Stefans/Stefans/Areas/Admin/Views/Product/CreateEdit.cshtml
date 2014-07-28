@@ -28,6 +28,8 @@
 
             @InputHelpers.RenderTextArea(Html, "Instructions", m => m.Instruction)
             
+            @InputHelpers.RenderCheckBox(Html, "Feature", m => m.IsFeature)
+            
             @if (Model != null && !string.IsNullOrWhiteSpace(Model.Image))
             {
                 <div>

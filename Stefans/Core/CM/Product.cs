@@ -37,6 +37,8 @@ namespace Core.CM
         [StringLength(1000)]
         public string Instruction { get; set; }
 
+        public bool IsFeature { get; set; }
+
         public List<Dictionary> Ingredients { get; set; }
 
         #endregion
@@ -70,6 +72,7 @@ namespace Core.CM
                         Image = xml.ValueOf("image"),
                         Price = xml.DecimalValueOf("price").Value,
                         Instruction = xml.ValueOf("instructions"),
+                        IsFeature = xml.BooleanValueOf("is_feature") == true,
                         Ingredients = xml.Elements("ingredients", "ingredient").Select(i => new Dictionary
                         {
                             ID = i.IntValueOf("ingredient_id").Value,

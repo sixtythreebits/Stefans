@@ -132,6 +132,7 @@ namespace Stefans.Areas.Admin.Controllers
                 <instructions>{4}</instructions>
                 {5}
                 <ingredients>{6}</ingredients>
+                <is_feature>{7}</is_feature>
             </data>
             ", Model.ID > 0 ? string.Format("<id>{0}</id>", Model.ID) : ""
              , Model.Caption.WrapWithCData()
@@ -139,7 +140,8 @@ namespace Stefans.Areas.Admin.Controllers
              , Model.Description.WrapWithCData()
              , Model.Instruction.WrapWithCData()
              , string.IsNullOrWhiteSpace(Model.Image) ? "" : string.Format("<image>{0}</image>", Model.Image.WrapWithCData()) 
-             , ingredientsXml);
+             , ingredientsXml
+             , Model.IsFeature);
         }
 
         public ActionResult Testimonials()
