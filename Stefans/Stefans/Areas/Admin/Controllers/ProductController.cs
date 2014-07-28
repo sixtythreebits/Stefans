@@ -7,11 +7,13 @@ using Core.CM;
 using Core.Utilities;
 using Lib;
 using Stefans.Reusable;
+using Stefans.Reusable.Attributes;
 using Res = Core.Properties.Resources;
 using FileIO = System.IO.File;
 
 namespace Stefans.Areas.Admin.Controllers
 {
+    [AdminAuthentication]
     public class ProductController : BaseController
     {
         public ActionResult Index()
@@ -30,8 +32,20 @@ namespace Stefans.Areas.Admin.Controllers
         [HttpPost, ValidateInput(false)]
         public ActionResult Delete(int ID)
         {
-            new Product().Delete(ID);
-            var model = new Product().GetList();
+            var repo = new Product();
+            var product = repo.GetSingle(ID);
+
+            if (product != null && !string.IsNullOrWhiteSpace(product.Image))
+            {
+                var imagePath = Server.MapPath(ConfigAssistant.ProductsFolderRelativePath + product.Image);
+                if (FileIO.Exists(imagePath))
+                {
+                    FileIO.Delete(imagePath);
+                }
+            }
+            repo.Delete(ID);
+
+            var model = repo.GetList();
             return PartialView("_GridViewPartial", model);
         }
 

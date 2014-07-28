@@ -45,6 +45,7 @@ namespace Core.UM
         public string Zip { set; get; }
         public string City { set; get; }
         public bool IsActive { set; get; }
+        public bool IsAdmin { set; get; }
 
         #endregion
 
@@ -92,7 +93,8 @@ namespace Core.UM
                         City = xml.ValueOf("city"),
                         Zip = xml.ValueOf("zip"),
                         Phone = xml.ValueOf("phone"),
-                        IsActive = xml.BooleanValueOf("is_active") == true
+                        IsActive = xml.BooleanValueOf("is_active") == true,
+                        IsAdmin = xml.BooleanValueOf("is_admin") == true
                     };
                 }
                 return null;
