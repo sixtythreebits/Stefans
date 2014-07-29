@@ -1,0 +1,71 @@
+﻿@using Core.CM
+@model Product
+           
+<section class="product view cl">
+    <ul class="col2">
+        <li class="img">
+            @if (string.IsNullOrWhiteSpace(Model.Image))
+            {
+                <img src="~/images/0/prod-01.jpg" alt="" />
+            }
+            else
+            {
+                <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, Model.Image)" alt="" />
+            }
+        </li>
+        <li>
+            <article>
+                <h1> @Model.Caption </h1>
+                <p>
+                    @Model.Description
+                </p>
+            </article>
+            <div>
+                <a href="#" class="favorites">Add to Favorites</a><br />
+                <a href="cart.html" class="btn"><span>add to cart</span></a>
+            </div>
+        </li>
+    </ul>
+</section>
+
+@if (Model.Ingredients != null && Model.Ingredients.Any())
+{
+    <section class="ingredients">
+        <h4>ingredients</h4>
+        <ul class="col3 cl">
+            @foreach (var item in Model.Ingredients)
+            {
+                <li>@item.Caption</li>
+            }
+        </ul>
+    </section>
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.Instruction))
+{
+    <section class="instructions">
+        <h4>Instructions</h4>
+        <div>
+            <strong>WARNING</strong>
+            <p>
+                @Model.Instruction
+            </p>
+        </div>
+    </section>
+}
+
+@if (Model.Testimonials != null && Model.Testimonials.Any())
+{
+    <section class="testimonials">
+        <h4>testimonials</h4>
+        @foreach (var item in Model.Testimonials)
+        {
+            <div>
+                <p>
+                    "@item.Description"
+                </p>
+                <span> @item.Name </span>
+            </div>
+        }
+    </section>
+}

@@ -96,18 +96,6 @@ namespace DB
 			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSingle_Product", IsComposable=true)]
-		public System.Xml.Linq.XElement GetSingle_Product([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] System.Nullable<int> productID)
-		{
-			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), productID).ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Products", IsComposable=true)]
-		public IQueryable<List_ProductsResult> List_Products()
-		{
-			return this.CreateMethodCallQuery<List_ProductsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tsp_Products")]
 		public int tsp_Products([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] ref System.Nullable<int> productID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Caption", DbType="NVarChar(200)")] string caption, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Description", DbType="NVarChar(1000)")] string description, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Image", DbType="NVarChar(100)")] string image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Price", DbType="Money")] System.Nullable<decimal> price, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Instructions", DbType="NVarChar(1000)")] string instructions)
 		{
@@ -134,6 +122,18 @@ namespace DB
 		public IQueryable<List_ProductTestimonialsResult> List_ProductTestimonials()
 		{
 			return this.CreateMethodCallQuery<List_ProductTestimonialsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Products", IsComposable=true)]
+		public IQueryable<List_ProductsResult> List_Products()
+		{
+			return this.CreateMethodCallQuery<List_ProductsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSingle_Product", IsComposable=true)]
+		public System.Xml.Linq.XElement GetSingle_Product([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] System.Nullable<int> productID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="IncludeTestimonials", DbType="Bit")] System.Nullable<bool> includeTestimonials)
+		{
+			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), productID, includeTestimonials).ReturnValue));
 		}
 	}
 	
@@ -433,140 +433,6 @@ namespace DB
 		}
 	}
 	
-	public partial class List_ProductsResult
-	{
-		
-		private int _ProductID;
-		
-		private string _Caption;
-		
-		private string _Description;
-		
-		private string _Image;
-		
-		private decimal _Price;
-		
-		private string _Instructions;
-		
-		private System.DateTime _CRTime;
-		
-		public List_ProductsResult()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
-		public int ProductID
-		{
-			get
-			{
-				return this._ProductID;
-			}
-			set
-			{
-				if ((this._ProductID != value))
-				{
-					this._ProductID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Caption", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
-		public string Caption
-		{
-			get
-			{
-				return this._Caption;
-			}
-			set
-			{
-				if ((this._Caption != value))
-				{
-					this._Caption = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(100)")]
-		public string Image
-		{
-			get
-			{
-				return this._Image;
-			}
-			set
-			{
-				if ((this._Image != value))
-				{
-					this._Image = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this._Price = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructions", DbType="NVarChar(1000)")]
-		public string Instructions
-		{
-			get
-			{
-				return this._Instructions;
-			}
-			set
-			{
-				if ((this._Instructions != value))
-				{
-					this._Instructions = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CRTime
-		{
-			get
-			{
-				return this._CRTime;
-			}
-			set
-			{
-				if ((this._CRTime != value))
-				{
-					this._CRTime = value;
-				}
-			}
-		}
-	}
-	
 	public partial class List_ProductTestimonialsResult
 	{
 		
@@ -678,6 +544,158 @@ namespace DB
 				if ((this._ProductCaption != value))
 				{
 					this._ProductCaption = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_ProductsResult
+	{
+		
+		private int _ProductID;
+		
+		private string _Caption;
+		
+		private string _Description;
+		
+		private string _Image;
+		
+		private decimal _Price;
+		
+		private string _Instructions;
+		
+		private bool _IsFeature;
+		
+		private System.DateTime _CRTime;
+		
+		public List_ProductsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this._ProductID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Caption", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Caption
+		{
+			get
+			{
+				return this._Caption;
+			}
+			set
+			{
+				if ((this._Caption != value))
+				{
+					this._Caption = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(1000) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(100)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this._Image = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Instructions", DbType="NVarChar(1000)")]
+		public string Instructions
+		{
+			get
+			{
+				return this._Instructions;
+			}
+			set
+			{
+				if ((this._Instructions != value))
+				{
+					this._Instructions = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsFeature", DbType="Bit NOT NULL")]
+		public bool IsFeature
+		{
+			get
+			{
+				return this._IsFeature;
+			}
+			set
+			{
+				if ((this._IsFeature != value))
+				{
+					this._IsFeature = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
 				}
 			}
 		}

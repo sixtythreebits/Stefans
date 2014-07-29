@@ -55,21 +55,6 @@
     <Parameter Name="out" Type="System.Xml.Linq.XElement" DbType="Xml" Direction="InOut" />
     <Return Type="System.Int32" />
   </Function>
-  <Function Name="dbo.GetSingle_Product" Method="GetSingle_Product" IsComposable="true">
-    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
-    <Return Type="System.Xml.Linq.XElement" />
-  </Function>
-  <Function Name="dbo.List_Products" Method="List_Products" IsComposable="true">
-    <ElementType Name="List_ProductsResult">
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Caption" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
-      <Column Name="Image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="Instructions" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
-      <Column Name="CRTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.tsp_Products" Method="tsp_Products">
     <Parameter Name="iud" Type="System.Byte" DbType="TinyInt" />
     <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" Direction="InOut" />
@@ -101,5 +86,22 @@
       <Column Name="CRTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="ProductCaption" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
     </ElementType>
+  </Function>
+  <Function Name="dbo.List_Products" Method="List_Products" IsComposable="true">
+    <ElementType Name="List_ProductsResult">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Caption" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="Image" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="Instructions" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="IsFeature" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="CRTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetSingle_Product" Method="GetSingle_Product" IsComposable="true">
+    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="IncludeTestimonials" Parameter="includeTestimonials" Type="System.Boolean" DbType="Bit" />
+    <Return Type="System.Xml.Linq.XElement" />
   </Function>
 </Database>

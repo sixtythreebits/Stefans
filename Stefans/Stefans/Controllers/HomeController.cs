@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Core.CM;
 
 namespace Stefans.Controllers
 {
@@ -7,6 +8,7 @@ namespace Stefans.Controllers
         public ActionResult Index()
         {
             ViewBag.HomePage = true;
+            ViewBag.Products = new Product().GetTopFeatured();
             return View();
         }
 

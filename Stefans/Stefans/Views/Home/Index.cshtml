@@ -1,5 +1,6 @@
-﻿@section JS {
+﻿@using Core.CM
 
+@section JS {
     <script>
         $(function () {
             //scroll on load
@@ -48,6 +49,9 @@
     </script>
 }
 
+@{
+    var products = ViewBag.Products as List<Product>;
+}
 
 <section id="home" class="slider home">
     <ul>
@@ -90,7 +94,38 @@
 <section id="products" class="product">
     <h2 class="title">PRODUCTS</h2>
 
-    <ul class="col2 list cl">
+    @if (products != null)
+    {
+        <ul class="col2 list cl">
+            @foreach (var item in products)
+            {
+                <li>
+                    <a href="@Url.Action("Details", "Product", new { item.ID })" class="img">
+                        @if (string.IsNullOrWhiteSpace(item.Image))
+                        {
+                            <img src="~/images/0/prod-01.jpg" alt="" />
+                        }
+                        else
+                        {
+                            <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, item.Image)" alt="" />
+                        }
+                    </a>
+                    <article>
+                        <h3>
+                            <a href="#">
+                                @item.Caption
+                            </a>
+                        </h3>
+                        <p>
+                            @item.Description
+                        </p>
+                    </article>
+                </li>
+            }
+        </ul>
+    }
+
+    @*<ul class="col2 list cl">
         <li>
             <a href="product.html" class="img">
                 <img src="images/0/prod-01.jpg" alt="" />
@@ -127,7 +162,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
             </article>
         </li>
-    </ul>
+    </ul>*@
 
 </section>
 

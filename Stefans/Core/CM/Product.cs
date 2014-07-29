@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Xml.Linq;
@@ -41,6 +42,8 @@ namespace Core.CM
 
         public List<Dictionary> Ingredients { get; set; }
 
+        public List<ProductTestimonial> Testimonials { get; set; }
+
         #endregion
 
         #region Methods
@@ -56,11 +59,11 @@ namespace Core.CM
             }).ToList(), Logger: "GetList()");
         }
 
-        public Product GetSingle(int ID)
+        public Product GetSingle(int ID, bool IncludeTestimonials = false)
         {
             return TryToReturn(db =>
             {
-                var xml = db.GetSingle_Product(ID);
+                var xml = db.GetSingle_Product(ID, IncludeTestimonials);
 
                 if (xml != null)
                 {
@@ -77,11 +80,16 @@ namespace Core.CM
                         {
                             ID = i.IntValueOf("ingredient_id").Value,
                             Caption = i.ValueOf("caption")
+                        }).ToList(),
+                        Testimonials = xml.Elements("testimonials", "testimonial").Select(t => new ProductTestimonial
+                        {
+                            Name = t.ValueOf("name"),
+                            Description = t.ValueOf("description")
                         }).ToList()
                     };
                 }
                 return null;
-            }, Logger: string.Format("GetSingle(ID = {0})", ID));
+            }, Logger: string.Format("GetSingle(ID = {0}, IncludeTestimonials = {1})", ID, IncludeTestimonials));
         }
 
         public void TX(byte iud, string Xml)
@@ -101,6 +109,24 @@ namespace Core.CM
         public void Delete(int? ID)
         {
             TryExecute((db => db.tsp_Products(2, ref ID, null, null, null, null, null)), Logger: string.Format("Delete(ID = {0})", ID));
+        }
+
+        public List<Product> GetTopFeatured()
+        {
+            return TryToReturn(db => 
+                db.List_Products()
+                  .OrderByDescending(p => p.IsFeature)
+                  .ThenBy(p => Guid.NewGuid())
+                  .Take(4)
+                  .Select(p => new Product
+                  {
+                      ID = p.ProductID,
+                      Caption = p.Caption,
+                      Price = p.Price,
+                      Description = p.Description,
+                      Image = p.Image
+                  }).ToList()
+           , Logger: "GetTopFeatured()");
         }
 
         #endregion
