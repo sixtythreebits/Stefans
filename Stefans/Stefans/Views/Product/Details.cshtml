@@ -1,6 +1,20 @@
 ﻿@using Core.CM
 @model Product
-           
+
+@if (!Session.IsAuthorized())
+{
+    @section JS {
+        <script>
+            $(function () {
+                $('.login-required').click(function () {
+                    alert("Please register or sign in first");
+                    return false;
+                });
+            })
+        </script>
+    }
+}
+
 <section class="product view cl">
     <ul class="col2">
         <li class="img">
@@ -21,8 +35,8 @@
                 </p>
             </article>
             <div>
-                <a href="#" class="favorites">Add to Favorites</a><br />
-                <a href="cart.html" class="btn"><span>add to cart</span></a>
+                <a href="#" class="favorites login-required">Add to Favorites</a><br />
+                <a href="cart.html" class="btn login-required"><span>add to cart</span></a>
             </div>
         </li>
     </ul>

@@ -1,5 +1,9 @@
 ﻿@using Core.CM
 
+@{
+    var products = ViewBag.Products as List<Product>;
+}
+
 @section JS {
     <script>
         $(function () {
@@ -49,19 +53,15 @@
     </script>
 }
 
-@{
-    var products = ViewBag.Products as List<Product>;
-}
-
 <section id="home" class="slider home">
     <ul>
-        <li style="background-image:url(images/0/01.jpg)">
+        <li style="background-image:url(/images/0/01.jpg)">
             <h6 class="title">PROMO NAME</h6>
         </li>
-        <li style="background-image:url(images/0/01.jpg)">
+        <li style="background-image:url(/images/0/01.jpg)">
             <h6 class="title">PROMO NAME</h6>
         </li>
-        <li style="background-image:url(images/0/01.jpg)">
+        <li style="background-image:url(/images/0/01.jpg)">
             <h6 class="title">PROMO NAME</h6>
         </li>
     </ul>

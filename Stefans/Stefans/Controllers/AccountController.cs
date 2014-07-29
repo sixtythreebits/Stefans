@@ -166,7 +166,11 @@ namespace Stefans.Controllers
                 if (user != null && user.IsActive && user.Password == Password.MD5())
                 {
                     Session.SetUser(user);
-                    return Json(new { Success = true, RedirectUrl = Url.Action("Index", "Home") }, JsonRequestBehavior.AllowGet);
+                    return Json(new
+                    {
+                        Success = true, 
+                        RedirectUrl = Request.UrlReferrer != null ? Request.UrlReferrer.AbsoluteUri : Url.Action("Index", "Home")
+                    }, JsonRequestBehavior.AllowGet);
                 }
             }
             return Json(new { Success = false }, JsonRequestBehavior.AllowGet);
@@ -175,7 +179,7 @@ namespace Stefans.Controllers
         public ActionResult LogOut()
         {
             Session.Abandon();
-            return RedirectToAction("Index", "Home");
+            return Request.UrlReferrer != null ? (ActionResult)Redirect(Request.UrlReferrer.AbsoluteUri) : RedirectToAction("Index", "Home");
         }
 
         [SecureAccess]
