@@ -1,11 +1,12 @@
 ﻿@model ProductTestimonial
 @{
     var products = ViewBag.Products as List<Product>;
+    var isEditMode = Model != null && Model.ID > 0;
 }
 
 <div class="row">
     <div class="col-lg-12">
-        @if (Model != null)
+        @if (isEditMode)
         {
             <h1> @Model.Name </h1>
         }
@@ -19,7 +20,7 @@
 <div class="row">
     <div class="col-lg-7">
         <form action="@Url.Action("SaveTestimonial", "Product")" method="POST" role="form">
-            @if (Model != null && Model.ID > 0)
+            @if (isEditMode)
             {
                 @Html.HiddenFor(m => m.ID)
             }
