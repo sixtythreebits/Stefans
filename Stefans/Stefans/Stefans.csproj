@@ -246,10 +246,11 @@
     <Content Include="Areas\Admin\Views\Product\CreateEdit.cshtml" />
     <Content Include="App_Code\InputHelpers.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Product\_GridViewPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Product\Testimonials.cshtml" />
     <Content Include="Areas\Admin\Views\Product\_TestimonialGrid.cshtml" />
     <Content Include="Areas\Admin\Views\Main\LogIn.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\_ProductGrid.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\CreateEditTestimonial.cshtml" />
     <None Include="Properties\PublishProfiles\StefansPublishProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />

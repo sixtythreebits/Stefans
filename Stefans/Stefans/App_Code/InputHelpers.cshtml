@@ -33,7 +33,7 @@
 
     public static HelperResult RenderDropDown<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression, IEnumerable<SelectListItem> SelectList)
     {
-        return RenderInput(Html, Caption, PropExpression, Html.DropDownListFor(PropExpression, SelectList));
+        return RenderInput(Html, Caption, PropExpression, Html.DropDownListFor(PropExpression, SelectList, new { @class = "form-control" }));
     }
 }
 

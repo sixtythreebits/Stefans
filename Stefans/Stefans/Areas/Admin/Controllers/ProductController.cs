@@ -22,11 +22,10 @@ namespace Stefans.Areas.Admin.Controllers
             return View(model);
         }
 
-        [ValidateInput(false)]
-        public ActionResult GridViewPartial()
+        public ActionResult ProductGrid()
         {
             var model = new Product().GetList();
-            return PartialView("_GridViewPartial", model);
+            return PartialView("_ProductGrid", model);
         }
 
         [HttpPost, ValidateInput(false)]
@@ -46,7 +45,7 @@ namespace Stefans.Areas.Admin.Controllers
             repo.Delete(ID);
 
             var model = repo.GetList();
-            return PartialView("_GridViewPartial", model);
+            return PartialView("_ProductGrid", model);
         }
 
         public ActionResult Create()
@@ -139,7 +138,7 @@ namespace Stefans.Areas.Admin.Controllers
              , Model.Price
              , Model.Description.WrapWithCData()
              , Model.Instruction.WrapWithCData()
-             , string.IsNullOrWhiteSpace(Model.Image) ? "" : string.Format("<image>{0}</image>", Model.Image.WrapWithCData()) 
+             , string.IsNullOrWhiteSpace(Model.Image) ? "" : string.Format("<image>{0}</image>", Model.Image.WrapWithCData())
              , ingredientsXml
              , Model.IsFeature);
         }
@@ -147,15 +146,62 @@ namespace Stefans.Areas.Admin.Controllers
         public ActionResult Testimonials()
         {
             ViewBag.Products = new Product().GetList();
-            var model = Enumerable.Empty<ProductTestimonial>();
+            var model = new ProductTestimonial().GetList();
             return View(model);
         }
 
         public ActionResult TestimonialGrid()
         {
             ViewBag.Products = new Product().GetList();
-            var model = Enumerable.Empty<ProductTestimonial>();
+            var model = new ProductTestimonial().GetList();
             return PartialView("_TestimonialGrid", model);
+        }
+
+        public ActionResult CreateTestimonial()
+        {
+            ViewBag.Products = new Product().GetList();
+            return View("CreateEditTestimonial");
+        }
+
+        public ActionResult EditTestimonial(int ID)
+        {
+            if (ID > 0)
+            {
+                var repo = new ProductTestimonial();
+                var model = repo.GetSingle(ID);
+                if (model != null)
+                {
+                    ViewBag.Products = new Product().GetList();
+                    return View("CreateEditTestimonial", model);
+                }
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult SaveTestimonial(ProductTestimonial Model)
+        {
+            if (ModelState.IsValid)
+            {
+                var repo = new ProductTestimonial();
+                repo.TSP((byte)(Model.ID > 0 ? 1 : 0), Model.ID, Model.ProductID, Model.Name, Model.Description);
+                if (!repo.IsError && repo.ID > 0)
+                {
+                    return RedirectToAction("EditTestimonial", "Product", new { repo.ID });
+                }
+            }
+            ViewBag.Products = new Product().GetList();
+            return View("CreateEditTestimonial", Model);
+        }
+
+        [HttpPost, ValidateInput(false)]
+        public ActionResult DeleteTestimonial(int ID)
+        {
+            if (ID > 0)
+            {
+                new ProductTestimonial().TSP(2, ID);
+            }
+            return TestimonialGrid();
         }
     }
 }

@@ -80,4 +80,26 @@
     <Parameter Name="Instructions" Parameter="instructions" Type="System.String" DbType="NVarChar(1000)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.tsp_ProductTestimonials" Method="tsp_ProductTestimonials">
+    <Parameter Name="iud" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="RecordID" Parameter="recordID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="ProductID" Parameter="productID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Name" Parameter="name" Type="System.String" DbType="NVarChar(200)" />
+    <Parameter Name="Description" Parameter="description" Type="System.String" DbType="NVarChar(2000)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.GetSingle_ProductTestimonial" Method="GetSingle_ProductTestimonial" IsComposable="true">
+    <Parameter Name="RecordID" Parameter="recordID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Xml.Linq.XElement" />
+  </Function>
+  <Function Name="dbo.List_ProductTestimonials" Method="List_ProductTestimonials" IsComposable="true">
+    <ElementType Name="List_ProductTestimonialsResult">
+      <Column Name="RecordID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="CRTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCaption" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
 </Database>

@@ -1,5 +1,4 @@
 ﻿@using System.Web.UI.WebControls
-@using DevExpress.Data
 @{
     var products = ViewBag.Products as List<Product>;
 }
@@ -14,55 +13,51 @@
     {
         settings.Name = "GridView";
         settings.CallbackRouteValues = new { Controller = "Product", Action = "TestimonialGrid" };
-
-        
-        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Editing", Action = "EditModesAddNewPartial" };
-
-
-        settings.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Product", Action = "DeleteTestimonial" };
 
         settings.Width = Unit.Percentage(100);
 
         settings.KeyFieldName = "ID";
 
-        //settings.Columns.Add("Caption");
-        settings.Columns.Add(c =>
-        {
-            c.FieldName = "Name";
-        });
-        
-        //settings.Columns.Add("Description", MVCxGridViewColumnType.Memo);
-
-        settings.Columns.Add(c =>
-        {
-            c.FieldName = "Description";
-            c.ColumnType = MVCxGridViewColumnType.Memo;
-        });
+        settings.Columns.Add("Name").Width = 300;
 
         settings.Columns.Add(c =>
         {
             c.FieldName = "ProductID";
             c.Caption = "Product";
             c.ColumnType = MVCxGridViewColumnType.ComboBox;
-            var comboBoxProperties = c.PropertiesEdit as ComboBoxProperties;
-            comboBoxProperties.DataSource = products;
-            comboBoxProperties.TextField = "Caption";
-            comboBoxProperties.ValueField = "ID";
-            comboBoxProperties.ValueType = typeof (int);
+            var props = (ComboBoxProperties)c.PropertiesEdit;
+            props.DataSource = products;
+            props.TextField = "Caption";
+            props.ValueField = "ID";
+            props.ValueType = typeof (int);
         });
 
-        settings.CommandColumn.Visible = true;
-        settings.CommandColumn.VisibleIndex = int.MaxValue;
-        
-        settings.CommandColumn.ShowClearFilterButton = true;
-        settings.CommandColumn.ShowNewButton = true;
-        settings.CommandColumn.ShowDeleteButton = true;
-        settings.CommandColumn.ShowEditButton = true;
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Description";
+            c.ColumnType = MVCxGridViewColumnType.Memo;
+            c.Width = 300;
+            ((MemoProperties)c.PropertiesEdit).Height = 200;
+        });
 
+        settings.Columns.Add(c =>
+            c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteLink(Url.Action("EditTestimonial", new { ID = col.KeyValue }), "Edit")))
+        );
+
+        var commandColumn = settings.CommandColumn;
+
+        commandColumn.Visible = true;
+        commandColumn.VisibleIndex = int.MaxValue;
+        commandColumn.ShowClearFilterButton = true;
+        commandColumn.ShowDeleteButton = true;
+        commandColumn.Caption = " ";
+        
         settings.SettingsPager.Visible = true;
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = true;
         settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsEditing.ShowModelErrorsForEditors = true;
     });
 }
 @grid.Bind(Model).GetHtml()

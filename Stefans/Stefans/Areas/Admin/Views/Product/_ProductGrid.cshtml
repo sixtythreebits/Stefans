@@ -1,4 +1,4 @@
-@using System.Web.UI.WebControls
+﻿@using System.Web.UI.WebControls
 @using DevExpress.Data
 
 @helper WriteLink(string Src, string LinkText)
@@ -10,7 +10,7 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "GridView";
-        settings.CallbackRouteValues = new { Controller = "Product", Action = "GridViewPartial" };
+        settings.CallbackRouteValues = new { Controller = "Product", Action = "ProductGrid" };
         settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Product", Action = "Delete" };
 
         settings.Width = Unit.Percentage(100);
@@ -25,20 +25,21 @@
             c.FieldName = "CRTime";
             c.Caption = "Time Created";
             c.SortIndex = 0;
-            c.SortOrder = ColumnSortOrder.Descending;            
+            c.SortOrder = ColumnSortOrder.Descending;
             c.ColumnType = MVCxGridViewColumnType.DateEdit;
             c.Width = 200;
         });
-        
+
         settings.Columns.Add(c =>
             c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteLink(Url.Action("Edit", new { ID = col.KeyValue }), "Edit")))
         );
-
+        
         settings.CommandColumn.Visible = true;
         settings.CommandColumn.VisibleIndex = int.MaxValue;
         settings.SettingsBehavior.ConfirmDelete = true;
         settings.CommandColumn.ShowClearFilterButton = true;
         settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.Caption = " ";
 
         settings.SettingsPager.Visible = true;
         settings.Settings.ShowGroupPanel = false;

@@ -115,6 +115,26 @@ namespace DB
 			productID = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tsp_ProductTestimonials")]
+		public int tsp_ProductTestimonials([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RecordID", DbType="Int")] ref System.Nullable<int> recordID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ProductID", DbType="Int")] System.Nullable<int> productID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Name", DbType="NVarChar(200)")] string name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Description", DbType="NVarChar(2000)")] string description)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iud, recordID, productID, name, description);
+			recordID = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSingle_ProductTestimonial", IsComposable=true)]
+		public System.Xml.Linq.XElement GetSingle_ProductTestimonial([global::System.Data.Linq.Mapping.ParameterAttribute(Name="RecordID", DbType="Int")] System.Nullable<int> recordID)
+		{
+			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), recordID).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_ProductTestimonials", IsComposable=true)]
+		public IQueryable<List_ProductTestimonialsResult> List_ProductTestimonials()
+		{
+			return this.CreateMethodCallQuery<List_ProductTestimonialsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
 	}
 	
 	public partial class List_DictionariesResult
@@ -542,6 +562,122 @@ namespace DB
 				if ((this._CRTime != value))
 				{
 					this._CRTime = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_ProductTestimonialsResult
+	{
+		
+		private int _RecordID;
+		
+		private int _ProductID;
+		
+		private string _Name;
+		
+		private string _Description;
+		
+		private System.DateTime _CRTime;
+		
+		private string _ProductCaption;
+		
+		public List_ProductTestimonialsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RecordID", DbType="Int NOT NULL")]
+		public int RecordID
+		{
+			get
+			{
+				return this._RecordID;
+			}
+			set
+			{
+				if ((this._RecordID != value))
+				{
+					this._RecordID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this._ProductID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(2000) NOT NULL", CanBeNull=false)]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductCaption", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string ProductCaption
+		{
+			get
+			{
+				return this._ProductCaption;
+			}
+			set
+			{
+				if ((this._ProductCaption != value))
+				{
+					this._ProductCaption = value;
 				}
 			}
 		}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -34,6 +35,15 @@ namespace Stefans.Reusable
         public static void AddModelError<TProperty>(this ModelStateDictionary ModelState, Expression<Func<TProperty>> PropertySelector, string ErrorMessage)
         {
             ModelState.AddModelError(ExpressionHelper.GetExpressionText(PropertySelector), ErrorMessage);
+        }
+
+        #endregion
+
+        #region IEnumerable extensions
+
+        public static IEnumerable<SelectListItem> ToSelectList<TItem, TValue, TText>(this IEnumerable<TItem> Items, Expression<Func<TItem, TValue>> ValueExpression, Expression<Func<TItem, TText>> TextExpression)
+        {
+            return new SelectList(Items, ExpressionHelper.GetExpressionText(ValueExpression), ExpressionHelper.GetExpressionText(TextExpression));
         }
 
         #endregion
