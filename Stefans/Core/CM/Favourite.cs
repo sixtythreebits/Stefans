@@ -1,19 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using DB;
 
 namespace Core.CM
 {
-    public class Favourite : GenericObjectBase<DBCoreDataContext>
+    public class Favourite : CoreObjectBase
     {
-        #region Constructor
-
-        public Favourite() : base(ConnectionFactory.GetCoreContext)
-        {
-        }
-
-        #endregion
-
         #region Methods
 
         public void TSP(byte iud, int? ID, int? UserID, int? ProductID = null)

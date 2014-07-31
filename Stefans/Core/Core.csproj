@@ -50,9 +50,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CM\CartItem.cs" />
     <Compile Include="CM\Favourite.cs" />
     <Compile Include="CM\Product.cs" />
     <Compile Include="CM\ProductTestimonial.cs" />
+    <Compile Include="CoreObjectBase.cs" />
     <Compile Include="Dictionary.cs" />
     <Compile Include="GenericObjectBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

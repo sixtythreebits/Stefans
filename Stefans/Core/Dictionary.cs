@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DB;
 
 namespace Core
 {
     [Serializable]
-    public class Dictionary : GenericObjectBase<DBCoreDataContext>
+    public class Dictionary : CoreObjectBase
     {
-        #region Constructor
-
-        public Dictionary() : base(ConnectionFactory.GetCoreContext)
-        {
-        }
-
-        #endregion
-
         #region Properties
 
         public int ID { get; set; }

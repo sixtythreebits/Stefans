@@ -1,21 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using DB;
 using Lib;
 
 namespace Core.CM
 {
-    public class ProductTestimonial : GenericObjectBase<DBCoreDataContext>
+    public class ProductTestimonial : CoreObjectBase
     {
-        #region Constructor
-
-        public ProductTestimonial() : base(ConnectionFactory.GetCoreContext)
-        {
-        }
-
-        #endregion
-
         #region Properties
 
         public int ID { get; set; }

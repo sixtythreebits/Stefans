@@ -4,21 +4,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Xml.Linq;
 using Core.Utilities;
-using DB;
 using Lib;
 
 namespace Core.CM
 {
-    public class Product : GenericObjectBase<DBCoreDataContext>
+    public class Product : CoreObjectBase
     {
-        #region Constructor
-
-        public Product() : base(ConnectionFactory.GetCoreContext)
-        {
-        }
-
-        #endregion
-
         #region Properties
 
         public int ID { get; set; }

@@ -1,20 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using DB;
 using Lib;
 
 namespace Core.UM
 {
-    public class User : GenericObjectBase<DBCoreDataContext>
+    public class User : CoreObjectBase
     {
-        #region Constructor
-
-        public User() : base(ConnectionFactory.GetCoreContext)
-        {
-
-        }
-
-        #endregion
-
         #region Properties
 
         public int ID { set; get; }
