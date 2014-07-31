@@ -76,12 +76,12 @@ namespace Core.CM
                         Price = xml.DecimalValueOf("price").Value,
                         Instruction = xml.ValueOf("instructions"),
                         IsFeature = xml.BooleanValueOf("is_feature") == true,
-                        Ingredients = xml.Elements("ingredients", "ingredient").Select(i => new Dictionary
+                        Ingredients = xml.Children("ingredients", "ingredient").Select(i => new Dictionary
                         {
                             ID = i.IntValueOf("ingredient_id").Value,
                             Caption = i.ValueOf("caption")
                         }).ToList(),
-                        Testimonials = xml.Elements("testimonials", "testimonial").Select(t => new ProductTestimonial
+                        Testimonials = xml.Children("testimonials", "testimonial").Select(t => new ProductTestimonial
                         {
                             Name = t.ValueOf("name"),
                             Description = t.ValueOf("description")

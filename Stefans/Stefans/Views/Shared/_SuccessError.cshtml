@@ -1,0 +1,21 @@
+﻿@if (!string.IsNullOrWhiteSpace(SuccessMessage) || !string.IsNullOrWhiteSpace(ErrorMessage))
+{
+    <p id="SuccesErrorPanel" class="succes-error @( string.IsNullOrWhiteSpace(ErrorMessage) ? "" : "error")">
+        @( SuccessMessage ?? ErrorMessage ) <a href="#"></a>
+    </p>
+
+    <script>
+        $(function () {
+            $('.succes-error a').click(function () {
+                $(this).parent().addClass("hidden");
+                return false;
+            });
+
+            if (!$("#SuccesErrorPanel").hasClass("error")) {
+                setTimeout(function () {
+                    $("#SuccesErrorPanel a").trigger("click");
+                }, 3000);
+            }
+        });
+    </script>
+}

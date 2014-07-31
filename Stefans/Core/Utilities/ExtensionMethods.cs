@@ -28,10 +28,14 @@ namespace Core.Utilities
             return Obj != null ? string.Format("<![CDATA[{0}]]>", Obj) : string.Empty;
         }
 
-        public static IEnumerable<XElement> Elements(this XElement XElement, params string[] Tags)
+        public static IEnumerable<XElement> Children(this XElement XElement, params string[] Tags)
         {
-            var elements = new[] {XElement}.AsEnumerable();
-            return Tags.Aggregate(elements, (current, tag) => current.Elements(tag));
+            return new[] { XElement }.Children(Tags);
+        }
+
+        public static IEnumerable<XElement> Children(this IEnumerable<XElement> Elements, params string[] Tags)
+        {
+            return Tags.Aggregate(Elements, (current, tag) => current.Elements(tag));
         }
     }
 }

@@ -135,4 +135,10 @@
   <data name="ErrorZipNumeric" xml:space="preserve">
     <value>The field Zip must be numeric!</value>
   </data>
+  <data name="Fail" xml:space="preserve">
+    <value>Operation was unsuccessful. Sorry for the inconvinience.</value>
+  </data>
+  <data name="Success" xml:space="preserve">
+    <value>Operation was successful.</value>
+  </data>
 </root>

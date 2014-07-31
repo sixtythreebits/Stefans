@@ -8,6 +8,7 @@ using Core.Utilities;
 using Lib;
 using Stefans.Reusable;
 using Stefans.Reusable.Attributes;
+using Stefans.Reusable.FrameworkExtensions;
 using Res = Core.Properties.Resources;
 using FileIO = System.IO.File;
 

@@ -215,6 +215,7 @@
     <Content Include="images\icons\arrow-down-error.png" />
     <Content Include="images\icons\arrow-down.png" />
     <Content Include="images\icons\cart.png" />
+    <Content Include="images\icons\close-white.png" />
     <Content Include="images\icons\done.png" />
     <Content Include="images\icons\favorites.png" />
     <Content Include="images\icons\ingredients.png" />
@@ -289,7 +290,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reusable\Attributes\AdminAuthenticationAttribute.cs" />
     <Compile Include="Reusable\Attributes\SecureAccessAttribute.cs" />
-    <Compile Include="Reusable\BaseController.cs" />
+    <Compile Include="Reusable\FrameworkExtensions\AppWebViewPage.cs" />
+    <Compile Include="Reusable\FrameworkExtensions\BaseController.cs" />
     <Compile Include="Reusable\ConfigAssistant.cs" />
     <Compile Include="Reusable\ExtensionMethods.cs" />
     <Compile Include="Reusable\SessionExt.cs" />
@@ -311,6 +313,7 @@
     <Content Include="Views\Account\Profile.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Shared\_SuccessError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

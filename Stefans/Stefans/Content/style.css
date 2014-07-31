@@ -962,3 +962,38 @@ aside.orders{
 .success-message {
     color: #279f03 !important
 }
+
+/* Success Error Control */
+.succes-error {
+        z-index: 999;
+        width: 100%;
+        background: #0e9256;
+        margin: 0;
+        margin-top: 10px;
+        color: #fff;
+        font-size: 14px;
+        line-height: 60px;
+        text-align: center;
+        -webkit-transition: all 0.5s;
+        -moz-transition: all 0.5s;
+        transition: all 0.5s;
+    }
+
+        .succes-error.error {
+            /*background:#c50c0c;*/
+            background: #F73939;
+        }
+
+        .succes-error > a {
+            position: absolute;
+            right: 20px;
+            top: 127px;
+            display: block;
+            width: 24px;
+            height: 24px;
+            background: url(../images/icons/close-white.png);
+        }
+
+        .succes-error.opened {
+            top: 0;
+        }

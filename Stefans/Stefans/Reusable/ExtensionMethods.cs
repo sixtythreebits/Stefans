@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
@@ -44,6 +45,20 @@ namespace Stefans.Reusable
         public static IEnumerable<SelectListItem> ToSelectList<TItem, TValue, TText>(this IEnumerable<TItem> Items, Expression<Func<TItem, TValue>> ValueExpression, Expression<Func<TItem, TText>> TextExpression)
         {
             return new SelectList(Items, ExpressionHelper.GetExpressionText(ValueExpression), ExpressionHelper.GetExpressionText(TextExpression));
+        }
+
+        #endregion
+
+        #region TempDataDictionary extensions
+
+        public static void Set(this TempDataDictionary TempData, object Value, [CallerMemberName] string CallerName = "")
+        {
+            TempData[CallerName] = Value;
+        }
+
+        public static object Get(this TempDataDictionary TempData, [CallerMemberName] string CallerName = "")
+        {
+            return TempData[CallerName];
         }
 
         #endregion

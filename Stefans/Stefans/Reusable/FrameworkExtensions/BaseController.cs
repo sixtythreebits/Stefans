@@ -2,13 +2,25 @@
 using System.Web.Mvc;
 using Core.UM;
 
-namespace Stefans.Reusable
+namespace Stefans.Reusable.FrameworkExtensions
 {
     public class BaseController : Controller
     {
         public new User User
         {
             get { return Session.GetUser(); }
+        }
+
+        public string SuccessMessage 
+        {
+            get { return TempData.Get() as string; }
+            set { TempData.Set(value); }
+        }
+
+        public string ErrorMessage
+        {
+            get { return TempData.Get() as string; }
+            set { TempData.Set(value); }
         }
 
         public string RenderRazorViewToString(string ViewName, object Model)
