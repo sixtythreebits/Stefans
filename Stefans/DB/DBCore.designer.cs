@@ -143,6 +143,12 @@ namespace DB
 			favouriteID = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Favourites", IsComposable=true)]
+		public IQueryable<List_FavouritesResult> List_Favourites([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID)
+		{
+			return this.CreateMethodCallQuery<List_FavouritesResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+		}
 	}
 	
 	public partial class List_DictionariesResult
@@ -704,6 +710,86 @@ namespace DB
 				if ((this._CRTime != value))
 				{
 					this._CRTime = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_FavouritesResult
+	{
+		
+		private int _ProductID;
+		
+		private string _Caption;
+		
+		private string _Image;
+		
+		private decimal _Price;
+		
+		public List_FavouritesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this._ProductID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Caption", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Caption
+		{
+			get
+			{
+				return this._Caption;
+			}
+			set
+			{
+				if ((this._Caption != value))
+				{
+					this._Caption = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(100)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this._Image = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
 				}
 			}
 		}

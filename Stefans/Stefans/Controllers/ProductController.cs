@@ -27,7 +27,14 @@ namespace Stefans.Controllers
         }
 
         [SecureAccess]
-        public ActionResult AddToFavourites(int ID)
+        public ActionResult Favourites()
+        {
+            var model = new Favourite().GetList(User.ID);
+            return View(model);
+        }
+
+        [SecureAccess]
+        public ActionResult FavouritesAdd(int ID)
         {
             if (ID > 0)
             {
