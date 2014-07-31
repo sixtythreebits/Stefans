@@ -48,6 +48,8 @@
                             @if (Session.IsAuthorized())
                             {
                                 <li><a href="@Url.Action("Profile", "Account")">My Account</a></li>
+                                <li><a href="@Url.Action("Favourites", "Product")">Favourites</a></li>
+                                <li><a href="@Url.Action("Index", "Cart")">Cart</a></li>
                                 <li><a href="@Url.Action("LogOut", "Account")">Sign out</a></li>
                             }
                             else
