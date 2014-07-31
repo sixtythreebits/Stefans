@@ -34,5 +34,23 @@ namespace Stefans.Controllers
             }
             return HttpNotFound();
         }
+
+        public ActionResult Remove(int ID)
+        {
+            if (ID > 0)
+            {
+                _cartRepository.TSP(2, null, User.ID, ID);
+                if (_cartRepository.IsError)
+                {
+                    ErrorMessage = Resources.Fail;
+                }
+                else
+                {
+                    SuccessMessage = Resources.Success;
+                }
+                return RedirectToAction("Index", "Cart");
+            }
+            return HttpNotFound();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@using Core.CM
 @model List<CartItem>
 
+@Html.Partial("_SuccessError")
 <section class="cart">
     <h1 class="title">cart</h1>
 
@@ -27,7 +28,7 @@
                             <span>Quantity:</span>
                             <input type="text" value="@item.Quantity" />
                             <a href="#" class="btn">update</a>
-                            <a href="#" class="btn red delete">delete</a>
+                            <a href="@Url.Action("Remove", "Cart", new { item.Product.ID })" class="btn red delete">delete</a>
                         </div>
                         <span>Price: @string.Format("{0:C}", item.Product.Price)</span>
                     </div>
