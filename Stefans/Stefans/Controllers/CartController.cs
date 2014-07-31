@@ -9,19 +9,20 @@ namespace Stefans.Controllers
     [SecureAccess]
     public class CartController : BaseController
     {
+        private readonly CartItem _cartRepository = new CartItem();
+
         public ActionResult Index()
         {
-            return View();
+            var model = _cartRepository.GetList(User.ID);
+            return View(model);
         }
 
         public ActionResult Add(int ID)
         {
             if (ID > 0)
             {
-                var repo = new CartItem();
-                repo.TSP(0, null, User.ID, ID, 1);
-
-                if (repo.IsError)
+                _cartRepository.TSP(0, null, User.ID, ID, 1);
+                if (_cartRepository.IsError)
                 {
                     ErrorMessage = Resources.Fail;
                 }

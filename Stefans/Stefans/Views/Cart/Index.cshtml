@@ -1,0 +1,199 @@
+﻿@using Core.CM
+@model List<CartItem>
+
+<section class="cart">
+    <h1 class="title">cart</h1>
+
+    @if (Model != null && Model.Any())
+    {
+        <ul class="list">
+
+            @foreach (var item in Model)
+            {
+                <li>
+                    <span class="img">
+                        @if (string.IsNullOrWhiteSpace(item.Product.Image))
+                        {
+                            <img src="~/images/0/prod-01.jpg" alt="" />
+                        }
+                        else
+                        {
+                            <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, item.Product.Image)" alt="" />
+                        }
+                    </span>
+                    <div>
+                        <h4> @item.Product.Caption </h4>
+                        <div>
+                            <span>Quantity:</span>
+                            <input type="text" value="@item.Quantity" />
+                            <a href="#" class="btn">update</a>
+                            <a href="#" class="btn red delete">delete</a>
+                        </div>
+                        <span>Price: @string.Format("{0:C}", item.Product.Price)</span>
+                    </div>
+                </li>
+            }
+        </ul>
+        
+        <div class="subtotal">
+            <strong>Subtotal:</strong>
+            <b> @string.Format("{0:C}", Model.Sum(p => p.Product.Price)) </b>
+        </div>
+    }
+
+
+    <div class="col2 cl">
+        <div class="form">
+
+            <p class="error">
+                Something went wrong! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum ornare lorem quis aliquet. Sed in lacinia ligula. Nullam imperdiet pretium neque, sit amet cursus nibh commodo sit amet.
+            </p>
+
+            <h5>Billing Information</h5>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="First Name" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Last Name" />
+                </div>
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 1" />
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 2" />
+            </div>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="City" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Zip Code" />
+                </div>
+            </div>
+            <div class="cl">
+                <div>
+                    <div class="select">
+                        <p></p>
+                        <span></span>
+                        <select>
+                            <option>State</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Phone Number" />
+                </div>
+            </div>
+        </div>
+        <div class="form">
+
+            <p class="error">
+                Something went wrong! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum ornare lorem quis aliquet. Sed in lacinia ligula. Nullam imperdiet pretium neque, sit amet cursus nibh commodo sit amet.
+            </p>
+
+            <h5>Shipping information</h5>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="First Name" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Last Name" />
+                </div>
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 1" />
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 2" />
+            </div>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="City" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Zip Code" />
+                </div>
+            </div>
+            <div class="cl">
+                <div>
+                    <div class="select">
+                        <p></p>
+                        <span></span>
+                        <select>
+                            <option>State</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Phone Number" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form">
+
+        <p class="error">
+            Something went wrong! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum ornare lorem quis aliquet. Sed in lacinia ligula. Nullam imperdiet pretium neque, sit amet cursus nibh commodo sit amet.
+        </p>
+
+        <h5>Credit Card</h5>
+        <div>
+            <input type="text" placeholder="Card Number" />
+        </div>
+        <div>
+            <input type="text" placeholder="Name on Card" />
+        </div>
+        <div class="date cl">
+            <div>
+                <input type="text" placeholder="Month" />
+            </div>
+
+            <div>
+                <input type="text" placeholder="Year" />
+            </div>
+
+            <div>
+                <input type="text" placeholder="CVV" />
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="bot">
+        <div>
+            <span class="cl">
+                <span>Subtotal:</span>
+                <span>$11.50</span>
+            </span>
+            <span class="cl">
+                <span>Shipping:</span>
+                <span>$11.50</span>
+            </span>
+            <span class="cl">
+                <span>Tax:</span>
+                <span>$11.50</span>
+            </span>
+            <p>
+                <span class="cl">
+                    <span>Grand Total:</span>
+                    <span><b>$11.50</b></span>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    <div class="form">
+        <input type="submit" value="purchase" />
+    </div>
+</section>
+

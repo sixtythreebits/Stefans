@@ -317,6 +317,7 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Shared\_SuccessError.cshtml" />
     <Content Include="Views\Product\Favourites.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -327,7 +328,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Uploads\Products\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
