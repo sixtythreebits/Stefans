@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using Core.CM;
+using Core.Properties;
 using Stefans.Reusable.Attributes;
 using Stefans.Reusable.FrameworkExtensions;
-using Res = Core.Properties.Resources;
 
 namespace Stefans.Controllers
 {
@@ -43,11 +43,11 @@ namespace Stefans.Controllers
 
                 if (repo.IsError)
                 {
-                    ErrorMessage = Res.Fail;
+                    ErrorMessage = Resources.Fail;
                 }
                 else
                 {
-                    SuccessMessage = Res.Success;
+                    SuccessMessage = Resources.Success;
                 }
 
                 return RedirectToAction("Details", "Product", new { ID });
@@ -65,11 +65,11 @@ namespace Stefans.Controllers
 
                 if (repo.IsError)
                 {
-                    ErrorMessage = Res.Fail;
+                    ErrorMessage = Resources.Fail;
                 }
                 else
                 {
-                    SuccessMessage = Res.Success;
+                    SuccessMessage = Resources.Success;
                 }
 
                 return RedirectToAction("Favourites", "Product");

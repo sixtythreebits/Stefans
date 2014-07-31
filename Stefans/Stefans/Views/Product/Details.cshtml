@@ -38,7 +38,7 @@
             </article>
             <div>
                 <a href="@Url.Action("FavouritesAdd", "Product", new { Model.ID })" class="favorites login-required">Add to Favorites</a><br />
-                <a href="cart.html" class="btn login-required"><span>add to cart</span></a>
+                <a href="@Url.Action("Add", "Cart", new { Model.ID })" class="btn login-required"><span>add to cart</span></a>
             </div>
         </li>
     </ul>
