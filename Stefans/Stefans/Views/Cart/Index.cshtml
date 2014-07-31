@@ -1,5 +1,22 @@
 ﻿@using Core.CM
 @model List<CartItem>
+           
+@section JS {
+    <script>
+        $(function () {
+            $(".updateButton").click(function() {
+                var id = $(this).attr("data-id");
+                var quantity = $("#quantity" + id).val();
+                $(this).attr("href", $(this).attr("href") + "?id=" + id + "&quantity=" + quantity);
+            });
+
+            $(".quantityInput").keypress(function (evt) {
+                var charCode = evt.which || evt.keyCode;
+                return !(charCode > 31 && (charCode < 48 || charCode > 57));
+            });
+        });
+    </script>
+}
 
 @Html.Partial("_SuccessError")
 <section class="cart">
@@ -26,8 +43,8 @@
                         <h4> @item.Product.Caption </h4>
                         <div>
                             <span>Quantity:</span>
-                            <input type="text" value="@item.Quantity" />
-                            <a href="#" class="btn">update</a>
+                            <input id="quantity@(item.Product.ID)" type="text" value="@item.Quantity" maxlength="2" class="quantityInput" />
+                            <a href="@Url.Action("Update", "Cart")" data-id="@item.Product.ID" class="btn updateButton">update</a>
                             <a href="@Url.Action("Remove", "Cart", new { item.Product.ID })" class="btn red delete">delete</a>
                         </div>
                         <span>Price: @string.Format("{0:C}", item.Product.Price)</span>
@@ -38,7 +55,7 @@
         
         <div class="subtotal">
             <strong>Subtotal:</strong>
-            <b> @string.Format("{0:C}", Model.Sum(p => p.Product.Price)) </b>
+            <b> @string.Format("{0:C}", Model.Sum(i => i.Quantity * i.Product.Price)) </b>
         </div>
     }
 
