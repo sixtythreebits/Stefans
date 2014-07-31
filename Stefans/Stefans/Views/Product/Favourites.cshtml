@@ -1,6 +1,8 @@
 ﻿@using Core.CM
 @model List<Product>
 
+@Html.Partial("_SuccessError")
+
 <section class="cart">
     <h1 class="title">favourites</h1>
 
@@ -24,7 +26,9 @@
                     <div>
                         <h4> @item.Caption </h4>
                         <div>
-                            <a href="#" class="btn red delete">delete</a>
+                            <a href="@Url.Action("FavouritesRemove", "Product", new { item.ID })" class="btn red delete">
+                            delete
+                            </a>
                         </div>
                         <span>Price: @string.Format("{0:C}", item.Price)</span>
                     </div>

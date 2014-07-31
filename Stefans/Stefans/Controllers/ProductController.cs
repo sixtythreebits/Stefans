@@ -54,5 +54,27 @@ namespace Stefans.Controllers
             }
             return HttpNotFound();
         }
+
+        [SecureAccess]
+        public ActionResult FavouritesRemove(int ID)
+        {
+            if (ID > 0)
+            {
+                var repo = new Favourite();
+                repo.TSP(2, null, User.ID, ID);
+
+                if (repo.IsError)
+                {
+                    ErrorMessage = Res.Fail;
+                }
+                else
+                {
+                    SuccessMessage = Res.Success;
+                }
+
+                return RedirectToAction("Favourites", "Product");
+            }
+            return HttpNotFound();
+        }
     }
 }
