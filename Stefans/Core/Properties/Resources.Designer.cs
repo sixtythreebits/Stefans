@@ -88,6 +88,15 @@ namespace Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The field {0} must be numeric!.
+        /// </summary>
+        public static string ErrorNumeric {
+            get {
+                return ResourceManager.GetString("ErrorNumeric", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Original password is incorrect!.
         /// </summary>
         public static string ErrorOriginalPassword {
@@ -106,16 +115,7 @@ namespace Core.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field Zip must be numeric!.
-        /// </summary>
-        public static string ErrorZipNumeric {
-            get {
-                return ResourceManager.GetString("ErrorZipNumeric", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Operation was unsuccessful. Sorry for the inconvinience..
+        ///   Looks up a localized string similar to Operation was unsuccessful. Sorry for the inconvenience..
         /// </summary>
         public static string Fail {
             get {

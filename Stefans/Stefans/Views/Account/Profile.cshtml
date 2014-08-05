@@ -1,10 +1,8 @@
-﻿@using Core
-@model ProfileModel
+﻿@model ProfileModel
 @{
     var states = ViewBag.States as List<Dictionary>;
     var accountFormValid = ViewBag.AccountFormValid != false;
     var passwordFormValid = ViewBag.PasswordFormValid != false;
-    
 }
 
 <section class="account">
@@ -47,11 +45,11 @@
                     </div>
                 </div>
                 <div class="cl">
-                    <div>
+                    <div class="@( Html.HasPropertyError(m => m.AccountModel.StateID) ? "error" : "")">
                         <div class="select">
                             <p data-placeholder="State"></p>
                             <span></span>
-                            @Html.DropDownListFor(m => m.AccountModel.StateID, new SelectList(states, "ID", "Caption"), string.Empty)
+                            @Html.DropDownListFor(m => m.AccountModel.StateID, states.ToSelectList(m => m.ID, m => m.Caption), string.Empty)
                         </div>
                     </div>
 

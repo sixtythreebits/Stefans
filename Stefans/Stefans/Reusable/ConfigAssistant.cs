@@ -14,5 +14,20 @@ namespace Stefans.Reusable
         {
             get { return GetConfigValue(); }
         }
+
+        public static string ADNApiUrl
+        {
+            get { return GetConfigValue(); }
+        }
+
+        public static string ADNLogin
+        {
+            get { return GetConfigValue(); }
+        }
+
+        public static string ADNTransactionKey
+        {
+            get { return GetConfigValue(); }
+        }
     }
 }

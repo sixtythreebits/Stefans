@@ -1,6 +1,10 @@
-﻿using System.Web.Mvc;
+﻿using System.Threading.Tasks;
+using System.Web.Mvc;
+using Core;
 using Core.CM;
 using Core.Properties;
+using Stefans.Models;
+using Stefans.Reusable;
 using Stefans.Reusable.Attributes;
 using Stefans.Reusable.FrameworkExtensions;
 
@@ -13,8 +17,24 @@ namespace Stefans.Controllers
 
         public ActionResult Index()
         {
-            var model = _cartRepository.GetList(User.ID);
-            return View(model);
+            return View(InitCheckoutModel(new CheckoutModel(User)));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Checkout(CheckoutModel Model)
+        {
+            if (ModelState.IsValid)
+            {
+                await ADNAssistant.SubmitPaymentTransactionAsync(2, Model.Card, Model.Billing);
+            }
+            return View("Index", InitCheckoutModel(Model));
+        }
+
+        private CheckoutModel InitCheckoutModel(CheckoutModel Model)
+        {
+            Model.CartItems = _cartRepository.GetList(User.ID);
+            Model.States = new Dictionary().ListDictionaries(1, 1).ToSelectList(m => m.ID, m => m.Caption);
+            return Model;
         }
 
         public ActionResult Add(int ID)

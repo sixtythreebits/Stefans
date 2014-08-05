@@ -242,6 +242,8 @@ h6.title{
 	font-size:14px;
 }
 
+.form > div,
+.form > p,
 .form form > div,
 .form form > p{
 	margin:0 0 13px;
@@ -827,7 +829,8 @@ aside.orders{
 
 /* ---------- signup ---------- */
 .signup .form,
-.cart > .form{
+.cart > .form,
+.cart > form > .form{
 	width:485px;
 	margin:0 auto;
 	padding:10px 0 0;

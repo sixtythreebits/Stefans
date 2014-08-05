@@ -56,7 +56,7 @@ namespace Stefans.Models
         public int? StateID { set; get; }
 
         [DisplayFormat(ConvertEmptyStringToNull = false)]
-        [RegularExpression("[0-9]+$", ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorZipNumeric")]
+        [RegularExpression("[0-9]+$", ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorNumeric")]
         [StringLength(5, ErrorMessageResourceType = typeof(Res), ErrorMessageResourceName = "ErrorMaxLength")]
         public string Zip { set; get; }
 

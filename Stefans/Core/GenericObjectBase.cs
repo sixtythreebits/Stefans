@@ -2,6 +2,7 @@
 using System.Data.Linq;
 using System.Runtime.CompilerServices;
 using SystemBase;
+using Lib;
 
 namespace Core
 {
@@ -34,6 +35,13 @@ namespace Core
                     return M(db);
                 }
             }, M1, Logger, CallerFilePath, CallerLineNumber);
+        }
+
+        protected void ErrorProcessing(string Logger, Exception Ex, [CallerFilePath]string CallerFilePath = "", [CallerLineNumber]int CallerLineNumber = 0)
+        {
+            IsError = true;
+            ErrorMessage = Ex.Message;
+            string.Format("Source File - {0}\nLine Number - {1}\n{2} --- {3}", CallerFilePath, CallerLineNumber, Logger, ErrorMessage).LogString();
         }
     }
 }

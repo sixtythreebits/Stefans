@@ -286,10 +286,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckoutModel.cs" />
     <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reusable\ADNAssistant.cs" />
     <Compile Include="Reusable\Attributes\AdminAuthenticationAttribute.cs" />
     <Compile Include="Reusable\Attributes\SecureAccessAttribute.cs" />
     <Compile Include="Reusable\FrameworkExtensions\AppWebViewPage.cs" />

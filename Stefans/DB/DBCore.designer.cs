@@ -163,6 +163,14 @@ namespace DB
 		{
 			return this.CreateMethodCallQuery<List_CartItemsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tsp_ADNTransactions")]
+		public int tsp_ADNTransactions([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RecordID", DbType="Int")] ref System.Nullable<int> recordID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderID", DbType="Int")] System.Nullable<int> orderID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ADNTransactionID", DbType="BigInt")] System.Nullable<long> aDNTransactionID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="RequestStr", DbType="NVarChar(MAX)")] string requestStr, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ResponseStr", DbType="NVarChar(MAX)")] string responseStr)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iud, recordID, userID, orderID, aDNTransactionID, requestStr, responseStr);
+			recordID = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class List_DictionariesResult
