@@ -1,0 +1,73 @@
+﻿@using System.Web.UI.WebControls
+@using DevExpress.Data
+
+@helper WriteLink(string Src, string LinkText)
+{
+    <a href="@Src"> @LinkText </a>
+}
+
+@helper WriteAddress(OrderAddress Address)
+{
+    <div> Name : @Address.FirstName @Address.LastName </div>
+    
+    <div> Address : @Address.State @Address.City @Address.Address1 @Address.Address2 </div>
+    
+    <div> Zip : @Address.Zip </div>
+    
+    <div> Phone : @Address.Phone </div>
+}
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Order", Action = "OrderGrid" };
+
+        settings.Width = Unit.Percentage(100);
+
+        settings.KeyFieldName = "ID";
+
+        settings.Columns.Add("UserEmail").Caption = "User Email";
+        
+        settings.Columns.Add("TotalPrice").PropertiesEdit.DisplayFormatString = "0.00";
+
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "CRTime";
+            c.Caption = "Time Created";
+            c.SortIndex = 0;
+            c.SortOrder = ColumnSortOrder.Descending;
+            c.ColumnType = MVCxGridViewColumnType.DateEdit;
+            c.Width = 200;
+        });
+
+        settings.Columns.Add("StatusCaption").Caption = "Status";
+
+        settings.Columns.Add(c =>
+        {
+            c.Caption = "Shipping";
+            c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteAddress(DataBinder.Eval(col.DataItem, c.Caption) as OrderAddress)));
+        });
+        
+        settings.Columns.Add(c =>
+        {
+            c.Caption = "Billing";
+            c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteAddress(DataBinder.Eval(col.DataItem, c.Caption) as OrderAddress)));
+        });
+        
+        settings.Columns.Add(c =>
+            c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteLink(Url.Action("Details", new { ID = col.KeyValue }), "Details")))
+        );
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.VisibleIndex = int.MaxValue;
+        settings.CommandColumn.ShowClearFilterButton = true;
+        settings.CommandColumn.Caption = " ";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = false;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+    });
+}
+@grid.Bind(Model).GetHtml()
