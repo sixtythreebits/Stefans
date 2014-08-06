@@ -171,6 +171,14 @@ namespace DB
 			recordID = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tx_Orders")]
+		public int tx_Orders([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Xml")] System.Xml.Linq.XElement x, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="out", DbType="Xml")] ref System.Xml.Linq.XElement @out)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iud, x, @out);
+			@out = ((System.Xml.Linq.XElement)(result.GetParameterValue(2)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class List_DictionariesResult

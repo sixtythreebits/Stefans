@@ -35,6 +35,11 @@ namespace Core.CM
             }).ToList(), Logger: string.Format("GetList(UserID = {0})", UserID));
         }
 
+        public decimal GetTotalAmount(int UserID)
+        {
+            return TryToReturn(() => GetList(UserID).Sum(c => c.Quantity * c.Product.Price), Logger: string.Format("GetTotalAmount(UserID = {0})", UserID));
+        }
+
         #endregion
     }
 }

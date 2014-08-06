@@ -1,6 +1,6 @@
 ﻿<section class="signup">
     <div class="form">
-        <p class="success-message">
+        <p class="@( ViewBag.IsError == true ? "error-message" : "success-message")">
             @ViewBag.Message
         </p>
     </div>

@@ -963,7 +963,13 @@ aside.orders{
 /* ---------- /cart ---------- */
 
 .success-message {
-    color: #279f03 !important
+    color: #279f03 !important;
+    text-align: center;
+}
+
+.error-message {
+    color: #F73939 !important;
+    text-align: center;
 }
 
 /* Success Error Control */

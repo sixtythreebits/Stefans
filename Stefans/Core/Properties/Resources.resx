@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrorADNCardNumber" xml:space="preserve">
+    <value>Card number is incorrect!</value>
+  </data>
+  <data name="ErrorADNCCV" xml:space="preserve">
+    <value>CCV is incorrect!</value>
+  </data>
+  <data name="ErrorADNExpDate" xml:space="preserve">
+    <value>Exparation date is incorrect!</value>
+  </data>
   <data name="ErrorEmailDuplication" xml:space="preserve">
     <value>User with this email is already registered!</value>
   </data>

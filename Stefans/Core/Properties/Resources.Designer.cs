@@ -61,6 +61,33 @@ namespace Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Card number is incorrect!.
+        /// </summary>
+        public static string ErrorADNCardNumber {
+            get {
+                return ResourceManager.GetString("ErrorADNCardNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CCV is incorrect!.
+        /// </summary>
+        public static string ErrorADNCCV {
+            get {
+                return ResourceManager.GetString("ErrorADNCCV", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exparation date is incorrect!.
+        /// </summary>
+        public static string ErrorADNExpDate {
+            get {
+                return ResourceManager.GetString("ErrorADNExpDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User with this email is already registered!.
         /// </summary>
         public static string ErrorEmailDuplication {

@@ -9,6 +9,10 @@ namespace Core.CM
     {
         #region Properties
 
+        public const char TransactionReponseDelimiter = '|';
+
+        public string TransactionResponseString { get; set; }
+
         public string[] TransactionResponseArray { get; set; }
 
         public bool IsTransactionSuccessful
@@ -52,11 +56,20 @@ namespace Core.CM
             }
         }
 
+        public string TransactionID
+        {
+            get
+            {
+                return TransactionResponseArray != null && TransactionResponseArray.Length > 6 ? 
+                       TransactionResponseArray[6] : string.Empty ;
+            }
+        }
+
         #endregion
 
         #region Methods
 
-        public void Create(int UserID, long ADNTransactionID, string RequestStr, string ResponseStr)
+        public void Create(int UserID, long? ADNTransactionID, string RequestStr, string ResponseStr)
         {
             TryExecute(db =>
             {
@@ -65,7 +78,7 @@ namespace Core.CM
             }, Logger: string.Format("Create(UserID = {0}, ADNTransactionID = {1}, RequestStr = {2}, ResponseStr = {3})", UserID, ADNTransactionID, RequestStr, ResponseStr));
         }
 
-        public async Task SubmitPaymentTransactionAsync(string ADNApiUrl, string PostString, char Delimiter)
+        public async Task SubmitPaymentTransactionAsync(string ADNApiUrl, string PostString)
         {
             try
             {
@@ -86,12 +99,12 @@ namespace Core.CM
                 {
                     result = await responseStream.ReadToEndAsync();
                 }
-
-                TransactionResponseArray = result.Split(Delimiter);
+                TransactionResponseString = result;
+                TransactionResponseArray = result.Split(TransactionReponseDelimiter);
             }
             catch (Exception ex)
             {
-                ErrorProcessing(string.Format("SubmitPaymentTransactionAsync(ADNApiUrl = {0}, PostString = {1}, Delimiter = {2})", ADNApiUrl, PostString, Delimiter), ex);
+                ErrorProcessing(string.Format("SubmitPaymentTransactionAsync(ADNApiUrl = {0}, PostString = {1})", ADNApiUrl, PostString), ex);
             }
         }
 

@@ -1,9 +1,10 @@
 ﻿using System.Web.Mvc;
 using Core.CM;
+using Stefans.Reusable.FrameworkExtensions;
 
 namespace Stefans.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
@@ -12,9 +13,11 @@ namespace Stefans.Controllers
             return View();
         }
 
-        public ActionResult Test()
+        public ActionResult Message()
         {
-            ViewBag.Message = "satesto";
+            ViewBag.IsError = ErrorMessage != null;
+            ViewBag.Message = ErrorMessage ?? SuccessMessage;
+
             return View("Message");
         }
     }
