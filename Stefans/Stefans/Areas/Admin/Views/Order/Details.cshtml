@@ -1,0 +1,39 @@
+﻿@using System.Web.UI.WebControls
+@section CSS {
+    @Html.DevExpress().GetStyleSheets(new StyleSheet { ExtensionSuite = ExtensionSuite.GridView })
+}
+
+@section JS {
+
+    @Html.DevExpress().GetScripts(new Script { ExtensionSuite = ExtensionSuite.GridView })
+}
+
+@if (Layout != null)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <h1> Order details </h1>
+        </div>
+    </div>
+}
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Order", Action = "OrderGrid" };
+
+        settings.Width = Unit.Percentage(100);
+
+        settings.KeyFieldName = "ID";
+
+        settings.Columns.Add("Quantity");
+
+        settings.Columns.Add("Price").PropertiesEdit.DisplayFormatString = "0.00";
+        
+        settings.Columns.Add("ProductCaption").Caption = "Product Caption";
+        
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+    });
+}
+@grid.Bind(Model).GetHtml()

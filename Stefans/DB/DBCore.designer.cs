@@ -185,6 +185,18 @@ namespace DB
 		{
 			return this.CreateMethodCallQuery<List_UserOrdersResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Orders", IsComposable=true)]
+		public IQueryable<List_OrdersResult> List_Orders()
+		{
+			return this.CreateMethodCallQuery<List_OrdersResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_OrderDetails", IsComposable=true)]
+		public IQueryable<List_OrderDetailsResult> List_OrderDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderID", DbType="Int")] System.Nullable<int> orderID)
+		{
+			return this.CreateMethodCallQuery<List_OrderDetailsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orderID);
+		}
 	}
 	
 	public partial class List_DictionariesResult
@@ -1022,6 +1034,508 @@ namespace DB
 				if ((this._ItemCount != value))
 				{
 					this._ItemCount = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_OrdersResult
+	{
+		
+		private int _OrderID;
+		
+		private int _UserID;
+		
+		private decimal _TotalPrice;
+		
+		private string _Status;
+		
+		private string _Email;
+		
+		private System.DateTime _CRTime;
+		
+		private string _ShippingFirstName;
+		
+		private string _ShippingLastName;
+		
+		private string _ShippingAddress1;
+		
+		private string _ShippingAddress2;
+		
+		private string _ShippingZip;
+		
+		private string _ShippingCity;
+		
+		private string _ShippingPhone;
+		
+		private string _ShippingState;
+		
+		private string _BillingFirstName;
+		
+		private string _BillingLastName;
+		
+		private string _BillingAddress1;
+		
+		private string _BillingAddress2;
+		
+		private string _BillingZip;
+		
+		private string _BillingCity;
+		
+		private string _BillingPhone;
+		
+		private string _BillingState;
+		
+		public List_OrdersResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="Int NOT NULL")]
+		public int OrderID
+		{
+			get
+			{
+				return this._OrderID;
+			}
+			set
+			{
+				if ((this._OrderID != value))
+				{
+					this._OrderID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+		public int UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPrice", DbType="Money NOT NULL")]
+		public decimal TotalPrice
+		{
+			get
+			{
+				return this._TotalPrice;
+			}
+			set
+			{
+				if ((this._TotalPrice != value))
+				{
+					this._TotalPrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(200)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingFirstName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string ShippingFirstName
+		{
+			get
+			{
+				return this._ShippingFirstName;
+			}
+			set
+			{
+				if ((this._ShippingFirstName != value))
+				{
+					this._ShippingFirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingLastName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string ShippingLastName
+		{
+			get
+			{
+				return this._ShippingLastName;
+			}
+			set
+			{
+				if ((this._ShippingLastName != value))
+				{
+					this._ShippingLastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingAddress1", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string ShippingAddress1
+		{
+			get
+			{
+				return this._ShippingAddress1;
+			}
+			set
+			{
+				if ((this._ShippingAddress1 != value))
+				{
+					this._ShippingAddress1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingAddress2", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string ShippingAddress2
+		{
+			get
+			{
+				return this._ShippingAddress2;
+			}
+			set
+			{
+				if ((this._ShippingAddress2 != value))
+				{
+					this._ShippingAddress2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingZip", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string ShippingZip
+		{
+			get
+			{
+				return this._ShippingZip;
+			}
+			set
+			{
+				if ((this._ShippingZip != value))
+				{
+					this._ShippingZip = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingCity", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string ShippingCity
+		{
+			get
+			{
+				return this._ShippingCity;
+			}
+			set
+			{
+				if ((this._ShippingCity != value))
+				{
+					this._ShippingCity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingPhone", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string ShippingPhone
+		{
+			get
+			{
+				return this._ShippingPhone;
+			}
+			set
+			{
+				if ((this._ShippingPhone != value))
+				{
+					this._ShippingPhone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippingState", DbType="NVarChar(200)")]
+		public string ShippingState
+		{
+			get
+			{
+				return this._ShippingState;
+			}
+			set
+			{
+				if ((this._ShippingState != value))
+				{
+					this._ShippingState = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingFirstName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string BillingFirstName
+		{
+			get
+			{
+				return this._BillingFirstName;
+			}
+			set
+			{
+				if ((this._BillingFirstName != value))
+				{
+					this._BillingFirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingLastName", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string BillingLastName
+		{
+			get
+			{
+				return this._BillingLastName;
+			}
+			set
+			{
+				if ((this._BillingLastName != value))
+				{
+					this._BillingLastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingAddress1", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string BillingAddress1
+		{
+			get
+			{
+				return this._BillingAddress1;
+			}
+			set
+			{
+				if ((this._BillingAddress1 != value))
+				{
+					this._BillingAddress1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingAddress2", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string BillingAddress2
+		{
+			get
+			{
+				return this._BillingAddress2;
+			}
+			set
+			{
+				if ((this._BillingAddress2 != value))
+				{
+					this._BillingAddress2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingZip", DbType="VarChar(10) NOT NULL", CanBeNull=false)]
+		public string BillingZip
+		{
+			get
+			{
+				return this._BillingZip;
+			}
+			set
+			{
+				if ((this._BillingZip != value))
+				{
+					this._BillingZip = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingCity", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string BillingCity
+		{
+			get
+			{
+				return this._BillingCity;
+			}
+			set
+			{
+				if ((this._BillingCity != value))
+				{
+					this._BillingCity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingPhone", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string BillingPhone
+		{
+			get
+			{
+				return this._BillingPhone;
+			}
+			set
+			{
+				if ((this._BillingPhone != value))
+				{
+					this._BillingPhone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BillingState", DbType="NVarChar(200)")]
+		public string BillingState
+		{
+			get
+			{
+				return this._BillingState;
+			}
+			set
+			{
+				if ((this._BillingState != value))
+				{
+					this._BillingState = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_OrderDetailsResult
+	{
+		
+		private int _OrderDetailID;
+		
+		private int _OrderID;
+		
+		private int _Quantity;
+		
+		private decimal _Price;
+		
+		private string _ProductCaption;
+		
+		public List_OrderDetailsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderDetailID", DbType="Int NOT NULL")]
+		public int OrderDetailID
+		{
+			get
+			{
+				return this._OrderDetailID;
+			}
+			set
+			{
+				if ((this._OrderDetailID != value))
+				{
+					this._OrderDetailID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="Int NOT NULL")]
+		public int OrderID
+		{
+			get
+			{
+				return this._OrderID;
+			}
+			set
+			{
+				if ((this._OrderID != value))
+				{
+					this._OrderID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Int NOT NULL")]
+		public int Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this._Quantity = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Money NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductCaption", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string ProductCaption
+		{
+			get
+			{
+				return this._ProductCaption;
+			}
+			set
+			{
+				if ((this._ProductCaption != value))
+				{
+					this._ProductCaption = value;
 				}
 			}
 		}

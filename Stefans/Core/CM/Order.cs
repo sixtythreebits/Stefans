@@ -13,6 +13,10 @@ namespace Core.CM
         public decimal TotalPrice { get; set; }
         public string StatusCaption { get; set; }
         public int ItemCount { get; set; }
+        public string UserEmail { get; set; }
+        public OrderAddress Shipping { get; set; }
+        public OrderAddress Billing { get; set; }
+
 
         #endregion
 
@@ -26,6 +30,40 @@ namespace Core.CM
                 db.tx_Orders(iud, XElement.Parse(Xml), ref outParam);
                 this.ID = outParam.IntValueOf("id") ?? 0;
             });
+        }
+
+        public List<Order> GetList()
+        {
+            return TryToReturn(db => db.List_Orders().Select(o => new Order
+            {
+                ID = o.OrderID,
+                TotalPrice = o.TotalPrice,
+                StatusCaption = o.Status,
+                CRTime = o.CRTime,
+                UserEmail = o.Email,
+                Shipping = new OrderAddress
+                {
+                    FirstName = o.ShippingFirstName,
+                    LastName = o.ShippingLastName,
+                    Address1 = o.ShippingAddress1,
+                    Address2 = o.ShippingAddress2,
+                    State = o.ShippingState,
+                    City = o.ShippingCity,
+                    Zip = o.ShippingZip,
+                    Phone = o.ShippingPhone
+                },
+                Billing = new OrderAddress
+                {
+                    FirstName = o.BillingFirstName,
+                    LastName = o.BillingLastName,
+                    Address1 = o.BillingAddress1,
+                    Address2 = o.BillingAddress2,
+                    State = o.BillingState,
+                    City = o.BillingCity,
+                    Zip = o.BillingZip,
+                    Phone = o.BillingPhone
+                }
+            }).ToList(), Logger: "GetList()");
         }
 
         public List<Order> GetUserOrders(int UserID)
