@@ -357,24 +357,64 @@ header {
     }
 
     header li.sign {
-        width: 83px;
-        padding: 20px 0 0;
+        width: auto;
+        padding: 36px 0 0 15px;
         text-align: right;
+    }
+    header li.sign ul {
+        position: relative;
     }
 
         header li.sign li {
             padding: 0;
-            float: none;
-            height: 18px;
+            height: 26px;
         }
+         header li.sign li.reg {
+             padding-top: 3px;
+         }
 
         header li.sign a {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: normal;
-            line-height: 18px;
-            text-decoration: underline;
-            text-transform: capitalize;
+            display: block;
+            background-position: top;
+            background-repeat: no-repeat;
+            margin-left: 15px;
+        }
+        header li.sign a:hover {
+            background-position: bottom;
+        }
+        header li.sign a.user {
+            width: 26px;
+            height: 25px;
+            background-image: url(../images/icons/nav/user.png);
+            margin-top: 1px;
+        }
+        header li.sign a.fav {
+            width: 25px;
+            height: 22px;
+            background-image: url(../images/icons/nav/favorites.png);
+            margin-top: 3px;
+        }
+        header li.sign a.basket {
+            width: 33px;
+            height: 26px;
+            background-image: url(../images/icons/nav/cart.png);
+        }
+
+        header li.sign .logout {
+            position: absolute;
+            right: 3px;
+            top: 22px;
+        }
+         header li.sign .logout a{
+             display: inline-block;
+             margin-top: 8px;
+
+             color: #93b7d8;
+             font-size: 12px;
+             font-weight: normal;
+             text-decoration: underline;
+             text-transform: capitalize;
+             margin-right: 0;
         }
 
     header.fix {

@@ -221,8 +221,11 @@
     <Content Include="images\icons\favorites.png" />
     <Content Include="images\icons\ingredients.png" />
     <Content Include="images\icons\instructions.png" />
+    <Content Include="images\icons\nav\cart.png" />
+    <Content Include="images\icons\nav\favorites.png" />
     <Content Include="images\icons\plus.png" />
     <Content Include="images\icons\testimonials.png" />
+    <Content Include="images\icons\nav\user.png" />
     <Content Include="images\icons\warning.png" />
     <Content Include="images\logo.png" />
     <Content Include="images\title.jpg" />

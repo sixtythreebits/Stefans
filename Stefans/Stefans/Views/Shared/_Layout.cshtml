@@ -47,15 +47,15 @@
                         <ul>
                             @if (Session.IsAuthorized())
                             {
-                                <li><a href="@Url.Action("Profile", "Account")">My Account</a></li>
-                                <li><a href="@Url.Action("Favourites", "Product")">Favourites</a></li>
-                                <li><a href="@Url.Action("Index", "Cart")">Cart</a></li>
-                                <li><a href="@Url.Action("LogOut", "Account")">Sign out</a></li>
+                                <li><a class="user" href="@Url.Action("Profile", "Account")"></a></li>
+                                <li><a class="fav" href="@Url.Action("Favourites", "Product")"></a></li>
+                                <li><a class="basket" href="@Url.Action("Index", "Cart")"></a></li>
+                                <li class="logout"><a href="@Url.Action("LogOut", "Account")">Sign out</a></li>
                             }
                             else
                             {
-                                <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-                                <li><a href="#" class="login">Log In</a></li>
+                                <li class="reg"><a href="@Url.Action("Register", "Account")">Register</a></li>
+                                <li class="reg"><a href="#" class="login">Log In</a></li>
                             }
                         </ul>
                     </li>

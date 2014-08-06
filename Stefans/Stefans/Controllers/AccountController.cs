@@ -19,6 +19,10 @@ namespace Stefans.Controllers
     {
         public ActionResult Register()
         {
+            if (Session.IsAuthorized())
+            {
+                return RedirectToAction("Profile", "Account");
+            }
             return View();
         }
 
