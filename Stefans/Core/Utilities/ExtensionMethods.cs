@@ -18,7 +18,7 @@ namespace Core.Utilities
             return TimeSpan.FromMinutes(Quantity);
         }
 
-        public static string JoinStrings(this IEnumerable<string> Strings, string Separator = "")
+        public static string JoinStrings<T>(this IEnumerable<T> Strings, string Separator = "")
         {
             return string.Join(Separator, Strings);
         }

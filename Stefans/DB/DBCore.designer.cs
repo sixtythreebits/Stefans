@@ -179,6 +179,12 @@ namespace DB
 			@out = ((System.Xml.Linq.XElement)(result.GetParameterValue(2)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_UserOrders", IsComposable=true)]
+		public IQueryable<List_UserOrdersResult> List_UserOrders([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="Int")] System.Nullable<int> userID)
+		{
+			return this.CreateMethodCallQuery<List_UserOrdersResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID);
+		}
 	}
 	
 	public partial class List_DictionariesResult
@@ -918,6 +924,104 @@ namespace DB
 				if ((this._Image != value))
 				{
 					this._Image = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_UserOrdersResult
+	{
+		
+		private int _OrderID;
+		
+		private System.DateTime _CRTime;
+		
+		private decimal _TotalPrice;
+		
+		private string _Status;
+		
+		private System.Nullable<int> _ItemCount;
+		
+		public List_UserOrdersResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="Int NOT NULL")]
+		public int OrderID
+		{
+			get
+			{
+				return this._OrderID;
+			}
+			set
+			{
+				if ((this._OrderID != value))
+				{
+					this._OrderID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TotalPrice", DbType="Money NOT NULL")]
+		public decimal TotalPrice
+		{
+			get
+			{
+				return this._TotalPrice;
+			}
+			set
+			{
+				if ((this._TotalPrice != value))
+				{
+					this._TotalPrice = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="NVarChar(200)")]
+		public string Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemCount", DbType="Int")]
+		public System.Nullable<int> ItemCount
+		{
+			get
+			{
+				return this._ItemCount;
+			}
+			set
+			{
+				if ((this._ItemCount != value))
+				{
+					this._ItemCount = value;
 				}
 			}
 		}

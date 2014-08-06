@@ -1,6 +1,9 @@
-﻿@model ProfileModel
+﻿@using Core.CM
+@using Core.Utilities
+@model ProfileModel
 @{
     var states = ViewBag.States as List<Dictionary>;
+    var orders = ViewBag.Orders as List<Order>;
     var accountFormValid = ViewBag.AccountFormValid != false;
     var passwordFormValid = ViewBag.PasswordFormValid != false;
 }
@@ -12,7 +15,7 @@
         <div class="form border">
             <form method="POST" action="@Url.Action("UpdateProfile", "Account")">
                 <h5>ACCOUNT INFORMATION</h5>
-                
+
                 @if (!accountFormValid)
                 {
                     <p class="error">
@@ -63,7 +66,7 @@
         <div class="form">
             <form method="POST" action="@Url.Action("ChangePassword", "Account")">
                 <h5>CHANGE PASSWORD</h5>
-                
+
                 @if (!passwordFormValid)
                 {
                     <p class="error">
@@ -89,3 +92,31 @@
     </div>
 </section>
 
+@if (orders != null && orders.Any())
+{
+    <aside class="orders">
+        <h5>order history</h5>
+        <div class="grid">
+            <ul>
+                <li class="header">
+                    <span>Order Date</span>
+                    <span>Order Number</span>
+                    <span>Items</span>
+                    <span>Total</span>
+                    <span>Status</span>
+                </li>
+
+                @foreach (var item in orders)
+                {
+                    <li>
+                        <span> @item.CRTime.Value.ToString("MMM dd, yyyy") </span>
+                        <span> @( string.Concat(Enumerable.Range(0, 11 - item.ID.ToString().Length).Select(i => "0").JoinStrings(), item.ID) )</span>
+                        <span> @item.ItemCount </span>
+                        <span> @string.Format("{0:C}", item.TotalPrice) </span>
+                        <span> @item.StatusCaption </span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </aside>
+}

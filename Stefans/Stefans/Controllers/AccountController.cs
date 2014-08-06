@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Core;
+using Core.CM;
 using Core.UM;
 using Core.Utilities;
 using Newtonsoft.Json;
@@ -186,7 +187,7 @@ namespace Stefans.Controllers
         [SecureAccess]
         public ActionResult Profile()
         {
-            ViewBag.States = new Dictionary().ListDictionaries(1, 1);
+            LoadProfileViewBag();
             return View(new ProfileModel { AccountModel = new AccountModel(new User().GetSingle(User.ID)) });
         }
 
@@ -212,8 +213,7 @@ namespace Stefans.Controllers
                     return RedirectToAction("Profile", "Account");
                 }
             }
-            ViewBag.States = new Dictionary().ListDictionaries(1, 1);
-            ViewBag.AccountFormValid = false;
+            LoadProfileViewBag(AccountFormValid: false);
             return View("Profile", new ProfileModel { AccountModel = AccountModel });
         }
 
@@ -242,9 +242,16 @@ namespace Stefans.Controllers
                 }
             }
 
-            ViewBag.States = new Dictionary().ListDictionaries(1, 1);
-            ViewBag.PasswordFormValid = false;
+            LoadProfileViewBag(PasswordFormValid: false);
             return View("Profile", new ProfileModel { PasswordModel = PasswordModel, AccountModel = new AccountModel(repo.GetSingle(User.ID)) });
+        }
+
+        private void LoadProfileViewBag(bool? PasswordFormValid = null, bool? AccountFormValid = null)
+        {
+            ViewBag.States = new Dictionary().ListDictionaries(1, 1);
+            ViewBag.Orders = new Order().GetUserOrders(User.ID);
+            ViewBag.PasswordFormValid = PasswordFormValid;
+            ViewBag.AccountFormValid = AccountFormValid;
         }
     }
 }
