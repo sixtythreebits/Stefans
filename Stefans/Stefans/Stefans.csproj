@@ -323,6 +323,7 @@
     <Content Include="Views\Shared\_SuccessError.cshtml" />
     <Content Include="Views\Product\Favourites.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\CheckoutConfirmationEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

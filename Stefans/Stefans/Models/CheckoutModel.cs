@@ -101,7 +101,7 @@ namespace Stefans.Models
 
         [Required]
         [RegularExpression("[0-9]+$", ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "ErrorNumeric")]
-        [StringLength(2, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "ErrorMaxLength")]
+        [StringLength(4, ErrorMessageResourceType = typeof(Resources), ErrorMessageResourceName = "ErrorMaxLength")]
         public string Year { get; set; }
 
         [Required]

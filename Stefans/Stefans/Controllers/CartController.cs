@@ -49,12 +49,14 @@ namespace Stefans.Controllers
 
                     if (!orderRepo.IsError && orderRepo.ID > 0)
                     {
+                        var mail = RenderRazorViewToString("CheckoutConfirmationEmail", orderRepo);
+                        Task.Run(() => new Mail().Send(User.Email, "Order confirmation", mail));
+
                         SuccessMessage = Resources.Success;
+                        return RedirectToAction("Profile", "Account");
                     }
-                    else
-                    {
-                        ErrorMessage = Resources.Fail;
-                    }
+
+                    ErrorMessage = Resources.Fail;
                     return RedirectToAction("Message", "Home");
                 }
 

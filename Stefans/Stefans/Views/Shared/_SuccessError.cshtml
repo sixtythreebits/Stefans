@@ -1,13 +1,13 @@
 ﻿@if (!string.IsNullOrWhiteSpace(SuccessMessage) || !string.IsNullOrWhiteSpace(ErrorMessage))
 {
     <p id="SuccesErrorPanel" class="succes-error @( string.IsNullOrWhiteSpace(ErrorMessage) ? "" : "error")">
-        @( SuccessMessage ?? ErrorMessage ) <a href="#"></a>
+        @( SuccessMessage ?? ErrorMessage) <a href="#"></a>
     </p>
-
+    
     <script>
         $(function () {
             $('.succes-error a').click(function () {
-                $(this).parent().addClass("hidden");
+                $(this).parent().addClass("closed");
                 return false;
             });
 

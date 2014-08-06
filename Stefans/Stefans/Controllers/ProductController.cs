@@ -8,11 +8,6 @@ namespace Stefans.Controllers
 {
     public class ProductController : BaseController
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
         public ActionResult Details(int ID)
         {
             if (ID > 0)

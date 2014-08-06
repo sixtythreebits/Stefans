@@ -1,5 +1,4 @@
 ﻿@using Core.CM
-@using Core.Utilities
 @model ProfileModel
 @{
     var states = ViewBag.States as List<Dictionary>;
@@ -7,6 +6,8 @@
     var accountFormValid = ViewBag.AccountFormValid != false;
     var passwordFormValid = ViewBag.PasswordFormValid != false;
 }
+
+@Html.Partial("_SuccessError")
 
 <section class="account">
     <h1 class="title">account</h1>
@@ -110,7 +111,7 @@
                 {
                     <li>
                         <span> @item.CRTime.Value.ToString("MMM dd, yyyy") </span>
-                        <span> @( string.Concat(Enumerable.Range(0, 11 - item.ID.ToString().Length).Select(i => "0").JoinStrings(), item.ID) )</span>
+                        <span> @item.IDString </span>
                         <span> @item.ItemCount </span>
                         <span> @string.Format("{0:C}", item.TotalPrice) </span>
                         <span> @item.StatusCaption </span>

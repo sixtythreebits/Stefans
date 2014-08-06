@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using Core;
 using Core.CM;
+using Core.Properties;
 using Core.UM;
 using Core.Utilities;
 using Newtonsoft.Json;
@@ -11,7 +12,6 @@ using Stefans.Reusable;
 using Stefans.Reusable.Attributes;
 using Lib;
 using Stefans.Reusable.FrameworkExtensions;
-using Res = Core.Properties.Resources;
 
 namespace Stefans.Controllers
 {
@@ -27,13 +27,13 @@ namespace Stefans.Controllers
         {
             if (Model.ConfirmPassword != Model.User.Password)
             {
-                ModelState.AddModelError(() => Model.ConfirmPassword, Res.ErrorPasswordMismatch);
+                ModelState.AddModelError(() => Model.ConfirmPassword, Resources.ErrorPasswordMismatch);
             }
 
             var repo = new User();
             if (!repo.IsEmailUnique(Model.User.Email))
             {
-                ModelState.AddModelError(() => Model.User.Email, Res.ErrorEmailDuplication);
+                ModelState.AddModelError(() => Model.User.Email, Resources.ErrorEmailDuplication);
             }
 
             if (ModelState.IsValid)
@@ -128,7 +128,7 @@ namespace Stefans.Controllers
             {
                 if (Model.ConfirmPassword != Model.Password)
                 {
-                    ModelState.AddModelError(() => Model.ConfirmPassword, Res.ErrorPasswordMismatch);
+                    ModelState.AddModelError(() => Model.ConfirmPassword, Resources.ErrorPasswordMismatch);
                 }
 
                 if (ModelState.IsValid)
@@ -208,10 +208,15 @@ namespace Stefans.Controllers
                         City: AccountModel.City,
                         Zip: AccountModel.Zip);
 
-                if (!repo.IsError)
+                if (repo.IsError)
                 {
-                    return RedirectToAction("Profile", "Account");
+                    ErrorMessage = Resources.Fail;
                 }
+                else
+                {
+                    SuccessMessage = Resources.Success;
+                }
+                return RedirectToAction("Profile", "Account");
             }
             LoadProfileViewBag(AccountFormValid: false);
             return View("Profile", new ProfileModel { AccountModel = AccountModel });
@@ -222,12 +227,12 @@ namespace Stefans.Controllers
         {
             if (PasswordModel.OriginalPassword != null && User.Password != PasswordModel.OriginalPassword.MD5())
             {
-                ModelState.AddModelError(() => PasswordModel.OriginalPassword, Res.ErrorOriginalPassword);
+                ModelState.AddModelError(() => PasswordModel.OriginalPassword, Resources.ErrorOriginalPassword);
             }
 
             if (PasswordModel.NewPassword != PasswordModel.ConfirmPassword)
             {
-                ModelState.AddModelError(() => PasswordModel.ConfirmPassword, Res.ErrorPasswordMismatch);
+                ModelState.AddModelError(() => PasswordModel.ConfirmPassword, Resources.ErrorPasswordMismatch);
             }
 
             var repo = new User();
@@ -235,11 +240,16 @@ namespace Stefans.Controllers
             {
                 repo.TSP(1, User.ID, PasswordModel.NewPassword);
 
-                if (!repo.IsError)
+                if (repo.IsError)
+                {
+                    ErrorMessage = Resources.Fail;
+                }
+                else
                 {
                     Session.SetUser(repo.GetSingle(User.ID));
-                    return RedirectToAction("Profile");
+                    SuccessMessage = Resources.Success;
                 }
+                return RedirectToAction("Profile");
             }
 
             LoadProfileViewBag(PasswordFormValid: false);

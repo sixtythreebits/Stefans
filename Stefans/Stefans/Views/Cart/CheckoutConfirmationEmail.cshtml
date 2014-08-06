@@ -1,0 +1,21 @@
+﻿@using Core.CM
+@model Order
+
+@{
+    Layout = null;
+    var link = Request.SchemeAndAuthority() + Url.Action("Profile", "Account");
+}
+
+<div>
+    <h1>
+        Thanks for shopping with us
+    </h1>
+
+    <p>
+        Your Order: @Model.IDString has been placed successfully
+    </p>
+
+    <p>
+        You can view your orders on your <a href="@link">account page</a>
+    </p>
+</div>

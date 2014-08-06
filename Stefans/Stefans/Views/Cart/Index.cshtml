@@ -185,7 +185,7 @@
                     </div>
 
                     <div class="@( Html.HasPropertyError(m => m.Card.Year) ? "error" : "")">
-                        @Html.TextBoxFor(m => m.Card.Year, new {placeholder = "Year", maxlength = 2, @class = "numeric-input"})
+                        @Html.TextBoxFor(m => m.Card.Year, new {placeholder = "Year", maxlength = 4, @class = "numeric-input"})
                     </div>
 
                     <div class="@( Html.HasPropertyError(m => m.Card.CCV) ? "error" : "")">

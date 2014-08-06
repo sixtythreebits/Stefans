@@ -10,13 +10,17 @@ namespace Core.CM
         #region Properties
 
         public int ID { get; set; }
+        public string IDString
+        {
+            get { return ID.ToString("00000000000"); }
+        }
+
         public decimal TotalPrice { get; set; }
         public string StatusCaption { get; set; }
         public int ItemCount { get; set; }
         public string UserEmail { get; set; }
         public OrderAddress Shipping { get; set; }
         public OrderAddress Billing { get; set; }
-
 
         #endregion
 

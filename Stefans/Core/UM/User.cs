@@ -74,6 +74,7 @@ namespace Core.UM
                     return new User
                     {
                         ID = xml.IntValueOf("user_id").Value,
+                        Email = xml.ValueOf("email"),
                         Password = xml.ValueOf("password"),
                         FirstName = xml.ValueOf("first_name"),
                         LastName = xml.ValueOf("last_name"),
