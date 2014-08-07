@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace Core
@@ -10,13 +11,15 @@ namespace Core
         #region Properties
 
         public int ID { get; set; }
-        public string Caption { get; set; }
+        [Required(ErrorMessage = "Caption  is required")]
+        public string Caption { get; set; }        
         public string Caption1 { get; set; }
         public int? CodeVal { get; set; }
         public int? ParentID { get; set; }
         public short? Level { get; set; }
         public string Hierarchy { get; set; }
         public string StringCode { get; set; }
+        [Required(ErrorMessage = "Dictionary Code  is required")]
         public short? DictionaryCode { get; set; }
         public bool? IsDefVal { get; set; }
         public bool? IsVisible { get; set; }
@@ -50,6 +53,13 @@ namespace Core
                 ParentID = d.ParentID,
                 StringCode = d.StringCode
             }).ToList(), Logger: "ListDictionaries(Level = " + Level + ", DictionaryCode = " + DictionaryCode + ", ShowInvisibleItems= " + ShowInvisibleItems + ")");
+        }
+
+        public void TSP_Dictionaries(byte iud, int? ID, string Caption, string Caption1, int? CodeVal, int? ParentID, short? Level, string Hierarchy, string StringCode, short? DictionaryCode, bool? IsVisible, int? SortVal)
+        {
+            TryExecute(db => db.tsp_Dictionaries(iud, ref ID, null, Caption, Caption1, CodeVal, ParentID, Level, Hierarchy, StringCode, DictionaryCode, null, IsVisible, SortVal, null)
+                , Logger: string.Format("TSP_Dictionaries(iud = {0}, ID = {1}, Caption = {2}, Caption1 = {3}, CodeVal = {4}), ParentID = {5}, Level = {6}, Hierarchy = {7}, StringCode = {8}, DictionaryCode = {9}, IsVisible = {10}, SortVal = {11}"
+                , iud, ID, Caption, Caption1, CodeVal, ParentID, Level, Hierarchy, StringCode, DictionaryCode, IsVisible, SortVal));
         }
         #endregion
     }
