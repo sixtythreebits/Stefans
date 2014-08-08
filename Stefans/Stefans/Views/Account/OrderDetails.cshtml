@@ -60,10 +60,10 @@
             </div>
         </li>*@    
     </ul>
-    <div class="subtotal">
+    @*<div class="subtotal">
         <strong>Subtotal:</strong>
         <b> @Model.TotalPrice.ToString("C")</b>        
-    </div>
+    </div>*@
 
     @{
         var Shipping = Model.OrderAdresses.FirstOrDefault(x => x.CodeVal == 1);
@@ -152,10 +152,10 @@
     
     <div class="bot">
         <div>
-            <span class="cl">
+            @*<span class="cl">
                 <span>Subtotal:</span>
                 <span>@Model.TotalPrice.ToString("C")</span>
-            </span>
+            </span>*@
             @*<span class="cl">
                 <span>Shipping:</span>
                 <span>$11.50</span>
