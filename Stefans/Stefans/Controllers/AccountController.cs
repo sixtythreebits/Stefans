@@ -12,6 +12,7 @@ using Stefans.Reusable;
 using Stefans.Reusable.Attributes;
 using Lib;
 using Stefans.Reusable.FrameworkExtensions;
+using System.Linq;
 
 namespace Stefans.Controllers
 {
@@ -266,6 +267,14 @@ namespace Stefans.Controllers
             ViewBag.Orders = new Order().GetUserOrders(User.ID);
             ViewBag.PasswordFormValid = PasswordFormValid;
             ViewBag.AccountFormValid = AccountFormValid;
+        }
+
+        public ActionResult OrderDetails(int ID)
+        {
+            Order _Order = new Order();
+           var model =  _Order.GetSingleOrder(ID);
+
+           return View(model);
         }
     }
 }

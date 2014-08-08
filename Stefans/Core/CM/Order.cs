@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Xml.Linq;
 using Lib;
+using Core.Utilities;
 
 namespace Core.CM
 {
@@ -21,6 +22,8 @@ namespace Core.CM
         public string UserEmail { get; set; }
         public OrderAddress Shipping { get; set; }
         public OrderAddress Billing { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
+        public List<OrderAddress> OrderAdresses { get; set; }
 
         #endregion
 
@@ -82,6 +85,47 @@ namespace Core.CM
                                            ItemCount = o.ItemCount ?? 0,
                                            CRTime = o.CRTime
                                        }).ToList(), Logger: string.Format("GetUserOrders(UserID = {0})", UserID));
+        }
+
+        public Order GetSingleOrder( int OrderID )
+        {
+            return TryToReturn(db =>
+                {                
+                   XElement X = db.GetSingle_Order(OrderID);
+                
+                    if (X != null)
+                    {
+                        X = X.Element("order");
+
+                        return new Order()
+                        {
+                            ID = X.IntValueOf("order_id").Value,
+                            TotalPrice = X.DecimalValueOf("total_price").Value,
+                            OrderDetails = X.Children("order_details", "order_detail").Select(i => new OrderDetail
+                                    {
+                                        Quantity = i.IntValueOf("quantity").Value,
+                                        Price = i.DecimalValueOf("price").Value,
+                                        ProductCaption = i.ValueOf("product_name"),
+                                        ImageName = i.ValueOf("image"),
+                                    }).ToList(),
+                            OrderAdresses = X.Children("order_addresses", "order_address").Select(i => new OrderAddress
+                                    {
+                                        AddressType = i.ValueOf("address_type"),
+                                        CodeVal = i.IntValueOf("code_val").Value,
+                                        FirstName = i.ValueOf("first_name"),
+                                        LastName = i.ValueOf("last_name"),
+                                        Address1 = i.ValueOf("address1"),
+                                        Address2 = i.ValueOf("address2"),
+                                        Zip = i.ValueOf("zip"),
+                                        City = i.ValueOf("city"),
+                                        Phone = i.ValueOf("phone"), 
+                                        State = i.ValueOf("state")
+                                    }).ToList(),
+                        };                    
+                    }
+                    return null;
+
+                }, Logger: string.Format("GetSingleOrder: ID = {0}", OrderID));
         }
 
         #endregion

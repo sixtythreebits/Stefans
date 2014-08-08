@@ -111,7 +111,8 @@
                 {
                     <li>
                         <span> @item.CRTime.Value.ToString("MMM dd, yyyy") </span>
-                        <span> @item.IDString </span>
+                        <span> <a href="@Url.Action("OrderDetails", "Account", new { ID = item.ID})"> @item.IDString </a></span>
+                        
                         <span> @item.ItemCount </span>
                         <span> @string.Format("{0:C}", item.TotalPrice) </span>
                         <span> @item.StatusCaption </span>

@@ -205,6 +205,12 @@ namespace DB
 			dictionaryID = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSingle_Order", IsComposable=true)]
+		public System.Xml.Linq.XElement GetSingle_Order([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderID", DbType="Int")] System.Nullable<int> orderID)
+		{
+			return ((System.Xml.Linq.XElement)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orderID).ReturnValue));
+		}
 	}
 	
 	public partial class List_DictionariesResult

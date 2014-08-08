@@ -218,4 +218,8 @@
     <Parameter Name="DecimalVal" Parameter="decimalVal" Type="System.Decimal" DbType="Money" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.GetSingle_Order" Method="GetSingle_Order" IsComposable="true">
+    <Parameter Name="OrderID" Parameter="orderID" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Xml.Linq.XElement" />
+  </Function>
 </Database>

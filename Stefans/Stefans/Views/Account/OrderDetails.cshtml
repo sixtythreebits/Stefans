@@ -1,0 +1,179 @@
+﻿@using Core.CM
+@model Order
+
+
+
+<section class="cart">
+    <h1 class="title">order details</h1>
+
+    <ul class="list">
+
+        @foreach (var item in Model.OrderDetails as List<OrderDetail>)
+        {            
+            <li>
+            <span class="img">
+
+                @if (string.IsNullOrWhiteSpace(item.ImageName))
+                {
+                    <img src="~/images/0/prod-01.jpg" alt="" />
+                }
+                else
+                {
+                    <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, item.ImageName)" alt="" />
+                }                
+            </span>
+            <div>
+                <h4>@item.ProductCaption</h4>
+                <div>
+                    <span>Quantity:</span>
+                    <input type="text" value="@item.Quantity " disabled />                   
+                </div>
+                <span>Price: $@item.Price</span>
+            </div>
+        </li>
+        }
+
+        @*<li>
+            <span class="img">
+                <img src="images/0/prod-01.jpg" alt="" />
+            </span>
+            <div>
+                <h4>strawberry keratin</h4>
+                <div>
+                    <span>Quantity:</span>
+                    <input type="text" />                   
+                </div>
+                <span>Price: $22.50</span>
+            </div>
+        </li>    
+        <li>
+            <span class="img">
+                <img src="images/0/prod-01.jpg" alt="" />
+            </span>
+            <div>
+                <h4>strawberry keratin</h4>
+                <div>
+                    <span>Quantity:</span>
+                    <input type="text" />
+                </div>
+                <span>Price: $22.50</span>
+            </div>
+        </li>*@    
+    </ul>
+    <div class="subtotal">
+        <strong>Subtotal:</strong>
+        <b> $@Model.TotalPrice</b>        
+    </div>
+
+    @{
+        var Shipping = Model.OrderAdresses.FirstOrDefault(x => x.CodeVal == 1);
+        var Billing = Model.OrderAdresses.FirstOrDefault(x => x.CodeVal == 2);
+    }
+
+    <div class="col2 cl">
+        <div class="form">
+            
+
+            <h5>Billing Information</h5>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="First Name" disabled  value="@Billing.FirstName"/>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Last Name" disabled value="@Billing.LastName" />
+                </div>
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 1" disabled value="@Billing.Address1" />
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 2" disabled value="@Billing.Address2" />
+            </div>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="City" disabled value="@Billing.City" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Zip Code" disabled value="@Billing.Zip" />
+                </div>
+            </div>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="Phone Number" disabled value="@Billing.State" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Phone Number" disabled value="@Billing.Phone" />
+                </div>
+            </div>
+        </div>
+        <div class="form">
+                       
+
+            <h5>Shipping information</h5>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="First Name" disabled value="@Shipping.FirstName" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Last Name" disabled value="@Shipping.LastName" />
+                </div>
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 1" disabled value="@Shipping.Address1" />
+            </div>
+            <div>
+                <input type="text" placeholder="Address Line 2" disabled value="@Shipping.Address2" />
+            </div>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="City" disabled value="@Shipping.City" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Zip Code" disabled value="@Shipping.Zip" />
+                </div>
+            </div>
+            <div class="cl">
+                <div>
+                    <input type="text" placeholder="Phone Number" disabled value="@Shipping.City" />
+                </div>
+
+                <div>
+                    <input type="text" placeholder="Phone Number" disabled value="@Shipping.Phone" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="bot">
+        <div>
+            <span class="cl">
+                <span>Subtotal:</span>
+                <span>$@Model.TotalPrice</span>
+            </span>
+            @*<span class="cl">
+                <span>Shipping:</span>
+                <span>$11.50</span>
+            </span>
+            <span class="cl">
+                <span>Tax:</span>
+                <span>$11.50</span>
+            </span>*@
+            <p>
+                <span class="cl">
+                    <span>Grand Total:</span>
+                    <span><b>$@Model.TotalPrice</b></span>
+                </span>
+            </p>
+        </div>
+    </div>
+
+    @*<div class="form">
+        <input type="submit" value="purchase" />
+    </div>*@
+</section>

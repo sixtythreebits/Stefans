@@ -11,7 +11,7 @@ namespace Core.CM
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public string ProductCaption { get; set; }
-
+        public string ImageName { get; set; }
         #endregion
 
         #region Methods

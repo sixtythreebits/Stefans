@@ -17,5 +17,8 @@
         public string Zip { set; get; }
 
         public string Phone { set; get; }
+
+        public string AddressType { get; set; }
+        public int? CodeVal { get; set; }
     }
 }
