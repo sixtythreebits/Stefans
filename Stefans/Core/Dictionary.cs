@@ -10,16 +10,14 @@ namespace Core
     {
         #region Properties
 
-        public int ID { get; set; }
-        [Required(ErrorMessage = "Caption  is required")]
+        public int ID { get; set; }        
         public string Caption { get; set; }        
         public string Caption1 { get; set; }
         public int? CodeVal { get; set; }
         public int? ParentID { get; set; }
         public short? Level { get; set; }
         public string Hierarchy { get; set; }
-        public string StringCode { get; set; }
-        [Required(ErrorMessage = "Dictionary Code  is required")]
+        public string StringCode { get; set; }        
         public short? DictionaryCode { get; set; }
         public bool? IsDefVal { get; set; }
         public bool? IsVisible { get; set; }
