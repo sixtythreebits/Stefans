@@ -28,7 +28,7 @@
                     <span>Quantity:</span>
                     <input type="text" value="@item.Quantity " disabled />                   
                 </div>
-                <span>Price: $@item.Price</span>
+                <span>Price: @item.Price.ToString("C")</span>
             </div>
         </li>
         }
@@ -62,7 +62,7 @@
     </ul>
     <div class="subtotal">
         <strong>Subtotal:</strong>
-        <b> $@Model.TotalPrice</b>        
+        <b> @Model.TotalPrice.ToString("C")</b>        
     </div>
 
     @{
@@ -154,7 +154,7 @@
         <div>
             <span class="cl">
                 <span>Subtotal:</span>
-                <span>$@Model.TotalPrice</span>
+                <span>@Model.TotalPrice.ToString("C")</span>
             </span>
             @*<span class="cl">
                 <span>Shipping:</span>
@@ -167,7 +167,7 @@
             <p>
                 <span class="cl">
                     <span>Grand Total:</span>
-                    <span><b>$@Model.TotalPrice</b></span>
+                    <span><b>@Model.TotalPrice.ToString("C")</b></span>
                 </span>
             </p>
         </div>
