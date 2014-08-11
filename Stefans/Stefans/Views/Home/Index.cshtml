@@ -97,6 +97,9 @@
     @if (products != null)
     {
         <ul class="col2 list cl">
+            @{
+                int DescriptionLength = 90;
+            }
             @foreach (var item in products)
             {
                 <li>
@@ -117,7 +120,8 @@
                             </a>
                         </h3>
                         <p>
-                            @item.Description
+                            @Html.Raw(item.Description.Length <= DescriptionLength ? item.Description : string.Format(item.Description.Substring(0, DescriptionLength) + "...") )                          
+                            
                         </p>
                     </article>
                 </li>
