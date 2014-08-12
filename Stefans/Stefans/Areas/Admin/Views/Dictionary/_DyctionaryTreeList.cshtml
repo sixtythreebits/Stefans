@@ -49,7 +49,10 @@
 
                 settings.SettingsEditing.ShowModelErrorsForEditors = true;
 
-                                   
+                //settings.ClientSideEvents.FocusedNodeChanged = "OnTreeListFocusedNodeChanged"; 
+                settings.SettingsBehavior.AllowFocusedNode = true;
+                settings.Styles.FocusedNode.BackColor = System.Drawing.Color.LightBlue;        
+                         
 
                 settings.PreRender = (sender, e) =>
                 {
@@ -101,53 +104,3 @@
 
 @treeList.Bind(Model).GetHtml()
 
-
-@*@Html.DevExpress().TreeList(
-settings =>
-{
-    settings.Name = "treeList";
-    settings.CallbackRouteValues = new { Controller = "Dictionary", Action = "DictionaryCallback" };
-
-    settings.AutoGenerateColumns = false;
-    settings.Width = Unit.Percentage(100);
-    
-    settings.KeyFieldName = "ID";
-    settings.ParentFieldName = "ParentID";
-    
-    settings.Settings.ScrollableHeight = 550;
-    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
-
-    settings.CommandColumn.Visible = true;
-    settings.CommandColumn.ShowNewButtonInHeader = true;
-    settings.CommandColumn.NewButton.Visible = true;
-    settings.CommandColumn.DeleteButton.Visible = true;
-    settings.CommandColumn.EditButton.Visible = true;    
-    
-    settings.Settings.GridLines = System.Web.UI.WebControls.GridLines.Both;
-    settings.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
-
-    settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "Dictionary", Action = "DictionaryAdd" };
-    settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "Dictionary", Action = "DictionaryUpdate" };
-    settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "Dictionary", Action = "DictionaryDragDrop" };
-    settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "Dictionary", Action = "DictionaryDelete" };
-    settings.SettingsEditing.ConfirmDelete = true;    
-    
-    settings.PreRender = (sender, e) =>
-    {
-        MVCxTreeList treeListControl = (MVCxTreeList)sender;
-        treeListControl.ExpandToLevel(2);
-        //treeListControl.StartEdit("2");
-    };
-    
-    //settings.Columns.Add("ID");
-    settings.Columns.Add("Caption");
-    settings.Columns.Add(column =>
-    {
-        column.FieldName = "Caption1";
-        column.Caption = "Small Caption";
-        
-    });
-    settings.Columns.Add("CodeVal");
-    //settings.Columns.Add("ParentID");
-    //settings.Columns.Add("DictionaryCode");
-}).Bind(Model).GetHtml()*@
