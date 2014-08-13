@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="CM\ADNTransaction.cs" />
     <Compile Include="CM\CartItem.cs" />
+    <Compile Include="CM\Contact.cs" />
     <Compile Include="CM\Favourite.cs" />
     <Compile Include="CM\Order.cs" />
     <Compile Include="CM\OrderAddress.cs" />

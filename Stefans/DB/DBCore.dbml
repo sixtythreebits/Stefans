@@ -222,4 +222,20 @@
     <Parameter Name="OrderID" Parameter="orderID" Type="System.Int32" DbType="Int" />
     <Return Type="System.Xml.Linq.XElement" />
   </Function>
+  <Function Name="dbo.tsp_Contacts" Method="tsp_Contacts">
+    <Parameter Name="iud" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="ContactID" Parameter="contactID" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="UserID" Parameter="userID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="StateID" Parameter="stateID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="FirstName" Parameter="firstName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="LastName" Parameter="lastName" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="Phone" Parameter="phone" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="City" Parameter="city" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="LicensedHairCareProfessionalID" Parameter="licensedHairCareProfessionalID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TopicID" Parameter="topicID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="IP" Parameter="iP" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

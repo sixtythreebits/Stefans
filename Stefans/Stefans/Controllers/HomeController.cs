@@ -20,5 +20,11 @@ namespace Stefans.Controllers
 
             return View("Message");
         }
+
+        [HttpPost]
+        public ActionResult AddContact()
+        {
+            return View("Index");
+        }
     }
 }

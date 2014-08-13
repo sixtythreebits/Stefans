@@ -98,7 +98,7 @@
     {
         <ul class="col2 list cl">
             @{
-                int DescriptionLength = 90;
+                int DescriptionLength = 250;
             }
             @foreach (var item in products)
             {
@@ -285,82 +285,87 @@
 </section>
 
 <section id="contact" class="contact">
-    <h2 class="title">contact us</h2>
+    <form action="@Url.Action("AddContact", "Admin")" method="post">
+        <h2 class="title">contact us</h2>
 
-    <div class="form">
-        <div class="cl">
-            <div>
-                <label>First Name</label>
-                <input type="text" />
-            </div>
+        <div class="form">
+            <div class="cl">
+                <div>
+                    <label>First Name</label>
+                    <input type="text" />
+                </div>
 
-            <div>
-                <label>Last Name</label>
-                <input type="text" />
+                <div>
+                    <label>Last Name</label>
+                    <input type="text" />
+                </div>
             </div>
-        </div>
-        <div class="cl">
-            <div>
-                <label>Email</label>
-                <input type="text" />
-            </div>
+            <div class="cl">
+                <div>
+                    <label>Email</label>
+                    <input type="text" />
+                </div>
 
-            <div>
-                <label>Phone</label>
-                <input type="text" />
+                <div>
+                    <label>Phone</label>
+                    <input type="text" />
+                </div>
             </div>
-        </div>
-        <div class="cl">
-            <div class="error">
-                <label>State</label>
-                <div class="select">
-                    <p></p>
-                    <span></span>
-                    <select>
-                        <option>State</option>
-                    </select>
+            <div class="cl">
+                <div class="error">
+                    <label>State</label>
+                    <div class="select">
+                        <p></p>
+                        <span></span>
+                        <select>
+                            <option>State1</option>
+                            <option>State2</option>
+                            <option>State3</option>
+                            <option>State4</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label>City</label>
+                    <input type="text" />
+                </div>
+            </div>
+            <div class="cl">
+                <div>
+                    <label>Licensed Hair Care Professional?</label>
+                    <div class="select">
+                        <p></p>
+                        <span></span>
+                        <select>
+                            <option>Choose</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label>Topic:</label>
+                    <div class="select">
+                        <p></p>
+                        <span></span>
+                        <select>
+                            <option>Choose a Topic</option>
+                            <option>Support</option>
+                            <option>Purchase</option>
+                            <option>Testimonial</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
             <div>
-                <label>City</label>
-                <input type="text" />
+                <label>Mesage</label>
+                <textarea></textarea>
             </div>
+            <input type="submit" value="submit" />
         </div>
-        <div class="cl">
-            <div>
-                <label>Licensed Hair Care Professional?</label>
-                <div class="select">
-                    <p></p>
-                    <span></span>
-                    <select>
-                        <option>Choose</option>
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
-                </div>
-            </div>
-
-            <div>
-                <label>Topic:</label>
-                <div class="select">
-                    <p></p>
-                    <span></span>
-                    <select>
-                        <option>Choose a Topic</option>
-                        <option>Support</option>
-                        <option>Purchase</option>
-                        <option>Testimonial</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-        <div>
-            <label>Mesage</label>
-            <textarea></textarea>
-        </div>
-        <input type="submit" value="submit" />
-    </div>
+    </form>
 </section>
