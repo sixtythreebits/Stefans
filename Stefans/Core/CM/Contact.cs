@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Lib;
 using Core.Utilities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Core.CM
 {
@@ -24,22 +25,30 @@ namespace Core.CM
         /// <summary>
         /// FirstName field of Contacts table
         /// </summary>
+        [Required (ErrorMessage = "First Name is required.")]        
+        [StringLength(100)]    
         public string FirstName { get; set; }
         /// <summary>
         /// LastName field of Contacts table
         /// </summary>
+        [Required(ErrorMessage = "Last Name is required.")]
+        [StringLength(100)] 
         public string LastName { get; set; }
         /// <summary>
         /// Email field of Contacts table
         /// </summary>
+        [Required]
+        [EmailAddress]
+        [StringLength(100)]
         public string Email { get; set; }
         /// <summary>
         /// Phone field of Contacts table
-        /// </summary>
+        /// </summary>        
         public string Phone { get; set; }
         /// <summary>
         /// City field of Contacts table
         /// </summary>
+        //[DisplayFormat(ConvertEmptyStringToNull = false)]
         public string City { get; set; }
         /// <summary>
         /// LicensedHairCareProfessionalID field of Contacts table
@@ -52,6 +61,7 @@ namespace Core.CM
         /// <summary>
         /// Message field of Contacts table
         /// </summary>
+        [Required]
         public string Message { get; set; }
         /// <summary>
         /// IP field of Contacts table
@@ -60,15 +70,7 @@ namespace Core.CM
         #endregion
 
         #region Methods
-        public void TSP(byte iud, int? ID, int? ProductID = null, string Name = null, string Description = null)
-        {
-            TryExecute(db =>
-            {
-                db.tsp_ProductTestimonials(iud, ref ID, ProductID, Name, Description);
-                this.ID = ID ?? 0;
-            }, Logger: string.Format("TSP(iud = {0}, ID = {1}, ProductID = {2}, Name = {3}, Description = {4})", iud, ID, ProductID, Name, Description));
-        }
-
+        
         /// <summary>
         /// CRUD operations on Contacts Table
         /// </summary>

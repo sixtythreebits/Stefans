@@ -1,9 +1,14 @@
 ﻿@using Core.CM
+@using Core
 @model Contact
 
 @{
     var products = ViewBag.Products as List<Product>;
+    var states = ViewBag.States as List<Dictionary>;
+    var licensed = ViewBag.LicensedHairCareProfessional as List<Dictionary>;
+    var topic = ViewBag.Topic as List<Dictionary>;
 }
+
 @section JS {
     <script>
         $(function () {
@@ -52,8 +57,6 @@
         });
     </script>
 }
-
-
 
 <section id="home" class="slider home">
     <ul>
@@ -287,87 +290,128 @@
 </section>
 
 <section id="contact" class="contact">
-    <form action="@Url.Action("AddContact", "Home")" method="post">
-        <h2 class="title">contact us</h2>
 
-        <div class="form">
-            <div class="cl">
-                <div>
-                    <label>First Name</label>                    
-                    <input type="text" />
-                </div>
+    <div class="form">
+        <form action="@Url.Action("AddContact", "Home")" method="post">
+            <input type="hidden" name="UserID" value="">
+            <h2 class="title">contact us</h2>
+            @if (!ViewData.ModelState.IsValid)
+            {
+                <p class="error">
+                    @string.Join(" ", ViewData.ModelState.SelectMany(p => p.Value.Errors.Select(e => e.ErrorMessage)))
+                </p>
+            }
+            <div class="form">
+                <div class="cl">
+                    <div>
+                        <label for="FirstName">First Name</label>
 
-                <div>
-                    <label>Last Name</label>
-                    <input type="text" />
-                </div>
-            </div>
-            <div class="cl">
-                <div>
-                    <label>Email</label>
-                    <input type="text" />
-                </div>
+                        <div class="@( Html.HasPropertyError(m => m.FirstName) ? "error" : "" )">
+                            @Html.TextBoxFor(m => m.FirstName, new { placeholder = "First Name" })
+                        </div>
 
-                <div>
-                    <label>Phone</label>
-                    <input type="text" />
+
+                    </div>
+
+                    <div>
+                        <label for="LastName">Last Name</label>                        
+
+                        <div class="@( Html.HasPropertyError(m => m.LastName) ? "error" : "")">
+                            @Html.TextBoxFor(m => m.LastName, new { placeholder = "Last Name" })
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="cl">
-                <div class="error">
-                    <label>State</label>
-                    <div class="select">
-                        <p></p>
-                        <span></span>
-                        <select>
-                            <option>State1</option>
-                            <option>State2</option>
-                            <option>State3</option>
-                            <option>State4</option>
-                        </select>
+                <div class="cl">
+                    <div>
+                        <label for="Email">Email</label>
+                        <div class="@( Html.HasPropertyError(m => m.Email) ? "error" : "")">
+                            @Html.TextBoxFor(m => m.Email, new { placeholder = "Email" })
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="Phone">Phone</label>
+                        <div class="@( Html.HasPropertyError(m => m.Phone) ? "error" : "")">
+                            @Html.TextBoxFor(m => m.Phone, new { placeholder = "Phone" })
+                        </div>
+                    </div>
+                </div>
+                <div class="cl">
+                    <div @*class="error"*@>
+                        <label for="StateID">State</label>
+                        <div class="select">
+
+                            <p data-placeholder="State"></p>
+                            <span></span>
+                            @Html.DropDownListFor(m => m.StateID, states.ToSelectList(m => m.ID, m => m.Caption), string.Empty)
+                            
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="@Html.NameFor(m => m.City)">City</label>
+                        @Html.TextBoxFor(m => m.City, new { placeholder = "City" })
+                    </div>
+                </div>
+                <div class="cl">
+                    <div>
+                        <label>Licensed Hair Care Professional?</label>
+
+                        <div class="select">
+
+                            <p data-placeholder="Choose"></p>
+                            <span></span>
+                            @Html.DropDownListFor(m => m.LicensedHairCareProfessionalID, licensed.ToSelectList(m => m.ID, m => m.Caption), string.Empty)
+
+                        </div>
+
+                        @*<div class="select">
+                            <p></p>
+                            <span></span>
+                            <select name="LicensedHairCareProfessionalID">
+                                <option>Choose</option>
+                                @foreach (var item in ViewBag.LicensedHairCareProfessional as List<Core.Dictionary>)
+                                {
+                                    <option value="@item.ID">@item.Caption</option>
+                                }
+
+                            </select>
+                        </div>*@
+                    </div>
+
+                    <div>
+                        <label>Topic:</label>
+                        <div class="select">
+
+                            <p data-placeholder="Choose"></p>
+                            <span></span>
+                            @Html.DropDownListFor(m => m.TopicID, topic.ToSelectList(m => m.ID, m => m.Caption), string.Empty)
+
+                        </div>
+
+                        @*<div class="select">
+                            <p></p>
+                            <span></span>
+                            <select name="Topic">
+                                <option>Choose</option>
+                                @foreach(var item in ViewBag.Topic as List<Core.Dictionary>)
+                                {
+                                    <option value="@item.ID">@item.Caption</option>
+                                }
+                            </select>
+                        </div>*@
                     </div>
                 </div>
 
-                <div>
-                    <label>City</label>
-                    <input type="text" />
-                </div>
-            </div>
-            <div class="cl">
-                <div>
-                    <label>Licensed Hair Care Professional?</label>
-                    <div class="select">
-                        <p></p>
-                        <span></span>
-                        <select>
-                            <option>Choose</option>
-                            <option>Yes</option>
-                            <option>No</option>
-                        </select>
+                <div>                    
+                    <label for="Message">Message</label>
+                    <div class="@( Html.HasPropertyError(m => m.Message) ? "error" : "")">
+                        @Html.TextAreaFor(m => m.Message, new { placeholder = "Message" })
                     </div>
-                </div>
 
-                <div>
-                    <label>Topic:</label>
-                    <div class="select">
-                        <p></p>
-                        <span></span>
-                        <select>
-                            <option>Choose a Topic</option>
-                            <option>Support</option>
-                            <option>Purchase</option>
-                            <option>Testimonial</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
                 </div>
+                <input type="submit" value="submit" />
             </div>
-
-            <div>
-                <label>Mesage</label>
-                <textarea></textarea>
-            </div>
-            <input type="submit" value="submit" />
-        </div>
-    </form>
+        </form>
+    </div>
 </section>
