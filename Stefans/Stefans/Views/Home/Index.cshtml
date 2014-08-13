@@ -1,9 +1,9 @@
 ﻿@using Core.CM
+@model Contact
 
 @{
     var products = ViewBag.Products as List<Product>;
 }
-
 @section JS {
     <script>
         $(function () {
@@ -53,6 +53,8 @@
     </script>
 }
 
+
+
 <section id="home" class="slider home">
     <ul>
         <li style="background-image:url(/images/0/01.jpg)">
@@ -98,7 +100,7 @@
     {
         <ul class="col2 list cl">
             @{
-                int DescriptionLength = 250;
+        int DescriptionLength = 250;
             }
             @foreach (var item in products)
             {
@@ -120,8 +122,8 @@
                             </a>
                         </h3>
                         <p>
-                            @Html.Raw(item.Description.Length <= DescriptionLength ? item.Description : string.Format(item.Description.Substring(0, DescriptionLength) + "...") )                          
-                            
+                            @Html.Raw(item.Description.Length <= DescriptionLength ? item.Description : string.Format(item.Description.Substring(0, DescriptionLength) + "..."))
+
                         </p>
                     </article>
                 </li>
@@ -130,43 +132,43 @@
     }
 
     @*<ul class="col2 list cl">
-        <li>
-            <a href="product.html" class="img">
-                <img src="images/0/prod-01.jpg" alt="" />
-            </a>
-            <article>
-                <h3><a href="#">strawberry keratin</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
-            </article>
-        </li>
-        <li>
-            <a href="product.html" class="img">
-                <img src="images/0/prod-01.jpg" alt="" />
-            </a>
-            <article>
-                <h3><a href="#">strawberry keratin</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
-            </article>
-        </li>
-        <li>
-            <a href="product.html" class="img">
-                <img src="images/0/prod-01.jpg" alt="" />
-            </a>
-            <article>
-                <h3><a href="#">strawberry keratin</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
-            </article>
-        </li>
-        <li>
-            <a href="product.html" class="img">
-                <img src="images/0/prod-01.jpg" alt="" />
-            </a>
-            <article>
-                <h3><a href="#">strawberry keratin</a></h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
-            </article>
-        </li>
-    </ul>*@
+            <li>
+                <a href="product.html" class="img">
+                    <img src="images/0/prod-01.jpg" alt="" />
+                </a>
+                <article>
+                    <h3><a href="#">strawberry keratin</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
+                </article>
+            </li>
+            <li>
+                <a href="product.html" class="img">
+                    <img src="images/0/prod-01.jpg" alt="" />
+                </a>
+                <article>
+                    <h3><a href="#">strawberry keratin</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
+                </article>
+            </li>
+            <li>
+                <a href="product.html" class="img">
+                    <img src="images/0/prod-01.jpg" alt="" />
+                </a>
+                <article>
+                    <h3><a href="#">strawberry keratin</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
+                </article>
+            </li>
+            <li>
+                <a href="product.html" class="img">
+                    <img src="images/0/prod-01.jpg" alt="" />
+                </a>
+                <article>
+                    <h3><a href="#">strawberry keratin</a></h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus tortor, iaculis ac sem nec, condimentum suscipit tellus. Mauris quis pellentesque neque. Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.Aenean at tristique dolor. Suspendisse condimentum nibh vitae rutrum vulputate. Integer hendrerit eros nibh, eget consectetur orci imperdiet vitae.</p>
+                </article>
+            </li>
+        </ul>*@
 
 </section>
 
@@ -285,13 +287,13 @@
 </section>
 
 <section id="contact" class="contact">
-    <form action="@Url.Action("AddContact", "Admin")" method="post">
+    <form action="@Url.Action("AddContact", "Home")" method="post">
         <h2 class="title">contact us</h2>
 
         <div class="form">
             <div class="cl">
                 <div>
-                    <label>First Name</label>
+                    <label>First Name</label>                    
                     <input type="text" />
                 </div>
 

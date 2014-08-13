@@ -6,7 +6,7 @@ using Core.Utilities;
 
 namespace Core.CM
 {
-    class Contact : CoreObjectBase
+    public class Contact : CoreObjectBase
     {
         #region Properties
         /// <summary>

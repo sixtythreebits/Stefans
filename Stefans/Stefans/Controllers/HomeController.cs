@@ -22,9 +22,9 @@ namespace Stefans.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddContact()
+        public ActionResult AddContact(Contact Contact)
         {
-            return View("Index");
+            return View("Index", Contact);
         }
     }
 }
