@@ -2,6 +2,7 @@
 using Core.CM;
 using Stefans.Reusable.FrameworkExtensions;
 using Core;
+using Core.Properties;
 
 namespace Stefans.Controllers
 {
@@ -35,12 +36,21 @@ namespace Stefans.Controllers
                 Contact.IP = Request.UserHostAddress;
                 if (User != null)
                 {
-                    Contact.UserID = new BaseController().User.ID; 
-                }
-               
+                    Contact.UserID = User.ID; 
+                }               
 
                 Contact.TSP_Contacts(0, null, Contact.UserID, Contact.StateID, Contact.FirstName, Contact.LastName, Contact.Email, Contact.Phone, Contact.City,
                     Contact.LicensedHairCareProfessionalID, Contact.TopicID, Contact.Message, Contact.IP);
+
+                if (Contact.IsError)
+                {
+                    ErrorMessage = Resources.Fail;
+                }
+                else
+                {
+                    SuccessMessage = Resources.Success;
+                }
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.States = new Dictionary().ListDictionaries(1, 1);

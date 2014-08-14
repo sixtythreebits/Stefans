@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using Core.UM;
+using System.Web.SessionState;
 
 namespace Stefans.Reusable
 {
@@ -9,7 +10,7 @@ namespace Stefans.Reusable
         {
             get
             {
-                return new HttpSessionStateWrapper(HttpContext.Current.Session);;
+                return new HttpSessionStateWrapper(HttpContext.Current.Session);
             }
         }
 
@@ -29,6 +30,10 @@ namespace Stefans.Reusable
         }
 
         public static User GetUser(this HttpSessionStateBase SessionState)
+        {
+            return SessionState["UserInfo"] as User;
+        }
+        public static User GetUser(this HttpSessionState SessionState)
         {
             return SessionState["UserInfo"] as User;
         }

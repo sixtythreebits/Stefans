@@ -13,16 +13,7 @@ namespace Stefans.Reusable.Attributes
         {
             if (filterContext.Result is ViewResult && SessionExt.IsAuthorized())
             {                
-                var isCartFull = new CartItem().IsCartFull(SessionExt.Session.GetUser().ID);
-                if(isCartFull)
-                {
-                    filterContext.Controller.ViewBag.isCartFool = true;
-                }
-                else
-                {
-                    filterContext.Controller.ViewBag.isCartFool = false;
-                }
-
+                filterContext.Controller.ViewBag.IsCartFull = new CartItem().IsCartFull(SessionExt.Session.GetUser().ID);
             }
         }
     }
