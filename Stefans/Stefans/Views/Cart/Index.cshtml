@@ -34,8 +34,43 @@
                 var charCode = evt.which || evt.keyCode;
                 return !(charCode > 31 && (charCode < 48 || charCode > 57));
             });
+
+            $("#sameAsShipping").click(function () {
+                
+                if ($(this).is(":checked"))
+                {
+                    $("#Billing_FirstName").val($("#Shipping_FirstName").val());
+                    $("#Billing_LastName").val($("#Shipping_LastName").val());
+                    $("#Billing_Address1").val($("#Shipping_Address1").val());
+                    $("#Billing_Address2").val($("#Shipping_Address2").val());
+                    $("#Billing_City").val($("#Shipping_City").val());
+                    $("#Billing_Zip").val($("#Shipping_Zip").val());                    
+                    $("#Billing_Phone").val($("#Shipping_Phone").val());
+
+                    var shippingOptionVal = $("#Shipping_StateID").val();
+                    var shippingOptionText = $("#Shipping_StateID").parent().find("p").text();
+                   
+                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected');
+                    $("#Billing_StateID").parent().find("p").text(shippingOptionText);
+
+                }
+                else {
+                    $("#Billing_FirstName").val("");
+                    $("#Billing_LastName").val("");
+                    $("#Billing_Address1").val("");
+                    $("#Billing_Address2").val("");
+                    $("#Billing_City").val("");
+                    $("#Billing_Zip").val("");
+                    $("#Billing_StateID").val("");
+                    $("#Billing_Phone").val("");
+                    $("#Billing_StateID").parent().find("p").text("State");
+                                       
+                }
+            });
+            
         });
     </script>
+       
 }
 
 @Html.Partial("_SuccessError")
@@ -80,74 +115,31 @@
         <form action="@Url.Action("Checkout", "Cart")" method="POST">
             <div class="col2 cl">
                 <div class="form">
-
-                    @RenderErrors(Html.NameFor(m => m.Billing).ToString())
-
-                    <h5>Billing Information</h5>
-                    <div class="cl">
-                        <div class="@( Html.HasPropertyError(m => m.Billing.FirstName) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Billing.FirstName, new {placeholder = "First Name"})
-                        </div>
-
-                        <div class="@( Html.HasPropertyError(m => m.Billing.LastName) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Billing.LastName, new {placeholder = "Last Name"})
-                        </div>
-                    </div>
-                    <div class="@( Html.HasPropertyError(m => m.Billing.Address1) ? "error" : "")">
-                        @Html.TextBoxFor(m => m.Billing.Address1, new {placeholder = "Address Line 1"})
-                    </div>
-                    <div class="@( Html.HasPropertyError(m => m.Billing.Address2) ? "error" : "")">
-                        @Html.TextBoxFor(m => m.Billing.Address2, new {placeholder = "Address Line 2"})
-                    </div>
-                    <div class="cl">
-                        <div class="@( Html.HasPropertyError(m => m.Billing.City) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Billing.City, new {placeholder = "City"})
-                        </div>
-
-                        <div class="@( Html.HasPropertyError(m => m.Billing.Zip) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Billing.Zip, new {placeholder = "Zip Code", maxlength = 5, @class = "numeric-input"})
-                        </div>
-                    </div>
-                    <div class="cl">
-                        <div class="@( Html.HasPropertyError(m => m.Billing.StateID) ? "error" : "")">
-                            <div class="select">
-                                <p data-placeholder="State"></p>
-                                <span></span>
-                                @Html.DropDownListFor(m => m.Billing.StateID, Model.States, string.Empty)
-                            </div>
-                        </div>
-
-                        <div class="@( Html.HasPropertyError(m => m.Billing.Phone) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Billing.Phone, new {placeholder = "Phone Number"})
-                        </div>
-                    </div>
-                </div>
-                <div class="form">
                     @RenderErrors(Html.NameFor(m => m.Shipping).ToString())
 
                     <h5>Shipping information</h5>
                     <div class="cl">
                         <div class="@( Html.HasPropertyError(m => m.Shipping.FirstName) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Shipping.FirstName, new {placeholder = "First Name"})
+                            @Html.TextBoxFor(m => m.Shipping.FirstName, new { placeholder = "First Name" })
                         </div>
 
                         <div class="@( Html.HasPropertyError(m => m.Shipping.LastName) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Shipping.LastName, new {placeholder = "Last Name"})
+                            @Html.TextBoxFor(m => m.Shipping.LastName, new { placeholder = "Last Name" })
                         </div>
                     </div>
                     <div class="@( Html.HasPropertyError(m => m.Shipping.Address1) ? "error" : "")">
-                        @Html.TextBoxFor(m => m.Shipping.Address1, new {placeholder = "Address Line 1"})
+                        @Html.TextBoxFor(m => m.Shipping.Address1, new { placeholder = "Address Line 1" })
                     </div>
                     <div class="@( Html.HasPropertyError(m => m.Shipping.Address2) ? "error" : "")">
-                        @Html.TextBoxFor(m => m.Shipping.Address2, new {placeholder = "Address Line 2"})
+                        @Html.TextBoxFor(m => m.Shipping.Address2, new { placeholder = "Address Line 2" })
                     </div>
                     <div class="cl">
                         <div class="@( Html.HasPropertyError(m => m.Shipping.City) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Shipping.City, new {placeholder = "City"})
+                            @Html.TextBoxFor(m => m.Shipping.City, new { placeholder = "City" })
                         </div>
 
                         <div class="@( Html.HasPropertyError(m => m.Shipping.Zip) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Shipping.Zip, new {placeholder = "Zip Code", maxlength = 5, @class = "numeric-input"})
+                            @Html.TextBoxFor(m => m.Shipping.Zip, new { placeholder = "Zip Code", maxlength = 5, @class = "numeric-input" })
                         </div>
                     </div>
                     <div class="cl">
@@ -160,10 +152,59 @@
                         </div>
 
                         <div class="@( Html.HasPropertyError(m => m.Shipping.Phone) ? "error" : "")">
-                            @Html.TextBoxFor(m => m.Shipping.Phone, new {placeholder = "Phone Number"})
+                            @Html.TextBoxFor(m => m.Shipping.Phone, new { placeholder = "Phone Number" })
                         </div>
                     </div>
                 </div>
+                <div class="form">
+
+                    @RenderErrors(Html.NameFor(m => m.Billing).ToString())
+
+                    
+                        <h5>Billing Information</h5> 
+                    <div>
+                        <input type="checkbox" id="sameAsShipping"> <span>same as shipping </span>
+                    </div>
+
+                        <div class="cl">
+                            <div class="@( Html.HasPropertyError(m => m.Billing.FirstName) ? "error" : "")">
+                                @Html.TextBoxFor(m => m.Billing.FirstName, new { placeholder = "First Name" })
+                            </div>
+
+                            <div class="@( Html.HasPropertyError(m => m.Billing.LastName) ? "error" : "")">
+                                @Html.TextBoxFor(m => m.Billing.LastName, new { placeholder = "Last Name" })
+                            </div>
+                        </div>
+                        <div class="@( Html.HasPropertyError(m => m.Billing.Address1) ? "error" : "")">
+                            @Html.TextBoxFor(m => m.Billing.Address1, new { placeholder = "Address Line 1" })
+                        </div>
+                        <div class="@( Html.HasPropertyError(m => m.Billing.Address2) ? "error" : "")">
+                            @Html.TextBoxFor(m => m.Billing.Address2, new { placeholder = "Address Line 2" })
+                        </div>
+                        <div class="cl">
+                            <div class="@( Html.HasPropertyError(m => m.Billing.City) ? "error" : "")">
+                                @Html.TextBoxFor(m => m.Billing.City, new { placeholder = "City" })
+                            </div>
+
+                            <div class="@( Html.HasPropertyError(m => m.Billing.Zip) ? "error" : "")">
+                                @Html.TextBoxFor(m => m.Billing.Zip, new { placeholder = "Zip Code", maxlength = 5, @class = "numeric-input" })
+                            </div>
+                        </div>
+                        <div class="cl">
+                            <div class="@( Html.HasPropertyError(m => m.Billing.StateID) ? "error" : "")">
+                                <div class="select">
+                                    <p data-placeholder="State"></p>
+                                    <span></span>
+                                    @Html.DropDownListFor(m => m.Billing.StateID, Model.States, string.Empty)
+                                </div>
+                            </div>
+
+                            <div class="@( Html.HasPropertyError(m => m.Billing.Phone) ? "error" : "")">
+                                @Html.TextBoxFor(m => m.Billing.Phone, new { placeholder = "Phone Number" })
+                            </div>
+                        </div>
+                    </div>
+                
             </div>
 
             <div class="form">

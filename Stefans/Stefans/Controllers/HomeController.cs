@@ -47,6 +47,8 @@ namespace Stefans.Controllers
             ViewBag.Topic = new Dictionary().ListDictionaries(1, 6);
             ViewBag.LicensedHairCareProfessional = new Dictionary().ListDictionaries(1, 5);
 
+            ViewBag.ScrollTo = "#contact";
+
             return View("Index", Contact);
         }
     }

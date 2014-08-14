@@ -232,6 +232,7 @@
     <Content Include="images\icons\instructions.png" />
     <Content Include="images\icons\nav\cart.png" />
     <Content Include="images\icons\nav\favorites.png" />
+    <Content Include="images\icons\nav\full_cart.png" />
     <Content Include="images\icons\plus.png" />
     <Content Include="images\icons\testimonials.png" />
     <Content Include="images\icons\nav\user.png" />
@@ -292,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\DictionaryController.cs" />
@@ -312,6 +314,7 @@
     <Compile Include="Models\ResetPasswordModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reusable\Attributes\AdminAuthenticationAttribute.cs" />
+    <Compile Include="Reusable\Attributes\CartStateAttribute.cs" />
     <Compile Include="Reusable\Attributes\SecureAccessAttribute.cs" />
     <Compile Include="Reusable\FrameworkExtensions\AppWebViewPage.cs" />
     <Compile Include="Reusable\FrameworkExtensions\BaseController.cs" />

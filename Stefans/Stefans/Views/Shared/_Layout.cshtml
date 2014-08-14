@@ -20,7 +20,19 @@
     <script src="~/Plugins/bxslider/jquery.bxslider.min.js"></script>
 
     @*<script src="js/js.js"></script>
-        <script src="js/js-main.js"></script>*@
+        <script src="js/js-main.js"></script>*@    
+    
+    @if(ViewBag.isCartFool == true)
+    {
+        <script>
+            $(function () {
+                var iamgeUrl = 'url(../images/icons/nav/full_cart.png)'
+                $(".basket").css('background-image', iamgeUrl);
+            });
+        </script>
+    }
+
+
 </head>
 <body>
     <div class="all">

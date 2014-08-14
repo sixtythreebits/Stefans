@@ -7,6 +7,7 @@
     var states = ViewBag.States as List<Dictionary>;
     var licensed = ViewBag.LicensedHairCareProfessional as List<Dictionary>;
     var topic = ViewBag.Topic as List<Dictionary>;
+    
 }
 
 @section JS {
@@ -23,6 +24,10 @@
 
             //add active class
             $(document).on("scroll", onScroll);
+
+                   
+
+            
         });
 
 
@@ -56,6 +61,18 @@
             });
         });
     </script>
+
+    @if(ViewBag.ScrollTo != null)
+    { 
+        <script>
+            $(function () {
+                $('html, body').animate({
+                    scrollTop: $("@ViewBag.ScrollTo").offset().top
+                }, 10);
+            });
+        </script>
+    }
+
 }
 
 <section id="home" class="slider home">
@@ -410,7 +427,7 @@
                     </div>
 
                 </div>
-                <input type="submit" value="submit" />
+                <input id="contactSubmit" type="submit" value="submit" />
             </div>
         </form>
     </div>
