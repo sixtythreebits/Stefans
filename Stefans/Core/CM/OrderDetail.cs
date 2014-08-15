@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Core.CM
@@ -8,10 +9,16 @@ namespace Core.CM
         #region Properties
 
         public int ID { get; set; }
-        public int Quantity { get; set; }
-        public decimal Price { get; set; }
+        public int? Quantity { get; set; }
+        public int? ProductID { get; set; }
+        public decimal? Price { get; set; }
         public string ProductCaption { get; set; }
         public string ImageName { get; set; }
+        public DateTime? OrderTime { get; set; }
+        public string OrderStatus { get; set; }
+        public string Email { get; set; }
+        public int? OrderID { get; set; }
+        
         #endregion
 
         #region Methods
@@ -23,7 +30,14 @@ namespace Core.CM
                 ID = d.OrderDetailID,
                 Quantity = d.Quantity,
                 Price = d.Price,
-                ProductCaption = d.ProductCaption
+                ProductCaption = d.ProductCaption,
+                ProductID = d.ProductID,
+                OrderTime = d.CRTime,
+                OrderStatus = d.OrderStatus,
+                Email = d.Email,
+                OrderID = d.OrderID,
+                
+
             }).ToList(), Logger: string.Format("GetList(OrderID = {0})", OrderID));
         }
 

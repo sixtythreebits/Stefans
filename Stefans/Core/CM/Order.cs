@@ -18,8 +18,9 @@ namespace Core.CM
 
         public decimal TotalPrice { get; set; }
         public string StatusCaption { get; set; }
-        public int ItemCount { get; set; }
-        public string UserEmail { get; set; }
+        public int? ItemCount { get; set; }
+        public int? ProductID { get; set; }
+        public string UserEmail { get; set; }        
         public OrderAddress Shipping { get; set; }
         public OrderAddress Billing { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
@@ -100,6 +101,8 @@ namespace Core.CM
                         return new Order()
                         {
                             ID = X.IntValueOf("order_id").Value,
+                            UserEmail = X.ValueOf("email"),
+                            StatusCaption = X.ValueOf("status_caption"),
                             TotalPrice = X.DecimalValueOf("total_price").Value,
                             OrderDetails = X.Children("order_details", "order_detail").Select(i => new OrderDetail
                                     {
@@ -107,6 +110,8 @@ namespace Core.CM
                                         Price = i.DecimalValueOf("price").Value,
                                         ProductCaption = i.ValueOf("product_name"),
                                         ImageName = i.ValueOf("image"),
+                                        ProductID = i.IntValueOf("product_id"),
+                                        OrderTime = i.DateTimeValueOf("crtime").Value
                                     }).ToList(),
                             OrderAdresses = X.Children("order_addresses", "order_address").Select(i => new OrderAddress
                                     {

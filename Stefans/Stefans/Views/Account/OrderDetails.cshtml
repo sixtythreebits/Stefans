@@ -11,24 +11,27 @@
         @foreach (var item in Model.OrderDetails as List<OrderDetail>)
         {            
             <li>
-            <span class="img"> 
-                <a href="#">               
-                @if (string.IsNullOrWhiteSpace(item.ImageName))
-                {
-                    <img src="~/images/0/prod-01.jpg" alt="" />
-                }
-                else
-                {
-                    <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, item.ImageName)" alt="" />
-                }                
+            <span class="img">                 
+                <a href="@Url.Action("Details", "Product", new { ID = item.ProductID })">
+                    
+                    @if (string.IsNullOrWhiteSpace(item.ImageName))
+                    {
+                        <img src="~/images/0/prod-01.jpg" alt="" />
+                    }
+                    else
+                    {
+                        <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, item.ImageName)" alt="" />
+                    }
+
+                </a>              
             </span>
             <div>
-                <a href="#"><h4>@item.ProductCaption</h4></a>
+                <a href="@Url.Action("Details", "Product", new { ID = item.ProductID })"><h4>@item.ProductCaption</h4></a>
                 <div>
                     <span>Quantity:</span>
-                    <input type="text" value="@item.Quantity " disabled />                   
+                    <input type="text" value="@item.Quantity" disabled />                   
                 </div>
-                <span>Price: @item.Price.ToString("C")</span>
+                <span>Price: @item.Price.Value.ToString("C")</span>
             </div>
         </li>
         }

@@ -190,16 +190,6 @@
       <Column Name="BillingState" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
     </ElementType>
   </Function>
-  <Function Name="dbo.List_OrderDetails" Method="List_OrderDetails" IsComposable="true">
-    <Parameter Name="OrderID" Parameter="orderID" Type="System.Int32" DbType="Int" />
-    <ElementType Name="List_OrderDetailsResult">
-      <Column Name="OrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
-      <Column Name="ProductCaption" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
   <Function Name="dbo.tsp_Dictionaries" Method="tsp_Dictionaries">
     <Parameter Name="iud" Type="System.Byte" DbType="TinyInt" />
     <Parameter Name="DictionaryID" Parameter="dictionaryID" Type="System.Int32" DbType="Int" Direction="InOut" />
@@ -237,5 +227,19 @@
     <Parameter Name="Message" Parameter="message" Type="System.String" DbType="NVarChar(MAX)" />
     <Parameter Name="IP" Parameter="iP" Type="System.String" DbType="NVarChar(50)" />
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.List_OrderDetails" Method="List_OrderDetails" IsComposable="true">
+    <Parameter Name="OrderID" Parameter="orderID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="List_OrderDetailsResult">
+      <Column Name="OrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="OrderID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Money NOT NULL" CanBeNull="false" />
+      <Column Name="ProductCaption" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CRTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="OrderStatus" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

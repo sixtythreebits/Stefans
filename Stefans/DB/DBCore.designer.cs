@@ -192,12 +192,6 @@ namespace DB
 			return this.CreateMethodCallQuery<List_OrdersResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_OrderDetails", IsComposable=true)]
-		public IQueryable<List_OrderDetailsResult> List_OrderDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderID", DbType="Int")] System.Nullable<int> orderID)
-		{
-			return this.CreateMethodCallQuery<List_OrderDetailsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orderID);
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tsp_Dictionaries")]
 		public int tsp_Dictionaries([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DictionaryID", DbType="Int")] ref System.Nullable<int> dictionaryID, [global::System.Data.Linq.Mapping.ParameterAttribute(DbType="UniqueIdentifier")] System.Nullable<System.Guid> uid, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Caption", DbType="NVarChar(200)")] string caption, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Caption1", DbType="NVarChar(200)")] string caption1, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="CodeVal", DbType="Int")] System.Nullable<int> codeVal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentID", DbType="Int")] System.Nullable<int> parentID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Level", DbType="SmallInt")] System.Nullable<short> level, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Hierarchy", DbType="VarChar(200)")] string hierarchy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="StringCode", DbType="NVarChar(100)")] string stringCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DictionaryCode", DbType="SmallInt")] System.Nullable<short> dictionaryCode, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DefVal", DbType="Bit")] System.Nullable<bool> defVal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Visible", DbType="Bit")] System.Nullable<bool> visible, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SortVal", DbType="Int")] System.Nullable<int> sortVal, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="DecimalVal", DbType="Money")] System.Nullable<decimal> decimalVal)
 		{
@@ -218,6 +212,12 @@ namespace DB
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iud, contactID, userID, stateID, firstName, lastName, email, phone, city, licensedHairCareProfessionalID, topicID, message, iP);
 			contactID = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_OrderDetails", IsComposable=true)]
+		public IQueryable<List_OrderDetailsResult> List_OrderDetails([global::System.Data.Linq.Mapping.ParameterAttribute(Name="OrderID", DbType="Int")] System.Nullable<int> orderID)
+		{
+			return this.CreateMethodCallQuery<List_OrderDetailsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), orderID);
 		}
 	}
 	
@@ -1478,6 +1478,14 @@ namespace DB
 		
 		private string _ProductCaption;
 		
+		private int _ProductID;
+		
+		private System.DateTime _CRTime;
+		
+		private string _OrderStatus;
+		
+		private string _Email;
+		
 		public List_OrderDetailsResult()
 		{
 		}
@@ -1558,6 +1566,70 @@ namespace DB
 				if ((this._ProductCaption != value))
 				{
 					this._ProductCaption = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this._ProductID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderStatus", DbType="NVarChar(200)")]
+		public string OrderStatus
+		{
+			get
+			{
+				return this._OrderStatus;
+			}
+			set
+			{
+				if ((this._OrderStatus != value))
+				{
+					this._OrderStatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
 				}
 			}
 		}
