@@ -11,8 +11,8 @@
         @foreach (var item in Model.OrderDetails as List<OrderDetail>)
         {            
             <li>
-            <span class="img">
-
+            <span class="img"> 
+                <a href="#">               
                 @if (string.IsNullOrWhiteSpace(item.ImageName))
                 {
                     <img src="~/images/0/prod-01.jpg" alt="" />
@@ -23,7 +23,7 @@
                 }                
             </span>
             <div>
-                <h4>@item.ProductCaption</h4>
+                <a href="#"><h4>@item.ProductCaption</h4></a>
                 <div>
                     <span>Quantity:</span>
                     <input type="text" value="@item.Quantity " disabled />                   

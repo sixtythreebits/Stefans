@@ -39,32 +39,91 @@
                 
                 if ($(this).is(":checked"))
                 {
-                    $("#Billing_FirstName").val($("#Shipping_FirstName").val());
-                    $("#Billing_LastName").val($("#Shipping_LastName").val());
-                    $("#Billing_Address1").val($("#Shipping_Address1").val());
-                    $("#Billing_Address2").val($("#Shipping_Address2").val());
-                    $("#Billing_City").val($("#Shipping_City").val());
-                    $("#Billing_Zip").val($("#Shipping_Zip").val());                    
-                    $("#Billing_Phone").val($("#Shipping_Phone").val());
+                    $("#Billing_FirstName").val($("#Shipping_FirstName").val()).prop('disabled', true);
+                    $("#Billing_LastName").val($("#Shipping_LastName").val()).prop('disabled', true);
+                    $("#Billing_Address1").val($("#Shipping_Address1").val()).prop('disabled', true);
+                    $("#Billing_Address2").val($("#Shipping_Address2").val()).prop('disabled', true);
+                    $("#Billing_City").val($("#Shipping_City").val()).prop('disabled', true);
+                    $("#Billing_Zip").val($("#Shipping_Zip").val()).prop('disabled', true);
+                    $("#Billing_Phone").val($("#Shipping_Phone").val()).prop('disabled', true);
 
                     var shippingOptionVal = $("#Shipping_StateID").val();
                     var shippingOptionText = $("#Shipping_StateID").parent().find("p").text();
                    
-                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected');
+                    $("#Billing_StateID").find('option').removeAttr("selected");
                     $("#Billing_StateID").parent().find("p").text(shippingOptionText);
-
+                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected');                    
+                    $("#Billing_StateID").prop('disabled', true);
                 }
                 else {
-                    $("#Billing_FirstName").val("");
-                    $("#Billing_LastName").val("");
-                    $("#Billing_Address1").val("");
-                    $("#Billing_Address2").val("");
-                    $("#Billing_City").val("");
-                    $("#Billing_Zip").val("");
-                    $("#Billing_StateID").val("");
-                    $("#Billing_Phone").val("");
+                    $("#Billing_FirstName").val("").prop('disabled', false);
+                    $("#Billing_LastName").val("").prop('disabled', false);
+                    $("#Billing_Address1").val("").prop('disabled', false);
+                    $("#Billing_Address2").val("").prop('disabled', false);
+                    $("#Billing_City").val("").prop('disabled', false);
+                    $("#Billing_Zip").val("").prop('disabled', false);
+                    $("#Billing_StateID").val("").prop('disabled', false);
+                    $("#Billing_Phone").val("").prop('disabled', false);
                     $("#Billing_StateID").parent().find("p").text("State");
+
+                    $("#Billing_StateID").prop('disabled', false);
                                        
+                }
+            });
+
+            $("#Shipping_FirstName").keyup(function () {
+                if( $("#sameAsShipping").is(":checked") )
+                {
+                    $("#Billing_FirstName").val($("#Shipping_FirstName").val())
+                }                
+            });
+            
+            $("#Shipping_LastName").keyup(function () {
+                if ($("#sameAsShipping").is(":checked")) {
+                    $("#Billing_LastName").val($("#Shipping_LastName").val())
+                }
+            });
+
+            $("#Shipping_Address1").keyup(function () {
+                if ($("#sameAsShipping").is(":checked")) {
+                    $("#Billing_Address1").val($("#Shipping_Address1").val())
+                }
+            });
+
+            $("#Shipping_Address2").keyup(function () {
+                if ($("#sameAsShipping").is(":checked")) {
+                    $("#Billing_Address2").val($("#Shipping_Address2").val())
+                }
+            });
+
+            $("#Shipping_City").keyup(function () {
+                if ($("#sameAsShipping").is(":checked")) {
+                    $("#Billing_City").val($("#Shipping_City").val())
+                }
+            });
+
+            $("#Shipping_Zip").keyup(function () {
+                if ($("#sameAsShipping").is(":checked")) {
+                    $("#Billing_Zip").val($("#Shipping_Zip").val())
+                }
+            });
+
+            $("#Shipping_Phone").keyup(function () {
+                if ($("#sameAsShipping").is(":checked")) {
+                    $("#Billing_Phone").val($("#Shipping_Phone").val())
+                }
+            });
+
+            $("#Shipping_StateID").change(function ()
+            {
+                if ($("#sameAsShipping").is(":checked")) {
+                                        
+                    var shippingOptionVal = $(this).find("option:selected").val();
+                    var shippingOptionText = $(this).find("option:selected").text();                                     
+                    
+                    $("#Billing_StateID").find('option').removeAttr("selected");
+                    $("#Billing_StateID").parent().find("p").text(shippingOptionText);
+                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected'); 
                 }
             });
             
@@ -83,18 +142,20 @@
             @foreach (var item in Model.CartItems)
             {
                 <li>
-                    <span class="img">
-                        @if (string.IsNullOrWhiteSpace(item.Product.Image))
-                        {
-                            <img src="~/images/0/prod-01.jpg" alt="" />
-                        }
-                        else
-                        {
-                            <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, item.Product.Image)" alt="" />
-                        }
-                    </span>
+                    <a href="@Url.Action("Details", "Product", new { item.Product.ID })">
+                        <span class="img">
+                            @if (string.IsNullOrWhiteSpace(item.Product.Image))
+                            {
+                                <img src="~/images/0/prod-01.jpg" alt="" />
+                            }
+                            else
+                            {
+                                <img src="@string.Concat(ConfigAssistant.ProductsFolderRelativePath, item.Product.Image)" alt="" />
+                            }
+                        </span>
+                    </a>
                     <div>
-                        <h4> @item.Product.Caption </h4>
+                        <a href="@Url.Action("Details", "Product", new { item.Product.ID })"><h4> @item.Product.Caption </h4></a>
                         <div>
                             <span>Quantity:</span>
                             <input id="quantity@(item.Product.ID)" type="text" value="@item.Quantity" maxlength="2" class="numeric-input" />
@@ -160,12 +221,16 @@
 
                     @RenderErrors(Html.NameFor(m => m.Billing).ToString())
 
-                    
+                        
+                    <div class="col2">
                         <h5>Billing Information</h5> 
-                    <div>
-                        <input type="checkbox" id="sameAsShipping"> <span>same as shipping </span>
+                                                  
+                        <div class="sameAsShippingWrapper">                             
+                            <input type="checkbox" id="sameAsShipping"> 
+                            <span> Same as shipping </span>
+                        </div>
                     </div>
-
+                    
                         <div class="cl">
                             <div class="@( Html.HasPropertyError(m => m.Billing.FirstName) ? "error" : "")">
                                 @Html.TextBoxFor(m => m.Billing.FirstName, new { placeholder = "First Name" })
