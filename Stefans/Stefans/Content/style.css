@@ -246,7 +246,7 @@ h6.title {
 }
 
     .form .error input,
-    .form .error textare,
+    .form .error textarea,
     .form .error .select,
     .form .error .select span {
         color: #960000 !important;

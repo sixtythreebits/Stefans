@@ -21,37 +21,50 @@
 {
     <div class="row">
         <div class="col-lg-12">
-            <h1> Order details </h1>
+            <h1> Order details </h1>            
         </div>
     </div>
 
     <div class="raw">
-        <div class="col-sm-6">
-            
-            <address>
-                <strong><u>Shipping Information.</u></strong><br>
-                Name: @Shipping.FirstName @Shipping.LastName<br>
-                Address1: @Shipping.Address1 <br>
-                Address2:  @Shipping.Address2<br>
-                City: @Shipping.City <br>
-                Zip Code: @Shipping.Zip <br>
-                State: @Shipping.State <br>
-                Phone: @Shipping.Phone <br>                
-            </address>
-            
+        <div class="col-lg-4">
+            <div style="width:250px" class="alert alert-info">
+                <address>
+                    <strong><u>Shipping Information.</u></strong><br>
+                    Name: @Shipping.FirstName @Shipping.LastName<br>
+                    Address1: @Shipping.Address1 <br>
+                    Address2:  @Shipping.Address2<br>
+                    City: @Shipping.City <br>
+                    Zip Code: @Shipping.Zip <br>
+                    State: @Shipping.State <br>
+                    Phone: @Shipping.Phone <br>
+                </address>
+            </div>
         </div>
 
-        <div class="col-sm-6">
-            <address>
-                <strong><u>Billing Information.</u></strong><br>
-                Name: @Billing.FirstName @Billing.LastName<br>
-                Address1: @Billing.Address1 <br>
-                Address2:  @Billing.Address2<br>
-                City: @Billing.City <br>
-                Zip Code: @Billing.Zip <br>
-                State: @Billing.State <br>
-                Phone: @Billing.Phone <br>
-            </address>
+        <div class="col-lg-4">
+            <div style="width:250px" class="alert alert-info">
+                <address>
+                    <strong><u>Billing Information.</u></strong><br>
+                    Name: @Billing.FirstName @Billing.LastName<br>
+                    Address1: @Billing.Address1 <br>
+                    Address2:  @Billing.Address2<br>
+                    City: @Billing.City <br>
+                    Zip Code: @Billing.Zip <br>
+                    State: @Billing.State <br>
+                    Phone: @Billing.Phone <br>
+                </address>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div style="width:300px; height:212px;" class="alert alert-info">
+                <address>
+                    <strong><u>Order Information.</u></strong><br>
+                    Order No: @ViewBag.OrderNo<br>
+                    Order Date:@ViewBag.OrderDate.ToString(@ViewBag.DateFormat)<br>
+                    Status:  @ViewBag.Status<br> 
+                    User Email: @ViewBag.Email<br>
+                </address>
+            </div>
         </div>
     </div>
 }
@@ -65,11 +78,11 @@
         settings.Width = Unit.Percentage(100);
 
         settings.Columns.Add("ProductCaption").Caption = "Product";
-        settings.Columns.Add("OrderTime").PropertiesEdit.DisplayFormatString = "U";
-        settings.Columns.Add("OrderStatus").Caption = "Status";
-        settings.Columns.Add("OrderID").Caption = "Order No";
+        settings.Columns.Add("OrderTime").PropertiesEdit.DisplayFormatString = @ViewBag.DateFormat;
+        //settings.Columns.Add("OrderStatus").Caption = "Status";
+        //settings.Columns.Add("OrderID").Caption = "Order No";
         settings.Columns.Add("Price").PropertiesEdit.DisplayFormatString = "C";
-        settings.Columns.Add("Email").Caption = "Email";
+        //settings.Columns.Add("Email").Caption = "Email";
         settings.Columns.Add("Quantity");
 
         settings.Columns.Add(column =>
@@ -89,15 +102,15 @@
             };
         settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Total").DisplayFormat = "c";
         settings.Settings.ShowFooter = true;
-        
-        
-        
+
+
+
         settings.KeyFieldName = "ID";
 
 
         settings.SettingsBehavior.AllowSelectByRowClick = true;
         settings.SettingsPager.Visible = true;
-        
+
     });
 }
 @grid.Bind(Model).GetHtml()
