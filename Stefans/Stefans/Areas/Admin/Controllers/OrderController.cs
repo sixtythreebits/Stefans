@@ -25,7 +25,7 @@ namespace Stefans.Areas.Admin.Controllers
 
             ViewBag.Shipping = OrderDetail.OrderAdresses.FirstOrDefault(x => x.CodeVal == 1);
             ViewBag.Billing = OrderDetail.OrderAdresses.FirstOrDefault(x => x.CodeVal == 2);
-
+            ViewBag.TotalPrice = OrderDetail.TotalPrice;
             if (Request.IsAjaxRequest())
             {
                 return PartialView(model);

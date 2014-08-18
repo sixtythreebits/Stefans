@@ -18,6 +18,7 @@ namespace Core.CM
         public string OrderStatus { get; set; }
         public string Email { get; set; }
         public int? OrderID { get; set; }
+
         
         #endregion
 

@@ -18,7 +18,7 @@ namespace Core.CM
 
         public decimal TotalPrice { get; set; }
         public string StatusCaption { get; set; }
-        public int? ItemCount { get; set; }
+        public int? ItemCount { get; set; }       
         public int? ProductID { get; set; }
         public string UserEmail { get; set; }        
         public OrderAddress Shipping { get; set; }
@@ -48,7 +48,7 @@ namespace Core.CM
                 TotalPrice = o.TotalPrice,
                 StatusCaption = o.Status,
                 CRTime = o.CRTime,
-                UserEmail = o.Email,
+                UserEmail = o.Email,                
                 Shipping = new OrderAddress
                 {
                     FirstName = o.ShippingFirstName,

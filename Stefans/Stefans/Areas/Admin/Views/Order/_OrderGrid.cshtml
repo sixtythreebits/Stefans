@@ -27,9 +27,10 @@
 
         settings.KeyFieldName = "ID";
 
-        settings.Columns.Add("UserEmail").Caption = "User Email";
-        
-        settings.Columns.Add("TotalPrice").PropertiesEdit.DisplayFormatString = "0.00";
+        //settings.Columns.Add("UserEmail").Caption = "User Email";
+        settings.Columns.Add("ID").Caption = "Order No";
+                
+        settings.Columns.Add("TotalPrice").PropertiesEdit.DisplayFormatString = "c";
 
         settings.Columns.Add(c =>
         {
@@ -39,8 +40,10 @@
             c.SortOrder = ColumnSortOrder.Descending;
             c.ColumnType = MVCxGridViewColumnType.DateEdit;
             c.Width = 200;
+            c.PropertiesEdit.DisplayFormatString = "U";
         });
-
+                
+        
         settings.Columns.Add("StatusCaption").Caption = "Status";
 
         settings.Columns.Add(c =>

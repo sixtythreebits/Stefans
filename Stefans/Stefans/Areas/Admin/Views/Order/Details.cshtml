@@ -12,6 +12,7 @@
 
 @{
     var Shipping = ViewBag.Shipping as OrderAddress;
+    var Billing = ViewBag.Billing as OrderAddress;
 }
 
 
@@ -22,10 +23,36 @@
         <div class="col-lg-12">
             <h1> Order details </h1>
         </div>
-    </div> 
-    
-    <div>
-       <p>@Shipping.Address1</p>
+    </div>
+
+    <div class="raw">
+        <div class="col-sm-6">
+            
+            <address>
+                <strong><u>Shipping Information.</u></strong><br>
+                Name: @Shipping.FirstName @Shipping.LastName<br>
+                Address1: @Shipping.Address1 <br>
+                Address2:  @Shipping.Address2<br>
+                City: @Shipping.City <br>
+                Zip Code: @Shipping.Zip <br>
+                State: @Shipping.State <br>
+                Phone: @Shipping.Phone <br>                
+            </address>
+            
+        </div>
+
+        <div class="col-sm-6">
+            <address>
+                <strong><u>Billing Information.</u></strong><br>
+                Name: @Billing.FirstName @Billing.LastName<br>
+                Address1: @Billing.Address1 <br>
+                Address2:  @Billing.Address2<br>
+                City: @Billing.City <br>
+                Zip Code: @Billing.Zip <br>
+                State: @Billing.State <br>
+                Phone: @Billing.Phone <br>
+            </address>
+        </div>
     </div>
 }
 
@@ -33,23 +60,44 @@
     var grid = Html.DevExpress().GridView(settings =>
     {
         settings.Name = "GridView";
-        settings.CallbackRouteValues = new { Controller = "Order", Action = "OrderGrid" };
+        settings.CallbackRouteValues = new { Controller = "Order", Action = "Details" };
 
         settings.Width = Unit.Percentage(100);
 
-        settings.Columns.Add("ProductCaption").Caption = "Product Caption";
-        settings.Columns.Add("OrderTime").Caption = "Date";
+        settings.Columns.Add("ProductCaption").Caption = "Product";
+        settings.Columns.Add("OrderTime").PropertiesEdit.DisplayFormatString = "U";
         settings.Columns.Add("OrderStatus").Caption = "Status";
         settings.Columns.Add("OrderID").Caption = "Order No";
-        settings.Columns.Add("Price").PropertiesEdit.DisplayFormatString = "0.00";
+        settings.Columns.Add("Price").PropertiesEdit.DisplayFormatString = "C";
         settings.Columns.Add("Email").Caption = "Email";
         settings.Columns.Add("Quantity");
-                
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Total";
+            column.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            column.PropertiesEdit.DisplayFormatString = "c";
+        });
+        settings.CustomUnboundColumnData = (sender, e) =>
+            {
+                if (e.Column.FieldName == "Total")
+                {
+                    decimal price = (decimal)e.GetListSourceFieldValue("Price");
+                    int quantity = Convert.ToInt32(e.GetListSourceFieldValue("Quantity"));
+                    e.Value = price * quantity;
+                }
+            };
+        settings.TotalSummary.Add(DevExpress.Data.SummaryItemType.Sum, "Total").DisplayFormat = "c";
+        settings.Settings.ShowFooter = true;
+        
+        
         
         settings.KeyFieldName = "ID";
-                
-        
+
+
         settings.SettingsBehavior.AllowSelectByRowClick = true;
+        settings.SettingsPager.Visible = true;
+        
     });
 }
 @grid.Bind(Model).GetHtml()
