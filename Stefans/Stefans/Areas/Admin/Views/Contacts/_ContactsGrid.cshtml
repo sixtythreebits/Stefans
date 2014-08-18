@@ -1,0 +1,41 @@
+﻿@using System.Web.UI.WebControls
+@using DevExpress.Data
+
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new { Controller = "Contacts", Action = "ContactsGrid" };
+
+        settings.Width = Unit.Percentage(100);
+
+        settings.KeyFieldName = "ID";
+                
+        settings.Columns.Add("ID");
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "CRTime";
+            c.Caption = "Time Created";                       
+            c.Width = 200;
+            c.PropertiesEdit.DisplayFormatString = @ViewBag.DateFormat;
+        });
+        settings.Columns.Add("Email").Caption = "Email";
+        settings.Columns.Add("FirstName").Caption = "First Name";
+        settings.Columns.Add("LastName").Caption = "Last Name";
+        settings.Columns.Add("Phone").Caption = "Phone";
+        settings.Columns.Add("City").Caption = "City";        
+        settings.Columns.Add("StateCaption").Caption = "State";
+        settings.Columns.Add("TopicCaption").Caption = "Topic";
+        settings.Columns.Add("LicensedHairCareProfessional").Caption = "Is Professional";
+        settings.Columns.Add(c =>
+        {
+            c.FieldName = "Message";
+            c.Caption = "Message";
+            c.Width = 200;
+        });
+
+        settings.SettingsPager.Visible = true;   
+        
+    });
+}
+@grid.Bind(Model).GetHtml()

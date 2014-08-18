@@ -21,7 +21,11 @@ namespace Core.CM
         /// <summary>
         /// StateID field of Contacts table
         /// </summary>
-        public int? StateID { get; set; }
+        public int? StateID { get; set; }    
+        /// <summary>
+        /// Caption of State in Dictionary
+        /// </summary>
+        public string StateCaption { get; set; }
         /// <summary>
         /// FirstName field of Contacts table
         /// </summary>
@@ -59,6 +63,10 @@ namespace Core.CM
         /// </summary>
         public int? TopicID { get; set; }
         /// <summary>
+        /// Caption of Topic in Dictionary
+        /// </summary>
+        public string TopicCaption { get; set; }
+        /// <summary>
         /// Message field of Contacts table
         /// </summary>
         [Required]
@@ -67,6 +75,7 @@ namespace Core.CM
         /// IP field of Contacts table
         /// </summary>
         public string IP { get; set; }
+        public string LicensedHairCareProfessional { get; set; }
         #endregion
 
         #region Methods
@@ -103,6 +112,27 @@ namespace Core.CM
                     )
                 
                 );
+        }
+
+        public List<Contact> ListContacts()
+        {
+            return TryToReturn(db => db.List_Contacts().Select(c => new Contact
+            {
+                ID = c.ContactID,
+                UserID = c.UserID,
+                StateID = c.StateID,
+                FirstName = c.FirstName,
+                LastName = c.LastName,
+                Email = c.Email,
+                Phone = c.Phone,
+                City = c.City,
+                Message = c.Message,
+                IP = c.IP,
+                CRTime = c.CRTime,
+                StateCaption = c.State,
+                TopicCaption = c.Topic,
+                LicensedHairCareProfessional = c.Licensed_Hair_Care_Professional
+            }).OrderByDescending(t => t.CRTime).ToList(), Logger: string.Format("GetList(UserID = {0})", UserID));
         }
         #endregion
     }

@@ -219,6 +219,12 @@ namespace DB
 		{
 			return this.CreateMethodCallQuery<List_OrdersResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_Contacts", IsComposable=true)]
+		public IQueryable<List_ContactsResult> List_Contacts()
+		{
+			return this.CreateMethodCallQuery<List_ContactsResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
 	}
 	
 	public partial class List_DictionariesResult
@@ -1630,6 +1636,302 @@ namespace DB
 				if ((this._BillingState != value))
 				{
 					this._BillingState = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_ContactsResult
+	{
+		
+		private int _ContactID;
+		
+		private System.Nullable<int> _UserID;
+		
+		private System.Nullable<int> _StateID;
+		
+		private string _FirstName;
+		
+		private string _LastName;
+		
+		private string _Email;
+		
+		private string _Phone;
+		
+		private string _City;
+		
+		private System.Nullable<int> _LicensedHairCareProfessionalID;
+		
+		private System.Nullable<int> _TopicID;
+		
+		private string _Message;
+		
+		private string _IP;
+		
+		private System.DateTime _CRTime;
+		
+		private string _State;
+		
+		private string _Topic;
+		
+		private string _Licensed_Hair_Care_Professional;
+		
+		public List_ContactsResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactID", DbType="Int NOT NULL")]
+		public int ContactID
+		{
+			get
+			{
+				return this._ContactID;
+			}
+			set
+			{
+				if ((this._ContactID != value))
+				{
+					this._ContactID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int")]
+		public System.Nullable<int> UserID
+		{
+			get
+			{
+				return this._UserID;
+			}
+			set
+			{
+				if ((this._UserID != value))
+				{
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StateID", DbType="Int")]
+		public System.Nullable<int> StateID
+		{
+			get
+			{
+				return this._StateID;
+			}
+			set
+			{
+				if ((this._StateID != value))
+				{
+					this._StateID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(100)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastName", DbType="NVarChar(100)")]
+		public string LastName
+		{
+			get
+			{
+				return this._LastName;
+			}
+			set
+			{
+				if ((this._LastName != value))
+				{
+					this._LastName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(100)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this._Email = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(50)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this._Phone = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_City", DbType="NVarChar(100)")]
+		public string City
+		{
+			get
+			{
+				return this._City;
+			}
+			set
+			{
+				if ((this._City != value))
+				{
+					this._City = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LicensedHairCareProfessionalID", DbType="Int")]
+		public System.Nullable<int> LicensedHairCareProfessionalID
+		{
+			get
+			{
+				return this._LicensedHairCareProfessionalID;
+			}
+			set
+			{
+				if ((this._LicensedHairCareProfessionalID != value))
+				{
+					this._LicensedHairCareProfessionalID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TopicID", DbType="Int")]
+		public System.Nullable<int> TopicID
+		{
+			get
+			{
+				return this._TopicID;
+			}
+			set
+			{
+				if ((this._TopicID != value))
+				{
+					this._TopicID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Message", DbType="NVarChar(MAX)")]
+		public string Message
+		{
+			get
+			{
+				return this._Message;
+			}
+			set
+			{
+				if ((this._Message != value))
+				{
+					this._Message = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IP", DbType="NVarChar(50)")]
+		public string IP
+		{
+			get
+			{
+				return this._IP;
+			}
+			set
+			{
+				if ((this._IP != value))
+				{
+					this._IP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_State", DbType="NVarChar(200)")]
+		public string State
+		{
+			get
+			{
+				return this._State;
+			}
+			set
+			{
+				if ((this._State != value))
+				{
+					this._State = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Topic", DbType="NVarChar(200)")]
+		public string Topic
+		{
+			get
+			{
+				return this._Topic;
+			}
+			set
+			{
+				if ((this._Topic != value))
+				{
+					this._Topic = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Licensed_Hair_Care_Professional", DbType="NVarChar(200)")]
+		public string Licensed_Hair_Care_Professional
+		{
+			get
+			{
+				return this._Licensed_Hair_Care_Professional;
+			}
+			set
+			{
+				if ((this._Licensed_Hair_Care_Professional != value))
+				{
+					this._Licensed_Hair_Care_Professional = value;
 				}
 			}
 		}
