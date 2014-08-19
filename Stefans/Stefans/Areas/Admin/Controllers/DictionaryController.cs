@@ -62,22 +62,7 @@ namespace Stefans.Areas.Admin.Controllers
 
             var model = new Dictionary().ListDictionaries(null, null, null);
             return PartialView("_DyctionaryTreeList", model);
-        }
-
-        //public ActionResult DictionaryDragDrop(Dictionary _Dictionary)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _Dictionary.TSP_Dictionaries(1, _Dictionary.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
-        //    }
-        //    else
-        //    {
-        //        ViewData["EditNodeError"] = "Please, correct all errors.";
-        //    }
-
-        //    var model = _Dictionary.ListDictionaries(null, null, null);
-        //    return PartialView("_DyctionaryTreeList", model);
-        //}
+        }        
 
         public ActionResult DictionaryDelete(Dictionary _Dictionary)
         {

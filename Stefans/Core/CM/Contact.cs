@@ -131,6 +131,7 @@ namespace Core.CM
                 CRTime = c.CRTime,
                 StateCaption = c.State,
                 TopicCaption = c.Topic,
+                TopicID = c.TopicID,
                 LicensedHairCareProfessional = c.Licensed_Hair_Care_Professional
             }).OrderByDescending(t => t.CRTime).ToList(), Logger: string.Format("GetList(UserID = {0})", UserID));
         }

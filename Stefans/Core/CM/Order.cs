@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Lib;
 using Core.Utilities;
+using System;
 
 namespace Core.CM
 {
@@ -20,7 +21,8 @@ namespace Core.CM
         public string StatusCaption { get; set; }
         public int? ItemCount { get; set; }       
         public int? ProductID { get; set; }
-        public string UserEmail { get; set; }        
+        public string UserEmail { get; set; }
+        public DateTime? OrderCRTime { get; set; }
         public OrderAddress Shipping { get; set; }
         public OrderAddress Billing { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
@@ -104,6 +106,7 @@ namespace Core.CM
                             UserEmail = X.ValueOf("email"),
                             StatusCaption = X.ValueOf("status_caption"),
                             TotalPrice = X.DecimalValueOf("total_price").Value,
+                            OrderCRTime = X.DateTimeValueOf("order_crtime").Value,
                             OrderDetails = X.Children("order_details", "order_detail").Select(i => new OrderDetail
                                     {
                                         Quantity = i.IntValueOf("quantity").Value,

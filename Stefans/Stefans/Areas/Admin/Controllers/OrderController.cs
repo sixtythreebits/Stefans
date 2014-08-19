@@ -22,23 +22,10 @@ namespace Stefans.Areas.Admin.Controllers
         }
 
         public ActionResult Details(int ID)
-        {
-            var model = new OrderDetail().GetList(ID);
-
-            var OrderDetail = new Order().GetSingleOrder(ID);
-
-            ViewBag.Shipping = OrderDetail.OrderAdresses.FirstOrDefault(x => x.CodeVal == 1);
-            ViewBag.Billing = OrderDetail.OrderAdresses.FirstOrDefault(x => x.CodeVal == 2);
-            //ViewBag.TotalPrice = OrderDetail.TotalPrice;
-            ViewBag.OrderDate = new Order().GetList().Where(x => x.ID == ID).Select(o => o.CRTime).FirstOrDefault();
-            ViewBag.OrderNo = OrderDetail.ID;
-            ViewBag.Status = OrderDetail.StatusCaption;
-            ViewBag.Email = OrderDetail.UserEmail;
-
+        {            
             ViewBag.DateFormat = Resources.LongDateFormat;
-
-           
-
+            var model = new Order().GetSingleOrder(ID);
+            
             if (Request.IsAjaxRequest())
             {
                 return PartialView(model);
