@@ -43,7 +43,7 @@ namespace Stefans.Areas.Admin.Controllers
 
                 if(Dictionary.IsError)
                 {
-                    ViewBag.EditNodeError = Resources.ErrorDBClientSide;
+                    ViewBag.EditNodeError = Resources.Fail;
                 }
             }
             else
@@ -63,7 +63,7 @@ namespace Stefans.Areas.Admin.Controllers
                 Dictionary.TSP_Dictionaries(1, _Dictionary.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
                 if (Dictionary.IsError)
                 {
-                    ViewBag.EditNodeError = Resources.ErrorDBClientSide;
+                    ViewBag.EditNodeError = Resources.Fail;
                 }
             }
             else
@@ -95,7 +95,7 @@ namespace Stefans.Areas.Admin.Controllers
 
                 if (Dictionary.IsError)
                 {
-                    ViewBag.EditNodeError = Resources.ErrorDBClientSide;
+                    ViewBag.EditNodeError = Resources.Fail;
                 }
 
             }

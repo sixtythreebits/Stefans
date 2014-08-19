@@ -156,7 +156,4 @@
   <data name="ShortDateFormat" xml:space="preserve">
     <value>MMM dd, yyyy</value>
   </data>
-  <data name="ErrorDBClientSide" xml:space="preserve">
-    <value>There was Error in Database, contact with administrator ! </value>
-  </data>
 </root>
