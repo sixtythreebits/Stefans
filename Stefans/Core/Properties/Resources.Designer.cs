@@ -88,6 +88,15 @@ namespace Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was Error in Database, contact with administrator ! .
+        /// </summary>
+        public static string ErrorDBClientSide {
+            get {
+                return ResourceManager.GetString("ErrorDBClientSide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User with this email is already registered!.
         /// </summary>
         public static string ErrorEmailDuplication {

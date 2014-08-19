@@ -78,3 +78,13 @@ GetList() --- Invalid column name 'Quantity'.
 
 ------------------------------------
 
+
+
+------------------------------------
+http://localhost:11793/Admin/Dictionary/DictionaryAdd - 8/19/2014 3:51:03 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\Dictionary.cs
+Line Number - 58
+TSP_Dictionaries(iud = 0, ID = 0, Caption = test, Caption1 = , CodeVal = ), ParentID = , Level = , Hierarchy = , StringCode = , DictionaryCode = 7, IsVisible = , SortVal =  --- Could not find stored procedure 'dbo.tsp_Dictionaries'.
+
+------------------------------------
+

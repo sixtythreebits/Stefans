@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Core.Properties;
 
 namespace Stefans.Areas.Admin.Controllers
 {
@@ -34,10 +35,16 @@ namespace Stefans.Areas.Admin.Controllers
         }
 
         public ActionResult DictionaryAdd(DictionaryModel _Dictionary)
-        {      
+        {
+            var Dictionary = new Dictionary();
             if (ModelState.IsValid)
             {
-                new Dictionary().TSP_Dictionaries(0, _Dictionary.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
+                Dictionary.TSP_Dictionaries(0, _Dictionary.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
+
+                if(Dictionary.IsError)
+                {
+                    ViewBag.EditNodeError = Resources.ErrorDBClientSide;
+                }
             }
             else
             {
@@ -50,9 +57,14 @@ namespace Stefans.Areas.Admin.Controllers
 
         public ActionResult DictionaryUpdate(DictionaryModel _Dictionary)
         {
+            var Dictionary = new Dictionary();
             if (ModelState.IsValid)
             {
-                new Dictionary().TSP_Dictionaries(1, _Dictionary.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
+                Dictionary.TSP_Dictionaries(1, _Dictionary.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
+                if (Dictionary.IsError)
+                {
+                    ViewBag.EditNodeError = Resources.ErrorDBClientSide;
+                }
             }
             else
             {
@@ -64,25 +76,31 @@ namespace Stefans.Areas.Admin.Controllers
             return PartialView("_DyctionaryTreeList", model);
         }        
 
-        public ActionResult DictionaryDelete(Dictionary _Dictionary)
+        public ActionResult DictionaryDelete(Dictionary Dictionary)
         {
-            if (_Dictionary.ID > 0)
+            if (Dictionary.ID > 0)
             {
-                List<Dictionary> Childs = _Dictionary.ListDictionaries(null, null, null).Where(d => d.ParentID == _Dictionary.ID).ToList();
+                List<Dictionary> Childs = Dictionary.ListDictionaries(null, null, null).Where(d => d.ParentID == Dictionary.ID).ToList();
 
                 if (Childs.Any())
                 {
                     // Delete all child nodes
                     foreach( var item in Childs as List<Dictionary>)
                     {
-                        _Dictionary.TSP_Dictionaries(2, item.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
+                        Dictionary.TSP_Dictionaries(2, item.ID, Dictionary.Caption, Dictionary.Caption1, Dictionary.CodeVal, Dictionary.ParentID, Dictionary.Level, Dictionary.Hierarchy, Dictionary.StringCode, Dictionary.DictionaryCode, Dictionary.IsVisible, Dictionary.SortVal);
                     }
                 }
 
-                _Dictionary.TSP_Dictionaries(2, _Dictionary.ID, _Dictionary.Caption, _Dictionary.Caption1, _Dictionary.CodeVal, _Dictionary.ParentID, _Dictionary.Level, _Dictionary.Hierarchy, _Dictionary.StringCode, _Dictionary.DictionaryCode, _Dictionary.IsVisible, _Dictionary.SortVal);
-            }
+                Dictionary.TSP_Dictionaries(2, Dictionary.ID, Dictionary.Caption, Dictionary.Caption1, Dictionary.CodeVal, Dictionary.ParentID, Dictionary.Level, Dictionary.Hierarchy, Dictionary.StringCode, Dictionary.DictionaryCode, Dictionary.IsVisible, Dictionary.SortVal);
 
-            var model = _Dictionary.ListDictionaries(null, null, null);
+                if (Dictionary.IsError)
+                {
+                    ViewBag.EditNodeError = Resources.ErrorDBClientSide;
+                }
+
+            }
+            
+            var model = Dictionary.ListDictionaries(null, null, null);
             return PartialView("_DyctionaryTreeList", model);
         }
 
