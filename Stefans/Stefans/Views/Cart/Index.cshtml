@@ -39,34 +39,42 @@
                 
                 if ($(this).is(":checked"))
                 {
-                    $("#Billing_FirstName").val($("#Shipping_FirstName").val()).prop('disabled', true);
-                    $("#Billing_LastName").val($("#Shipping_LastName").val()).prop('disabled', true);
-                    $("#Billing_Address1").val($("#Shipping_Address1").val()).prop('disabled', true);
-                    $("#Billing_Address2").val($("#Shipping_Address2").val()).prop('disabled', true);
-                    $("#Billing_City").val($("#Shipping_City").val()).prop('disabled', true);
-                    $("#Billing_Zip").val($("#Shipping_Zip").val()).prop('disabled', true);
-                    $("#Billing_Phone").val($("#Shipping_Phone").val()).prop('disabled', true);
+                    $("#Billing_FirstName").val($("#Shipping_FirstName").val()).prop('readonly', true);
+                    $("#Billing_LastName").val($("#Shipping_LastName").val()).prop('readonly', true);
+                    $("#Billing_Address1").val($("#Shipping_Address1").val()).prop('readonly', true);
+                    $("#Billing_Address2").val($("#Shipping_Address2").val()).prop('readonly', true);
+                    $("#Billing_City").val($("#Shipping_City").val()).prop('readonly', true);
+                    $("#Billing_Zip").val($("#Shipping_Zip").val()).prop('readonly', true);
+                    $("#Billing_Phone").val($("#Shipping_Phone").val()).prop('readonly', true);
 
                     var shippingOptionVal = $("#Shipping_StateID").val();
                     var shippingOptionText = $("#Shipping_StateID").parent().find("p").text();
                    
                     $("#Billing_StateID").find('option').removeAttr("selected");
                     $("#Billing_StateID").parent().find("p").text(shippingOptionText);
-                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected');                    
-                    $("#Billing_StateID").prop('disabled', true);
+                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected');
+                    
+                    $("#Billing_StateID option").each(function () {
+                        if ($(this).val() != shippingOptionVal)
+                        {
+                            $(this).prop('disabled', true);
+                        }
+                    });
+
+                    //$("#Billing_StateID").prop('disabled', false);
                 }
                 else {
-                    $("#Billing_FirstName").val("").prop('disabled', false);
-                    $("#Billing_LastName").val("").prop('disabled', false);
-                    $("#Billing_Address1").val("").prop('disabled', false);
-                    $("#Billing_Address2").val("").prop('disabled', false);
-                    $("#Billing_City").val("").prop('disabled', false);
-                    $("#Billing_Zip").val("").prop('disabled', false);
-                    $("#Billing_StateID").val("").prop('disabled', false);
-                    $("#Billing_Phone").val("").prop('disabled', false);
+                    $("#Billing_FirstName").val("").prop('readonly', false);
+                    $("#Billing_LastName").val("").prop('readonly', false);
+                    $("#Billing_Address1").val("").prop('readonly', false);
+                    $("#Billing_Address2").val("").prop('readonly', false);
+                    $("#Billing_City").val("").prop('readonly', false);
+                    $("#Billing_Zip").val("").prop('readonly', false);
+                    $("#Billing_StateID").val("").prop('readonly', false);
+                    $("#Billing_Phone").val("").prop('readonly', false);
                     $("#Billing_StateID").parent().find("p").text("State");
 
-                    $("#Billing_StateID").prop('disabled', false);
+                    $("#Billing_StateID").prop('readonly', false);
                                        
                 }
             });
@@ -123,7 +131,14 @@
                     
                     $("#Billing_StateID").find('option').removeAttr("selected");
                     $("#Billing_StateID").parent().find("p").text(shippingOptionText);
-                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected'); 
+                    $("#Billing_StateID option[value=" + shippingOptionVal + "]").attr('selected', 'selected').attr('disabled', false);
+
+
+                    $("#Billing_StateID option").each(function () {
+                        if ($(this).val() != shippingOptionVal) {
+                            $(this).prop('disabled', true);
+                        }
+                    });
                 }
             });
             
@@ -174,6 +189,7 @@
         </div>
 
         <form action="@Url.Action("Checkout", "Cart")" method="POST">
+                        
             <div class="col2 cl">
                 <div class="form">
                     @RenderErrors(Html.NameFor(m => m.Shipping).ToString())
