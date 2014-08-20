@@ -11,11 +11,6 @@
     @Html.DevExpress().GetScripts(new Script { ExtensionSuite = ExtensionSuite.GridView })
 }
 
-@{
-    var Shipping = Model.OrderAdresses.FirstOrDefault(x => x.CodeVal == 1);
-    var Billing = Model.OrderAdresses.FirstOrDefault(x => x.CodeVal == 2);
-}
-
 
 @if (Layout != null)
 {
@@ -27,42 +22,42 @@
 
     <div class="raw">
         <div class="col-lg-4">
-            <div style="width:315px; height:212px;" class="alert alert-info">
+            <div style="width:100%; height:212px;" class="alert alert-info">
                 <address>
                     <strong><u>Order Information.</u></strong><br>
-                    Order No: @Model.ID<br>
-                    Order Date: @Model.OrderCRTime.Value.ToString(@ViewBag.DateFormat)<br>
-                    Status:  @Model.StatusCaption<br>
-                    User Email: @Model.UserEmail<br>
+                    Order No: <strong>@Model.ID</strong><br>
+                    Order Date: <strong>@Model.OrderCRTime.Value.ToString(@ViewBag.DateFormat)</strong><br>
+                    Status:  <strong>@Model.StatusCaption</strong><br>
+                    User Email: <strong>@Model.UserEmail</strong><br>
                 </address>
             </div>
         </div>
         <div class="col-lg-4">
-            <div style="width:315px" class="alert alert-info">
+            <div style="width:100%" class="alert alert-info">
                 <address>
                     <strong><u>Shipping Information.</u></strong><br>
-                    Name: @Shipping.FirstName @Shipping.LastName<br>
-                    Address1: @Shipping.Address1 <br>
-                    Address2: @Shipping.Address2<br>
-                    City: @Shipping.City <br>
-                    Zip Code: @Shipping.Zip <br>
-                    State: @Shipping.State <br>
-                    Phone: @Shipping.Phone <br>
+                    Name: <strong>@Model.Shipping.FirstName @Model.Shipping.LastName</strong><br>
+                    Address1: <strong>@Model.Shipping.Address1</strong> <br>
+                    Address2: <strong>@Model.Shipping.Address2</strong><br>
+                    City: <strong>@Model.Shipping.City </strong><br>
+                    Zip Code: <strong>@Model.Shipping.Zip</strong> <br>
+                    State: <strong>@Model.Shipping.State</strong> <br>
+                    Phone: <strong>@Model.Shipping.Phone </strong><br>
                 </address>
             </div>
         </div>
 
         <div class="col-lg-4">
-            <div style="width:315px" class="alert alert-info">
+            <div style="width:100%" class="alert alert-info">
                 <address>
                     <strong><u>Billing Information.</u></strong><br>
-                    Name: @Billing.FirstName @Billing.LastName<br>
-                    Address1: @Billing.Address1 <br>
-                    Address2:  @Billing.Address2<br>
-                    City: @Billing.City <br>
-                    Zip Code: @Billing.Zip <br>
-                    State: @Billing.State <br>
-                    Phone: @Billing.Phone <br>
+                    Name: <strong>@Model.Billing.FirstName @Model.Billing.LastName</strong><br>
+                    Address1: <strong>@Model.Billing.Address1</strong> <br>
+                    Address2: <strong> @Model.Billing.Address2</strong><br>
+                    City: <strong>@Model.Billing.City</strong> <br>
+                    Zip Code: <strong>@Model.Billing.Zip</strong> <br>
+                    State: <strong>@Model.Billing.State</strong> <br>
+                    Phone: <strong>@Model.Billing.Phone </strong><br>
                 </address>
             </div>
         </div>        

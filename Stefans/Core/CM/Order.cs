@@ -19,7 +19,7 @@ namespace Core.CM
 
         public decimal TotalPrice { get; set; }
         public string StatusCaption { get; set; }
-        public int? ItemCount { get; set; }       
+        public int? ItemCount { get; set; }
         public int? ProductID { get; set; }
         public string UserEmail { get; set; }
         public DateTime? OrderCRTime { get; set; }
@@ -50,7 +50,7 @@ namespace Core.CM
                 TotalPrice = o.TotalPrice,
                 StatusCaption = o.Status,
                 CRTime = o.CRTime,
-                UserEmail = o.Email,                
+                UserEmail = o.Email,
                 Shipping = new OrderAddress
                 {
                     FirstName = o.ShippingFirstName,
@@ -90,33 +90,37 @@ namespace Core.CM
                                        }).ToList(), Logger: string.Format("GetUserOrders(UserID = {0})", UserID));
         }
 
-        public Order GetSingleOrder( int OrderID )
+        
+
+        public Order GetSingleOrder(int OrderID)
         {
             return TryToReturn(db =>
-                {                
-                   XElement X = db.GetSingle_Order(OrderID);
-                
-                    if (X != null)
-                    {
-                        X = X.Element("order");
+            {
+                XElement X = db.GetSingle_Order(OrderID);
 
-                        return new Order()
+                if (X != null)
+                {
+                    X = X.Element("order");
+
+                    return new Order()
+                    {
+                        ID = X.IntValueOf("order_id").Value,
+                        UserEmail = X.ValueOf("email"),
+                        StatusCaption = X.ValueOf("status_caption"),
+                        TotalPrice = X.DecimalValueOf("total_price").Value,
+                        OrderCRTime = X.DateTimeValueOf("order_crtime").Value,
+                        OrderDetails = X.Children("order_details", "order_detail").Select(i => new OrderDetail
                         {
-                            ID = X.IntValueOf("order_id").Value,
-                            UserEmail = X.ValueOf("email"),
-                            StatusCaption = X.ValueOf("status_caption"),
-                            TotalPrice = X.DecimalValueOf("total_price").Value,
-                            OrderCRTime = X.DateTimeValueOf("order_crtime").Value,
-                            OrderDetails = X.Children("order_details", "order_detail").Select(i => new OrderDetail
-                                    {
-                                        Quantity = i.IntValueOf("quantity").Value,
-                                        Price = i.DecimalValueOf("price").Value,
-                                        ProductCaption = i.ValueOf("product_name"),
-                                        ImageName = i.ValueOf("image"),
-                                        ProductID = i.IntValueOf("product_id"),
-                                        OrderTime = i.DateTimeValueOf("crtime").Value
-                                    }).ToList(),
-                            OrderAdresses = X.Children("order_addresses", "order_address").Select(i => new OrderAddress
+                            Quantity = i.IntValueOf("quantity").Value,
+                            Price = i.DecimalValueOf("price").Value,
+                            ProductCaption = i.ValueOf("product_name"),
+                            ImageName = i.ValueOf("image"),
+                            ProductID = i.IntValueOf("product_id"),
+                            OrderTime = i.DateTimeValueOf("crtime").Value
+                        }).ToList(),
+                        Shipping = X.Children("order_addresses", "order_address")
+                                    .Where(x => x.IntValueOf("code_val") == 1)
+                                    .Select(i => new OrderAddress
                                     {
                                         AddressType = i.ValueOf("address_type"),
                                         CodeVal = i.IntValueOf("code_val").Value,
@@ -126,16 +130,31 @@ namespace Core.CM
                                         Address2 = i.ValueOf("address2"),
                                         Zip = i.ValueOf("zip"),
                                         City = i.ValueOf("city"),
-                                        Phone = i.ValueOf("phone"), 
+                                        Phone = i.ValueOf("phone"),
                                         State = i.ValueOf("state")
-                                    }).ToList(),
-                        };                    
-                    }
-                    return null;
+                                    }).FirstOrDefault(),
+                        Billing = X.Children("order_addresses", "order_address")
+                                    .Where(x => x.IntValueOf("code_val") == 2)
+                                    .Select(i => new OrderAddress
+                                    {
+                                        AddressType = i.ValueOf("address_type"),
+                                        CodeVal = i.IntValueOf("code_val").Value,
+                                        FirstName = i.ValueOf("first_name"),
+                                        LastName = i.ValueOf("last_name"),
+                                        Address1 = i.ValueOf("address1"),
+                                        Address2 = i.ValueOf("address2"),
+                                        Zip = i.ValueOf("zip"),
+                                        City = i.ValueOf("city"),
+                                        Phone = i.ValueOf("phone"),
+                                        State = i.ValueOf("state")
+                                    }).FirstOrDefault()
+                    };
+                }
+                return null;
 
-                }, Logger: string.Format("GetSingleOrder: ID = {0}", OrderID));
+            }, Logger: string.Format("GetSingleOrder: ID = {0}", OrderID));
         }
-
+                
         #endregion
     }
 }

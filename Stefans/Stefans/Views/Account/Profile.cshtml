@@ -4,7 +4,7 @@
     var states = ViewBag.States as List<Dictionary>;
     var orders = ViewBag.Orders as List<Order>;
     var accountFormValid = ViewBag.AccountFormValid != false;
-    var passwordFormValid = ViewBag.PasswordFormValid != false;
+    var passwordFormValid = ViewBag.PasswordFormValid != false;    
 }
 
 @Html.Partial("_SuccessError")
@@ -110,7 +110,7 @@
                 @foreach (var item in orders)
                 {
                     <li>
-                        <span> @item.CRTime.Value.ToString("MMM dd, yyyy") </span>
+                        <span> @item.CRTime.Value.ToString(ViewBag.DateFormat) </span>
                         <span> <a href="@Url.Action("OrderDetails", "Account", new { ID = item.ID})"> @item.IDString </a></span>
                         
                         <span> @item.ItemCount </span>

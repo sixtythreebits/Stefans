@@ -18,7 +18,7 @@
     
     public static HelperResult RenderNumericTextBox<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression)
     {
-        return RenderInput(Html, Caption, PropExpression, Html.TextBoxFor(PropExpression, new { @class = "form-control", type = "number", step = "any" }));
+        return RenderInput(Html, Caption, PropExpression, Html.TextBoxFor(PropExpression, new { @class = "form-control", type = "number", step = "any", min = "0", max="100000" }));
     }
 
     public static HelperResult RenderTextArea<TModel, TProperty>(HtmlHelper<TModel> Html, string Caption, Expression<Func<TModel, TProperty>> PropExpression)

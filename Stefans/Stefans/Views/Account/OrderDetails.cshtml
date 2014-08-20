@@ -35,43 +35,13 @@
             </div>
         </li>
         }
+        
+    </ul>    
 
-        @*<li>
-            <span class="img">
-                <img src="images/0/prod-01.jpg" alt="" />
-            </span>
-            <div>
-                <h4>strawberry keratin</h4>
-                <div>
-                    <span>Quantity:</span>
-                    <input type="text" />                   
-                </div>
-                <span>Price: $22.50</span>
-            </div>
-        </li>    
-        <li>
-            <span class="img">
-                <img src="images/0/prod-01.jpg" alt="" />
-            </span>
-            <div>
-                <h4>strawberry keratin</h4>
-                <div>
-                    <span>Quantity:</span>
-                    <input type="text" />
-                </div>
-                <span>Price: $22.50</span>
-            </div>
-        </li>*@    
-    </ul>
-    @*<div class="subtotal">
-        <strong>Subtotal:</strong>
-        <b> @Model.TotalPrice.ToString("C")</b>        
-    </div>*@
-
-    @{
+    @*@{
         var Shipping = Model.OrderAdresses.FirstOrDefault(x => x.CodeVal == 1);
         var Billing = Model.OrderAdresses.FirstOrDefault(x => x.CodeVal == 2);
-    }
+    }*@
 
     <div class="col2 cl">
         <div class="form">
@@ -80,35 +50,35 @@
             <h5>Billing Information</h5>
             <div class="cl">
                 <div>
-                    <input type="text" placeholder="First Name" disabled  value="@Billing.FirstName"/>
+                    <input type="text" placeholder="First Name" disabled  value="@Model.Billing.FirstName"/>
                 </div>
 
                 <div>
-                    <input type="text" placeholder="Last Name" disabled value="@Billing.LastName" />
+                    <input type="text" placeholder="Last Name" disabled value="@Model.Billing.LastName" />
                 </div>
             </div>
             <div>
-                <input type="text" placeholder="Address Line 1" disabled value="@Billing.Address1" />
+                <input type="text" placeholder="Address Line 1" disabled value="@Model.Billing.Address1" />
             </div>
             <div>
-                <input type="text" placeholder="Address Line 2" disabled value="@Billing.Address2" />
+                <input type="text" placeholder="Address Line 2" disabled value="@Model.Billing.Address2" />
             </div>
             <div class="cl">
                 <div>
-                    <input type="text" placeholder="City" disabled value="@Billing.City" />
+                    <input type="text" placeholder="City" disabled value="@Model.Billing.City" />
                 </div>
 
                 <div>
-                    <input type="text" placeholder="Zip Code" disabled value="@Billing.Zip" />
+                    <input type="text" placeholder="Zip Code" disabled value="@Model.Billing.Zip" />
                 </div>
             </div>
             <div class="cl">
                 <div>
-                    <input type="text" placeholder="Phone Number" disabled value="@Billing.State" />
+                    <input type="text" placeholder="Phone Number" disabled value="@Model.Billing.State" />
                 </div>
 
                 <div>
-                    <input type="text" placeholder="Phone Number" disabled value="@Billing.Phone" />
+                    <input type="text" placeholder="Phone Number" disabled value="@Model.Billing.Phone" />
                 </div>
             </div>
         </div>
@@ -118,35 +88,35 @@
             <h5>Shipping information</h5>
             <div class="cl">
                 <div>
-                    <input type="text" placeholder="First Name" disabled value="@Shipping.FirstName" />
+                    <input type="text" placeholder="First Name" disabled value="@Model.Shipping.FirstName" />
                 </div>
 
                 <div>
-                    <input type="text" placeholder="Last Name" disabled value="@Shipping.LastName" />
+                    <input type="text" placeholder="Last Name" disabled value="@Model.Shipping.LastName" />
                 </div>
             </div>
             <div>
-                <input type="text" placeholder="Address Line 1" disabled value="@Shipping.Address1" />
+                <input type="text" placeholder="Address Line 1" disabled value="@Model.Shipping.Address1" />
             </div>
             <div>
-                <input type="text" placeholder="Address Line 2" disabled value="@Shipping.Address2" />
+                <input type="text" placeholder="Address Line 2" disabled value="@Model.Shipping.Address2" />
             </div>
             <div class="cl">
                 <div>
-                    <input type="text" placeholder="City" disabled value="@Shipping.City" />
+                    <input type="text" placeholder="City" disabled value="@Model.Shipping.City" />
                 </div>
 
                 <div>
-                    <input type="text" placeholder="Zip Code" disabled value="@Shipping.Zip" />
+                    <input type="text" placeholder="Zip Code" disabled value="@Model.Shipping.Zip" />
                 </div>
             </div>
             <div class="cl">
                 <div>
-                    <input type="text" placeholder="Phone Number" disabled value="@Shipping.State" />
+                    <input type="text" placeholder="Phone Number" disabled value="@Model.Shipping.State" />
                 </div>
 
                 <div>
-                    <input type="text" placeholder="Phone Number" disabled value="@Shipping.Phone" />
+                    <input type="text" placeholder="Phone Number" disabled value="@Model.Shipping.Phone" />
                 </div>
             </div>
         </div>
@@ -154,19 +124,7 @@
 
     
     <div class="bot">
-        <div>
-            @*<span class="cl">
-                <span>Subtotal:</span>
-                <span>@Model.TotalPrice.ToString("C")</span>
-            </span>*@
-            @*<span class="cl">
-                <span>Shipping:</span>
-                <span>$11.50</span>
-            </span>
-            <span class="cl">
-                <span>Tax:</span>
-                <span>$11.50</span>
-            </span>*@
+        <div>            
             <p>
                 <span class="cl">
                     <span>Grand Total:</span>
@@ -175,8 +133,5 @@
             </p>
         </div>
     </div>
-
-    @*<div class="form">
-        <input type="submit" value="purchase" />
-    </div>*@
+       
 </section>

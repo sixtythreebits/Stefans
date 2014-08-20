@@ -267,6 +267,7 @@ namespace Stefans.Controllers
             ViewBag.Orders = new Order().GetUserOrders(User.ID);
             ViewBag.PasswordFormValid = PasswordFormValid;
             ViewBag.AccountFormValid = AccountFormValid;
+            ViewBag.DateFormat = Resources.ShortDateFormat;
         }
 
         public ActionResult OrderDetails(int ID)
