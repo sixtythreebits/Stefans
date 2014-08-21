@@ -100,11 +100,15 @@ namespace Stefans.Areas.Admin.Controllers
             return View("CreateEdit", Model);
         }
 
-        public ActionResult Edit(int ID)
+        public ActionResult Edit(int? ID)
         {
-            if (ID > 0)
+            if (ID == null)
             {
-                var model = new Product().GetSingle(ID);
+                return RedirectToAction("Index", "Product");
+            }
+            else if (ID > 0)
+            {
+                var model = new Product().GetSingle(ID.Value);
                 if (model != null)
                 {
                     ViewBag.Ingredients = new Dictionary().ListDictionaries(1, 2);
@@ -164,12 +168,16 @@ namespace Stefans.Areas.Admin.Controllers
             return View("CreateEditTestimonial");
         }
 
-        public ActionResult EditTestimonial(int ID)
+        public ActionResult EditTestimonial(int? ID)
         {
-            if (ID > 0)
+            if(ID == null)
+            {
+                return RedirectToAction("Testimonials", "Product");
+            }
+            else if (ID > 0)
             {
                 var repo = new ProductTestimonial();
-                var model = repo.GetSingle(ID);
+                var model = repo.GetSingle(ID.Value);
                 if (model != null)
                 {
                     ViewBag.Products = new Product().GetList();

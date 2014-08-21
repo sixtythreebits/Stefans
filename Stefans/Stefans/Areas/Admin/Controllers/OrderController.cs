@@ -21,16 +21,28 @@ namespace Stefans.Areas.Admin.Controllers
             return PartialView("_OrderGrid", model);
         }
 
-        public ActionResult Details(int ID)
-        {            
-            ViewBag.DateFormat = Resources.LongDateFormat;
-            var model = new Order().GetSingleOrder(ID);
-            
-            if (Request.IsAjaxRequest())
+        public ActionResult Details(int? ID)
+        {
+            if (ID == null)
             {
-                return PartialView(model);
+                return RedirectToAction("Index", "Order");
             }
-            return View(model);
+            else if (ID > 0)
+            {
+                ViewBag.DateFormat = Resources.LongDateFormat;
+                var model = new Order().GetSingleOrder(ID.Value);
+
+                if (model != null)
+                {
+                    if (Request.IsAjaxRequest())
+                    {
+                        return PartialView(model);
+                    }
+                    return View(model);
+                }
+            }
+
+            return HttpNotFound();
         }
     }
 }

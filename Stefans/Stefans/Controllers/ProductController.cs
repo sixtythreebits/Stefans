@@ -8,11 +8,15 @@ namespace Stefans.Controllers
 {
     public class ProductController : BaseController
     {
-        public ActionResult Details(int ID)
+        public ActionResult Details(int? ID)
         {
-            if (ID > 0)
+            if(ID == null)
             {
-                var model = new Product().GetSingle(ID, true);
+                return Redirect( Url.Action("Index", "Home") + "#products");                    
+            }
+            else if (ID > 0)
+            {
+                var model = new Product().GetSingle(ID.Value, true);
                 if (model != null)
                 {
                     return View(model);
