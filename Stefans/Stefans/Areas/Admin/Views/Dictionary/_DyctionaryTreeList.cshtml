@@ -43,13 +43,13 @@
 
                 settings.SettingsEditing.AddNewNodeRouteValues = new { Controller = "Dictionary", Action = "DictionaryAdd" };
                 settings.SettingsEditing.UpdateNodeRouteValues = new { Controller = "Dictionary", Action = "DictionaryUpdate" };
-                //settings.SettingsEditing.NodeDragDropRouteValues = new { Controller = "Dictionary", Action = "DictionaryDragDrop" };
+                
                 settings.SettingsEditing.DeleteNodeRouteValues = new { Controller = "Dictionary", Action = "DictionaryDelete" };
                 settings.SettingsEditing.ConfirmDelete = true;
 
                 settings.SettingsEditing.ShowModelErrorsForEditors = true;
 
-                //settings.ClientSideEvents.FocusedNodeChanged = "OnTreeListFocusedNodeChanged"; 
+               
                 settings.SettingsBehavior.AllowFocusedNode = true;
                 settings.Styles.FocusedNode.BackColor = System.Drawing.Color.LightBlue;        
                          
@@ -57,11 +57,10 @@
                 settings.PreRender = (sender, e) =>
                 {
                     MVCxTreeList treeListControl = (MVCxTreeList)sender;
-                    treeListControl.ExpandToLevel(2);
-                    //treeListControl.StartEdit("2");
+                    treeListControl.ExpandToLevel(2);                    
                 };
 
-                //settings.Columns.Add("ID");
+                
                 settings.Columns.Add("Caption");
                 settings.Columns.Add(column =>
                 {
@@ -81,8 +80,7 @@
                     spinEditProperties.MaxValue = 10000;
                     column.Width = 70;
                 });
-                //settings.Columns.Add("ParentID");
-                //settings.Columns.Add("DictionaryCode");
+                
                 settings.Columns.Add(column =>
                 {
                     column.FieldName = "DictionaryCode";

@@ -28,8 +28,7 @@
         settings.Width = Unit.Percentage(100);
 
         settings.KeyFieldName = "ID";
-
-        //settings.Columns.Add("UserEmail").Caption = "User Email";
+                
         settings.Columns.Add("ID").Caption = "Order No";
                 
         settings.Columns.Add("TotalPrice").PropertiesEdit.DisplayFormatString = "c";
@@ -42,12 +41,9 @@
             c.SortOrder = ColumnSortOrder.Descending;
             c.ColumnType = MVCxGridViewColumnType.DateEdit;
             c.Width = 200;
-            c.PropertiesEdit.DisplayFormatString = @ViewBag.DateFormat; 
-            //c.EditFormSettings.Visible = DefaultBoolean.False;                  
+            c.PropertiesEdit.DisplayFormatString = @ViewBag.DateFormat;                               
         });
-                
-        
-        //settings.Columns.Add("StatusCaption").Caption = "Status";
+                        
         settings.Columns.Add(column =>
         {
             column.FieldName = "StatusID";
@@ -93,47 +89,29 @@
         settings.CellEditorInitialize = (sender, e) =>
         {
             if (e.Column.FieldName == "ID")
-            {
-                //e.Editor.ReadOnly = true;
-                //e.Editor.BackColor = System.Drawing.Color.Red;  
+            {                
                 e.Editor.ClientVisible = false;              
             }
             if (e.Column.FieldName == "TotalPrice")
-            {
-                //e.Editor.ReadOnly = true;
-                //e.Editor.BackColor = System.Drawing.Color.Red;  
+            {                
                 e.Editor.ClientVisible = false;              
             }
             if (e.Column.FieldName == "CRTime")
-            {
-                //e.Editor.ReadOnly = true;
-                //e.Editor.BackColor = System.Drawing.Color.Red;
+            {                
                 e.Editor.ClientVisible = false;
             }
             if (e.Column.Caption == "Shipping")
-            {
-                //MVCxGridView g = sender as MVCxGridView;
+            {                
                 e.Editor.ClientVisible = false;
             }
             if (e.Column.Caption == "Billing")
-            {
-                //MVCxGridView g = sender as MVCxGridView;
+            {                
                 e.Editor.ClientVisible = false;
             }
             if (e.Column.Caption == "Details")
-            {
-                //MVCxGridView g = sender as MVCxGridView;
+            {                
                 e.Editor.ClientVisible = false;
-            }                     
-            //if (e.Column.FieldName == "CRTime")
-            //{
-            //    MVCxGridView g = sender as MVCxGridView;
-            //    if (g.IsNewRowEditing)
-            //        e.Editor.ReadOnly = true;
-            //    else
-            //        e.Editor.ReadOnly = true;
-
-            //}     
+            }
         };
 
         settings.Settings.ShowFooter = true;

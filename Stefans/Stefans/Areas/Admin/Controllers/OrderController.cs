@@ -56,8 +56,7 @@ namespace Stefans.Areas.Admin.Controllers
             {
                 ViewData["EditError"] = Resources.Fail;
             }
-
-            //return RedirectToAction("Index", "Order");
+                       
             var model = new Order().GetList();
             ViewBag.DateFormat = Resources.LongDateFormat;
             ViewBag.Statuses = new Dictionary().ListDictionaries(1, 4);

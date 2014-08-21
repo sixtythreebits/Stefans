@@ -177,7 +177,7 @@ namespace Stefans.Controllers
                 {
                     SuccessMessage = Resources.Success;
                 }
-                //return RedirectToAction("Details", "Product", new { ID });
+                
                 return Redirect(Request.UrlReferrer.AbsoluteUri);
             }
             return HttpNotFound();
