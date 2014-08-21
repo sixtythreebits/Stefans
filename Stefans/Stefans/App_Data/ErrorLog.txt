@@ -88,3 +88,13 @@ TSP_Dictionaries(iud = 0, ID = 0, Caption = test, Caption1 = , CodeVal = ), Pare
 
 ------------------------------------
 
+
+
+------------------------------------
+http://localhost:11793/Admin/Order/EditStatuses - 8/21/2014 5:11:32 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\Order.cs
+Line Number - 163
+TSP_Orders(iud = 1, ID = 8, UserID = , StatusID = 71, TotalPrice = ) --- Could not find stored procedure 'dbo.tsp_Orders'.
+
+------------------------------------
+

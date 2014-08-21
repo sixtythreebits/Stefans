@@ -18,6 +18,7 @@ namespace Core.CM
         }
 
         public decimal TotalPrice { get; set; }
+        public int StatusID { get; set; }
         public string StatusCaption { get; set; }
         public int? ItemCount { get; set; }
         public int? ProductID { get; set; }
@@ -49,6 +50,7 @@ namespace Core.CM
                 ID = o.OrderID,
                 TotalPrice = o.TotalPrice,
                 StatusCaption = o.Status,
+                StatusID = o.StatusID,
                 CRTime = o.CRTime,
                 UserEmail = o.Email,
                 Shipping = new OrderAddress
@@ -154,7 +156,14 @@ namespace Core.CM
 
             }, Logger: string.Format("GetSingleOrder: ID = {0}", OrderID));
         }
-                
+
+
+        public void TSP_Orders(byte iud, int? ID, int? UserID, int? StatusID, decimal? TotalPrice)
+        {
+            TryExecute(db => db.tsp_Orders(iud, ref ID, UserID, StatusID, TotalPrice)
+                , Logger: string.Format("TSP_Orders(iud = {0}, ID = {1}, UserID = {2}, StatusID = {3}, TotalPrice = {4})"
+                , iud, ID, UserID, StatusID, TotalPrice));
+        }
         #endregion
     }
 }

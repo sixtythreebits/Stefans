@@ -4,11 +4,13 @@ using System.Linq;
 using System.Resources;
 using System.Reflection;
 using Core.Properties;
+using Core;
+using DevExpress.Web.Mvc;
 
 namespace Stefans.Areas.Admin.Controllers
 {
     public class OrderController : Controller
-    {
+    {        
         public ActionResult Index()
         {
             return View();
@@ -17,7 +19,8 @@ namespace Stefans.Areas.Admin.Controllers
         public ActionResult OrderGrid()
         {
             var model = new Order().GetList();
-            ViewBag.DateFormat = Resources.LongDateFormat;
+            ViewBag.DateFormat = Resources.LongDateFormat;            
+            ViewBag.Statuses = new Dictionary().ListDictionaries(1, 4);
             return PartialView("_OrderGrid", model);
         }
 
@@ -43,6 +46,22 @@ namespace Stefans.Areas.Admin.Controllers
             }
 
             return HttpNotFound();
+        }
+
+        public ActionResult EditStatuses([ModelBinder(typeof(DevExpressEditorsBinder))]Order Order)
+        {
+            Order.TSP_Orders(1, Order.ID, null, Order.StatusID, null);
+
+            if(Order.IsError)
+            {
+                ViewData["EditError"] = Resources.Fail;
+            }
+
+            //return RedirectToAction("Index", "Order");
+            var model = new Order().GetList();
+            ViewBag.DateFormat = Resources.LongDateFormat;
+            ViewBag.Statuses = new Dictionary().ListDictionaries(1, 4);
+            return PartialView("_OrderGrid", model);
         }
     }
 }

@@ -23,6 +23,8 @@
         settings.Name = "GridView";
         settings.CallbackRouteValues = new { Controller = "Order", Action = "OrderGrid" };
 
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Order", Action = "EditStatuses" };
+
         settings.Width = Unit.Percentage(100);
 
         settings.KeyFieldName = "ID";
@@ -40,16 +42,31 @@
             c.SortOrder = ColumnSortOrder.Descending;
             c.ColumnType = MVCxGridViewColumnType.DateEdit;
             c.Width = 200;
-            c.PropertiesEdit.DisplayFormatString = @ViewBag.DateFormat;
+            c.PropertiesEdit.DisplayFormatString = @ViewBag.DateFormat; 
+            //c.EditFormSettings.Visible = DefaultBoolean.False;                  
         });
                 
         
-        settings.Columns.Add("StatusCaption").Caption = "Status";
+        //settings.Columns.Add("StatusCaption").Caption = "Status";
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "StatusID";
+            column.Caption = "Status";
 
+            column.ColumnType = MVCxGridViewColumnType.ComboBox;
+            var comboBoxProperties = column.PropertiesEdit as ComboBoxProperties;
+            comboBoxProperties.DataSource = ViewBag.Statuses;
+            comboBoxProperties.TextField = "Caption";
+            comboBoxProperties.ValueField = "ID";
+            comboBoxProperties.ValueType = typeof(int);
+            column.Width = 200;
+        });
+        
         settings.Columns.Add(c =>
         {
             c.Caption = "Shipping";
             c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteAddress(DataBinder.Eval(col.DataItem, c.Caption) as OrderAddress)));
+            
         });
         
         settings.Columns.Add(c =>
@@ -58,15 +75,73 @@
             c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteAddress(DataBinder.Eval(col.DataItem, c.Caption) as OrderAddress)));
         });
         
-        settings.Columns.Add(c =>
-            c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteLink(Url.Action("Details", new { ID = col.KeyValue }), "Details")))
-        );
+        settings.Columns.Add(c =>{
+            c.SetDataItemTemplateContent(col => ViewContext.Writer.Write(WriteLink(Url.Action("Details", new { ID = col.KeyValue }), "Details")));
+            c.Width = 50;
+            c.Caption = "Details";
+        });
 
         settings.CommandColumn.Visible = true;
         settings.CommandColumn.VisibleIndex = int.MaxValue;
         settings.CommandColumn.ShowClearFilterButton = true;
         settings.CommandColumn.Caption = " ";
 
+        settings.CommandColumn.ShowEditButton = true;
+        settings.SettingsText.CommandEdit = "Edit Statuses";
+        settings.SettingsText.CommandUpdate = "Save";
+        settings.SettingsEditing.Mode = GridViewEditingMode.Inline;
+        settings.CellEditorInitialize = (sender, e) =>
+        {
+            if (e.Column.FieldName == "ID")
+            {
+                //e.Editor.ReadOnly = true;
+                //e.Editor.BackColor = System.Drawing.Color.Red;  
+                e.Editor.ClientVisible = false;              
+            }
+            if (e.Column.FieldName == "TotalPrice")
+            {
+                //e.Editor.ReadOnly = true;
+                //e.Editor.BackColor = System.Drawing.Color.Red;  
+                e.Editor.ClientVisible = false;              
+            }
+            if (e.Column.FieldName == "CRTime")
+            {
+                //e.Editor.ReadOnly = true;
+                //e.Editor.BackColor = System.Drawing.Color.Red;
+                e.Editor.ClientVisible = false;
+            }
+            if (e.Column.Caption == "Shipping")
+            {
+                //MVCxGridView g = sender as MVCxGridView;
+                e.Editor.ClientVisible = false;
+            }
+            if (e.Column.Caption == "Billing")
+            {
+                //MVCxGridView g = sender as MVCxGridView;
+                e.Editor.ClientVisible = false;
+            }
+            if (e.Column.Caption == "Details")
+            {
+                //MVCxGridView g = sender as MVCxGridView;
+                e.Editor.ClientVisible = false;
+            }                     
+            //if (e.Column.FieldName == "CRTime")
+            //{
+            //    MVCxGridView g = sender as MVCxGridView;
+            //    if (g.IsNewRowEditing)
+            //        e.Editor.ReadOnly = true;
+            //    else
+            //        e.Editor.ReadOnly = true;
+
+            //}     
+        };
+
+        settings.Settings.ShowFooter = true;
+        settings.SetFooterRowTemplateContent(c =>
+        {
+            Html.ViewContext.Writer.Write(ViewData["EditError"]);
+        });
+        
         settings.SettingsPager.Visible = true;
         settings.Settings.ShowGroupPanel = false;
         settings.Settings.ShowFilterRow = true;
