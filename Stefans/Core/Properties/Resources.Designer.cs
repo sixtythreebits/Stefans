@@ -97,6 +97,15 @@ namespace Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Field is required..
+        /// </summary>
+        public static string ErrorFieldRequired {
+            get {
+                return ResourceManager.GetString("ErrorFieldRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Valid extensions area: {0}!.
         /// </summary>
         public static string ErrorFileExtension {

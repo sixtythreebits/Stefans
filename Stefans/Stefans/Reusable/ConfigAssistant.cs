@@ -14,7 +14,10 @@ namespace Stefans.Reusable
         {
             get { return GetConfigValue(); }
         }
-
+        public static string PromosFolderRelativePath
+        {
+            get { return GetConfigValue(); }
+        }
         public static string ADNApiUrl
         {
             get { return GetConfigValue(); }

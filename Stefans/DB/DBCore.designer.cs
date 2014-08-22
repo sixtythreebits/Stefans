@@ -233,6 +233,20 @@ namespace DB
 			orderID = ((System.Nullable<int>)(result.GetParameterValue(1)));
 			return ((int)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.List_PromoImages", IsComposable=true)]
+		public IQueryable<List_PromoImagesResult> List_PromoImages()
+		{
+			return this.CreateMethodCallQuery<List_PromoImagesResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tsp_PromoImages")]
+		public int tsp_PromoImages([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="TinyInt")] System.Nullable<byte> iud, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PromoImageID", DbType="Int")] ref System.Nullable<int> promoImageID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Image", DbType="NVarChar(100)")] string image, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PromoName", DbType="NVarChar(50)")] string promoName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="SortIndex", DbType="Int")] System.Nullable<int> sortIndex)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iud, promoImageID, image, promoName, sortIndex);
+			promoImageID = ((System.Nullable<int>)(result.GetParameterValue(1)));
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	public partial class List_DictionariesResult
@@ -1958,6 +1972,104 @@ namespace DB
 				if ((this._BillingState != value))
 				{
 					this._BillingState = value;
+				}
+			}
+		}
+	}
+	
+	public partial class List_PromoImagesResult
+	{
+		
+		private int _PromoImageID;
+		
+		private string _Image;
+		
+		private string _PromoName;
+		
+		private int _SortIndex;
+		
+		private System.DateTime _CRTime;
+		
+		public List_PromoImagesResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PromoImageID", DbType="Int NOT NULL")]
+		public int PromoImageID
+		{
+			get
+			{
+				return this._PromoImageID;
+			}
+			set
+			{
+				if ((this._PromoImageID != value))
+				{
+					this._PromoImageID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Image", DbType="NVarChar(100)")]
+		public string Image
+		{
+			get
+			{
+				return this._Image;
+			}
+			set
+			{
+				if ((this._Image != value))
+				{
+					this._Image = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PromoName", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string PromoName
+		{
+			get
+			{
+				return this._PromoName;
+			}
+			set
+			{
+				if ((this._PromoName != value))
+				{
+					this._PromoName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SortIndex", DbType="Int NOT NULL")]
+		public int SortIndex
+		{
+			get
+			{
+				return this._SortIndex;
+			}
+			set
+			{
+				if ((this._SortIndex != value))
+				{
+					this._SortIndex = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CRTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CRTime
+		{
+			get
+			{
+				return this._CRTime;
+			}
+			set
+			{
+				if ((this._CRTime != value))
+				{
+					this._CRTime = value;
 				}
 			}
 		}

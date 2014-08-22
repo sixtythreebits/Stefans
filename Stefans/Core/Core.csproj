@@ -59,6 +59,7 @@
     <Compile Include="CM\OrderDetail.cs" />
     <Compile Include="CM\Product.cs" />
     <Compile Include="CM\ProductTestimonial.cs" />
+    <Compile Include="CM\PromoImage.cs" />
     <Compile Include="CoreObjectBase.cs" />
     <Compile Include="Dictionary.cs" />
     <Compile Include="GenericObjectBase.cs" />

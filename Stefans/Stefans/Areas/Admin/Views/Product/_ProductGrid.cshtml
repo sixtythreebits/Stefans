@@ -28,6 +28,7 @@
             c.SortOrder = ColumnSortOrder.Descending;
             c.ColumnType = MVCxGridViewColumnType.DateEdit;
             c.Width = 200;
+            c.PropertiesEdit.DisplayFormatString = @ViewBag.DateFormat;
         });
 
         settings.Columns.Add(c =>

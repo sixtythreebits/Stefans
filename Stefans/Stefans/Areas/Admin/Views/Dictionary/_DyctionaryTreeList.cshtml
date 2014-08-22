@@ -57,7 +57,7 @@
                 settings.PreRender = (sender, e) =>
                 {
                     MVCxTreeList treeListControl = (MVCxTreeList)sender;
-                    treeListControl.ExpandToLevel(2);                    
+                    //treeListControl.ExpandToLevel(2);                    
                 };
 
                 
@@ -90,7 +90,7 @@
                     spinEditProperties.NumberType = SpinEditNumberType.Integer;
                     spinEditProperties.MinValue = 0;
                     spinEditProperties.MaxValue = 10000;
-                    column.Width = 70;
+                    column.Width = 110;
                 });
             }
         );

@@ -1,0 +1,63 @@
+﻿@section CSS{
+
+}
+
+@section JS{
+
+}
+
+@model Core.CM.PromoImage
+
+<div class="frontPageEdit-wrapper">
+    <form role="form" action="@Url.Action("Add", "Promo")" method="post" enctype="multipart/form-data">
+
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="form-group col-sm-4">
+
+                    <label for="PromoName">Name</label>
+                    @Html.TextBoxFor(m => m.PromoName, new { placeholder = "First Name", @class = "form-control" })
+
+                    <div style="color: red;" class="text-left">
+                        @Html.ValidationMessageFor(model => model.PromoName)
+                    </div>
+
+                </div>
+                <div class="col-sm-8"></div>
+            </div>
+            <div class="form-group">
+                <label>Image</label>
+                <input type="file" name="ImageFile">
+
+                <div style="color: red;" class="text-left">
+                    @Html.ValidationMessageFor(model => model.Image)
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-sm-4">
+
+                    <label for="SortIndex">Sort Index</label>
+                    @Html.TextBoxFor(m => m.SortIndex, new { placeholder = "Sort Index", @class = "form-control" })
+
+
+                </div>
+
+                <div class="col-sm-8"></div>
+            </div>
+            <button type="submit" class="btn btn-danger">Save</button>
+        </div>
+
+        @if (@ViewBag.TSP_Error != null)
+        {
+            <div class="col-sm-12">
+                <div class="alert alert-warning alert-dismissable">
+                    <p>@ViewBag.TSP_Error</p>
+                </div>
+            </div>
+        }
+    </form>
+
+
+</div>

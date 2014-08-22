@@ -11,6 +11,7 @@ using Stefans.Reusable.Attributes;
 using Stefans.Reusable.FrameworkExtensions;
 using Res = Core.Properties.Resources;
 using FileIO = System.IO.File;
+using Core.Properties;
 
 namespace Stefans.Areas.Admin.Controllers
 {
@@ -26,6 +27,7 @@ namespace Stefans.Areas.Admin.Controllers
         public ActionResult ProductGrid()
         {
             var model = new Product().GetList();
+            ViewBag.DateFormat = Resources.ShortDateFormat;
             return PartialView("_ProductGrid", model);
         }
 

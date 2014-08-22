@@ -98,3 +98,33 @@ TSP_Orders(iud = 1, ID = 8, UserID = , StatusID = 71, TotalPrice = ) --- Could n
 
 ------------------------------------
 
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Add - 8/22/2014 7:32:09 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 38
+TSP(iud = 0, ID = , Image = 194cfa8c_c73d_4c35_abb6_0e2c7743aa61_26151d75.jpg, PromoName = test, SortIndex = ) --- SQL: Cannot insert the value NULL into column 'SortIndex', table 'Stefans.dbo.PromoImages'; column does not allow nulls. INSERT fails.
+ErrorProcedure - tsp_PromoImages
+ErrorLine - 24
+Severity - 16
+State - 2
+
+
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Add - 8/22/2014 7:39:42 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 38
+TSP(iud = 0, ID = , Image = 194cfa8c_c73d_4c35_abb6_0e2c7743aa61_3ee8b016.jpg, PromoName = test, SortIndex = ) --- SQL: Cannot insert the value NULL into column 'SortIndex', table 'Stefans.dbo.PromoImages'; column does not allow nulls. INSERT fails.
+ErrorProcedure - tsp_PromoImages
+ErrorLine - 24
+Severity - 16
+State - 2
+
+
+------------------------------------
+
