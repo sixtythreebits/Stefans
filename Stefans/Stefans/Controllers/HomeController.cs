@@ -12,7 +12,8 @@ namespace Stefans.Controllers
         {
             ViewBag.HomePage = true;
             ViewBag.Products = new Product().GetTopFeatured();
-                        
+            ViewBag.PromoImages = new PromoImage().List_PromoImages();            
+
             ViewBag.States = new Dictionary().ListDictionaries(1, 1);
             ViewBag.Topic = new Dictionary().ListDictionaries(1, 6);
             ViewBag.LicensedHairCareProfessional = new Dictionary().ListDictionaries(1, 5);

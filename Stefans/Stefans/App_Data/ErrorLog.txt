@@ -128,3 +128,84 @@ State - 2
 
 ------------------------------------
 
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Images - 8/26/2014 12:33:33 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Images - 8/26/2014 12:33:39 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Edit/19 - 8/26/2014 12:34:01 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Edit/19 - 8/26/2014 12:34:02 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Edit/19 - 8/26/2014 12:34:03 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Edit/19 - 8/26/2014 12:34:03 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Edit/19 - 8/26/2014 12:34:03 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Edit/19 - 8/26/2014 12:34:03 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+
+
+
+------------------------------------
+http://localhost:11793/Admin/Promo/Edit/19 - 8/26/2014 12:34:04 PM
+Source File - c:\inetpub\wwwroot\Stefans\Stefans\Core\CM\PromoImage.cs
+Line Number - 48
+List_PromoImages(ID = 0, Image = , PromoName = , SortIndex = ) --- The member 'SystemBase.ObjectBase.CRTime' has no supported translation to SQL.
+------------------------------------
+

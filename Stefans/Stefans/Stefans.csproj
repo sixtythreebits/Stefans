@@ -275,6 +275,7 @@
     <Content Include="Areas\Admin\Views\Contacts\_ContactsGrid.cshtml" />
     <Content Include="Areas\Admin\Views\Promo\Images.cshtml" />
     <Content Include="Areas\Admin\Views\Promo\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Promo\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\StefansPublishProfile.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />

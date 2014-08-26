@@ -79,15 +79,12 @@
 
 <section id="home" class="slider home">
     <ul>
-        <li style="background-image:url(/images/0/01.jpg)">
-            <h6 class="title">PROMO NAME</h6>
+        @foreach(var item in ViewBag.PromoImages as List<PromoImage>)
+        {
+            <li style="background-image: url(@Url.Content(ConfigAssistant.PromosFolderRelativePath + item.Image))">
+            <h6 class="title">@item.PromoName</h6>
         </li>
-        <li style="background-image:url(/images/0/01.jpg)">
-            <h6 class="title">PROMO NAME</h6>
-        </li>
-        <li style="background-image:url(/images/0/01.jpg)">
-            <h6 class="title">PROMO NAME</h6>
-        </li>
+        }
     </ul>
 </section>
 
