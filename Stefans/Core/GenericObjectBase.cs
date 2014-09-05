@@ -6,7 +6,7 @@ using Lib;
 
 namespace Core
 {
-    public class GenericObjectBase<TContext> : ObjectBase where TContext : DataContext, new()
+    public class GenericObjectBase<TContext> : ObjectBase where TContext : DataContext
     {
         private readonly Func<TContext> _contextCreator;
 
